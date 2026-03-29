@@ -20,3 +20,11 @@ python3 -m venv .venv
 
 - `GET /health`
 
+## Configuracion base
+
+El backend toma estos valores desde entorno:
+
+- `ENVIRONMENT`
+- `API_HOST`
+- `API_PORT`
+- `CORS_ALLOW_ORIGINS`

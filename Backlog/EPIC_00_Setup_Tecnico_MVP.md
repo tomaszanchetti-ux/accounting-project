@@ -255,13 +255,13 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Configurar CORS para desarrollo local
-- [ ] Crear settings con Pydantic o equivalente
-- [ ] Mover variables sensibles a entorno
+- [x] Configurar CORS para desarrollo local
+- [x] Crear settings con Pydantic o equivalente
+- [x] Mover variables sensibles a entorno
 - [ ] Commit sugerido: `chore(backend): configurar settings base y cors`
 
 ---

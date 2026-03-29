@@ -187,7 +187,7 @@ Al cerrar una sesión:
 
 | Epic | Estado Docs | Estado Implementación | Cards completadas | Observaciones |
 | --- | --- | --- | --- | --- |
-| EPIC 00 | ✅ | EN PROGRESO | 7 / 17 | Frontend base listo y backend modular inicial ya armado |
+| EPIC 00 | ✅ | EN PROGRESO | 8 / 17 | Frontend base y backend con estructura modular, settings y CORS listos |
 
 ### Cómo registrar avance
 
