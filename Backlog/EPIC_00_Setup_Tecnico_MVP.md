@@ -124,15 +124,15 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear app en `frontend/` con `create-next-app`
-- [ ] Activar TypeScript, App Router y Tailwind
-- [ ] Configurar alias de imports
-- [ ] Reemplazar el contenido inicial por una pantalla mínima de placeholder del MVP
-- [ ] Verificar `npm run dev`
+- [x] Crear app en `frontend/` con `create-next-app`
+- [x] Activar TypeScript, App Router y Tailwind
+- [x] Configurar alias de imports
+- [x] Reemplazar el contenido inicial por una pantalla mínima de placeholder del MVP
+- [x] Verificar `npm run dev`
 - [ ] Commit sugerido: `chore(frontend): inicializar app Next.js del MVP`
 
 ---

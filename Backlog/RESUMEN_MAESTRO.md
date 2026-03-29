@@ -187,7 +187,7 @@ Al cerrar una sesión:
 
 | Epic | Estado Docs | Estado Implementación | Cards completadas | Observaciones |
 | --- | --- | --- | --- | --- |
-| EPIC 00 | ✅ | EN PROGRESO | 2 / 17 | Estructura raiz y convenciones base documentadas |
+| EPIC 00 | ✅ | EN PROGRESO | 3 / 17 | Estructura raiz, convenciones base y frontend inicial listos |
 
 ### Cómo registrar avance
 
