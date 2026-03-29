@@ -40,7 +40,7 @@ Ninguna. Es la primera epic del backlog.
 - [ ] El proyecto puede desplegarse en una configuración simple de demo
 - [ ] Hay documentación mínima de setup para retomar el proyecto sin ambigüedad
 
-## Estado: PENDIENTE
+## Estado: EN PROGRESO
 
 ---
 
@@ -68,13 +68,13 @@ Ninguna. Es la primera epic del backlog.
 
 **Tasks:**
 
-- [ ] Definir estructura raíz recomendada:
+- [x] Definir estructura raíz recomendada:
   - `frontend/`
   - `backend/`
   - `data/`
   - `Backlog/` (ya creada)
-- [ ] Crear `.gitkeep` en carpetas vacías si hace falta
-- [ ] Validar que la estructura sirva tanto para desarrollo local como para demo
+- [x] Crear `.gitkeep` en carpetas vacías si hace falta
+- [x] Validar que la estructura sirva tanto para desarrollo local como para demo
 - [ ] Commit sugerido: `chore: crear estructura base del proyecto accounting-mvp`
 
 ---
@@ -91,16 +91,16 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir nombres base:
+- [x] Definir nombres base:
   - proyecto: `accounting-reconciliation-mvp`
   - frontend local: `http://localhost:3000`
   - backend local: `http://localhost:8000`
-- [ ] Definir variables de entorno mínimas esperadas para todo el proyecto
-- [ ] Documentar convención de naming para buckets, tablas y servicios
+- [x] Definir variables de entorno mínimas esperadas para todo el proyecto
+- [x] Documentar convención de naming para buckets, tablas y servicios
 - [ ] Commit sugerido: `docs: definir convenciones base de entorno y naming`
 
 ---
@@ -124,15 +124,15 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear app en `frontend/` con `create-next-app`
-- [ ] Activar TypeScript, App Router y Tailwind
-- [ ] Configurar alias de imports
-- [ ] Reemplazar el contenido inicial por una pantalla mínima de placeholder del MVP
-- [ ] Verificar `npm run dev`
+- [x] Crear app en `frontend/` con `create-next-app`
+- [x] Activar TypeScript, App Router y Tailwind
+- [x] Configurar alias de imports
+- [x] Reemplazar el contenido inicial por una pantalla mínima de placeholder del MVP
+- [x] Verificar `npm run dev`
 - [ ] Commit sugerido: `chore(frontend): inicializar app Next.js del MVP`
 
 ---
@@ -149,14 +149,14 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Limpiar estilos de ejemplo del scaffold inicial
-- [ ] Dejar `globals.css` con una base simple y neutra
-- [ ] Crear carpeta para componentes propios del proyecto
-- [ ] Evaluar si conviene instalar una librería de componentes liviana desde el inicio
+- [x] Limpiar estilos de ejemplo del scaffold inicial
+- [x] Dejar `globals.css` con una base simple y neutra
+- [x] Crear carpeta para componentes propios del proyecto
+- [x] Evaluar si conviene instalar una librería de componentes liviana desde el inicio
 - [ ] Commit sugerido: `chore(frontend): configurar base visual mínima`
 
 ---
@@ -173,13 +173,13 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear convención de `NEXT_PUBLIC_API_BASE_URL`
-- [ ] Crear carpeta o módulo para clientes API
-- [ ] Implementar un health check simple desde frontend hacia backend
+- [x] Crear convención de `NEXT_PUBLIC_API_BASE_URL`
+- [x] Crear carpeta o módulo para clientes API
+- [x] Implementar un health check simple desde frontend hacia backend
 - [ ] Commit sugerido: `chore(frontend): preparar patrón base de consumo de API`
 
 ---
@@ -202,15 +202,15 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear proyecto Python en `backend/`
-- [ ] Definir herramienta de entorno y dependencias
-- [ ] Instalar `fastapi`, `uvicorn`, `pydantic`, `pandas`
-- [ ] Crear app principal y ruta `GET /health`
-- [ ] Verificar arranque local
+- [x] Crear proyecto Python en `backend/`
+- [x] Definir herramienta de entorno y dependencias
+- [x] Instalar `fastapi`, `uvicorn`, `pydantic`, `pandas`
+- [x] Crear app principal y ruta `GET /health`
+- [x] Verificar arranque local
 - [ ] Commit sugerido: `chore(backend): inicializar backend FastAPI`
 
 ---
@@ -227,18 +227,18 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear estructura sugerida:
+- [x] Crear estructura sugerida:
   - `app/api/`
   - `app/core/`
   - `app/services/`
   - `app/schemas/`
   - `app/models/`
-- [ ] Mover la app a esa estructura
-- [ ] Validar imports y arranque
+- [x] Mover la app a esa estructura
+- [x] Validar imports y arranque
 - [ ] Commit sugerido: `chore(backend): crear estructura modular inicial`
 
 ---
@@ -255,13 +255,13 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Configurar CORS para desarrollo local
-- [ ] Crear settings con Pydantic o equivalente
-- [ ] Mover variables sensibles a entorno
+- [x] Configurar CORS para desarrollo local
+- [x] Crear settings con Pydantic o equivalente
+- [x] Mover variables sensibles a entorno
 - [ ] Commit sugerido: `chore(backend): configurar settings base y cors`
 
 ---
@@ -284,13 +284,16 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
 - [ ] Crear proyecto Supabase para este MVP
 - [ ] Guardar `project URL`, `anon key`, `service role key` y credenciales de DB
 - [ ] Verificar acceso al panel
+- [x] Crear proyecto Supabase para este MVP
+- [x] Guardar `project URL`, `anon key`, `service role key` y credenciales de DB
+- [x] Verificar acceso al panel
 - [ ] Commit sugerido: no aplica si no hay cambios en repo
 
 ---
@@ -307,14 +310,14 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Elegir librería/patrón de acceso a DB para MVP
-- [ ] Crear módulo de conexión base
-- [ ] Probar conexión real con Supabase Postgres
-- [ ] Dejar lista la base para definir tablas en la epic correspondiente
+- [x] Elegir librería/patrón de acceso a DB para MVP
+- [x] Crear módulo de conexión base
+- [x] Probar conexión real con Supabase Postgres
+- [x] Dejar lista la base para definir tablas en la epic correspondiente
 - [ ] Commit sugerido: `chore(db): configurar conexión base a Supabase Postgres`
 
 ---
@@ -331,13 +334,13 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear bucket de storage para uploads del MVP
-- [ ] Definir convención de paths por `run_id`
-- [ ] Probar upload y acceso de archivo de prueba
+- [x] Crear bucket de storage para uploads del MVP
+- [x] Definir convención de paths por `run_id`
+- [x] Probar upload y acceso de archivo de prueba
 - [ ] Commit sugerido: `chore(storage): configurar bucket y convención de archivos`
 
 ---
@@ -360,13 +363,13 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir `NEXT_PUBLIC_API_BASE_URL`
-- [ ] Definir cualquier URL pública necesaria de Supabase si aplica
-- [ ] Crear ejemplo de entorno si conviene
+- [x] Definir `NEXT_PUBLIC_API_BASE_URL`
+- [x] Definir cualquier URL pública necesaria de Supabase si aplica
+- [x] Crear ejemplo de entorno si conviene
 - [ ] Commit sugerido: `chore(frontend): definir variables de entorno base`
 
 ---
@@ -383,14 +386,14 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir variables para DB
-- [ ] Definir variables para Supabase Storage
-- [ ] Definir variables para CORS y ambiente
-- [ ] Documentar el set mínimo requerido
+- [x] Definir variables para DB
+- [x] Definir variables para Supabase Storage
+- [x] Definir variables para CORS y ambiente
+- [x] Documentar el set mínimo requerido
 - [ ] Commit sugerido: `chore(backend): definir variables de entorno base`
 
 ---
@@ -413,12 +416,12 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Conectar repo o carpeta frontend a Vercel
-- [ ] Configurar variables necesarias
+- [x] Conectar repo o carpeta frontend a Vercel
+- [x] Configurar variables necesarias
 - [ ] Verificar deploy exitoso
 - [ ] Commit sugerido: no aplica si el cambio es solo de plataforma
 
@@ -436,14 +439,14 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Evaluar despliegue simple del backend para MVP
-- [ ] Definir URL base productiva del backend
-- [ ] Verificar compatibilidad con CORS, DB y storage
-- [ ] Documentar la decisión para no reabrirla más adelante
+- [x] Evaluar despliegue simple del backend para MVP
+- [x] Definir URL base productiva del backend
+- [x] Verificar compatibilidad con CORS, DB y storage
+- [x] Documentar la decisión para no reabrirla más adelante
 - [ ] Commit sugerido: `docs(deploy): definir estrategia de despliegue del backend`
 
 ---
@@ -466,13 +469,13 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Verificar y ajustar ESLint en frontend
-- [ ] Definir formatter o lint básico para backend
-- [ ] Crear comandos de chequeo mínimos
+- [x] Verificar y ajustar ESLint en frontend
+- [x] Definir formatter o lint básico para backend
+- [x] Crear comandos de chequeo mínimos
 - [ ] Commit sugerido: `chore: configurar calidad mínima de código`
 
 ---
@@ -489,14 +492,14 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear README técnico mínimo del proyecto
-- [ ] Documentar cómo levantar frontend y backend
-- [ ] Documentar variables requeridas
-- [ ] Documentar dependencias externas del setup
+- [x] Crear README técnico mínimo del proyecto
+- [x] Documentar cómo levantar frontend y backend
+- [x] Documentar variables requeridas
+- [x] Documentar dependencias externas del setup
 - [ ] Commit sugerido: `docs: agregar guía mínima de setup del MVP`
 
 ---
