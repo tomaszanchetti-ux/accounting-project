@@ -68,14 +68,14 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Confirmar que `payroll.csv` será el archivo principal del demo
-- [ ] Documentar que representa el export mensual de nómina / beneficios
-- [ ] Definir que contendrá múltiples líneas por empleado y concepto
-- [ ] Dejar explícito que es la fuente observada a conciliar
+- [x] Confirmar que `payroll.csv` será el archivo principal del demo
+- [x] Documentar que representa el export mensual de nómina / beneficios
+- [x] Definir que contendrá múltiples líneas por empleado y concepto
+- [x] Dejar explícito que es la fuente observada a conciliar
 - [ ] Commit sugerido: `docs(data): definir payroll.csv como fuente principal del demo`
 
 ---
