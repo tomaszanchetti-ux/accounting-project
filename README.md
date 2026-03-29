@@ -109,5 +109,7 @@ Comandos individuales:
 
 Para retomar el proyecto hoy:
 
-- revisar `Backlog/EPIC_00_Setup_Tecnico_MVP.md`
-- continuar desde la siguiente card pendiente de `EPIC 00`
+- `EPIC 00` ya esta cerrada
+- revisar `Backlog/EPIC_01_Data_Foundation_Dataset_Demo.md`
+- continuar desde `Card 1.3.1`
+- branch de trabajo actual: `codex/epic-01-data-foundation`
