@@ -416,7 +416,7 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
@@ -473,9 +473,9 @@ Ninguna. Es la primera epic del backlog.
 
 **Tasks:**
 
-- [ ] Verificar y ajustar ESLint en frontend
-- [ ] Definir formatter o lint básico para backend
-- [ ] Crear comandos de chequeo mínimos
+- [x] Verificar y ajustar ESLint en frontend
+- [x] Definir formatter o lint básico para backend
+- [x] Crear comandos de chequeo mínimos
 - [ ] Commit sugerido: `chore: configurar calidad mínima de código`
 
 ---
