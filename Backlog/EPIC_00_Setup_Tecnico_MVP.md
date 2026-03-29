@@ -40,7 +40,7 @@ Ninguna. Es la primera epic del backlog.
 - [ ] El proyecto puede desplegarse en una configuración simple de demo
 - [ ] Hay documentación mínima de setup para retomar el proyecto sin ambigüedad
 
-## Estado: EN PROGRESO
+## Estado: COMPLETADA
 
 ---
 
@@ -64,7 +64,7 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
@@ -422,7 +422,7 @@ Ninguna. Es la primera epic del backlog.
 
 - [x] Conectar repo o carpeta frontend a Vercel
 - [x] Configurar variables necesarias
-- [ ] Verificar deploy exitoso
+- [x] Verificar deploy exitoso
 - [ ] Commit sugerido: no aplica si el cambio es solo de plataforma
 
 ---
