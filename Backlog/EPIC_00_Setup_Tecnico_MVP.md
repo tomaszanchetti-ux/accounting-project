@@ -202,15 +202,15 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear proyecto Python en `backend/`
-- [ ] Definir herramienta de entorno y dependencias
-- [ ] Instalar `fastapi`, `uvicorn`, `pydantic`, `pandas`
-- [ ] Crear app principal y ruta `GET /health`
-- [ ] Verificar arranque local
+- [x] Crear proyecto Python en `backend/`
+- [x] Definir herramienta de entorno y dependencias
+- [x] Instalar `fastapi`, `uvicorn`, `pydantic`, `pandas`
+- [x] Crear app principal y ruta `GET /health`
+- [x] Verificar arranque local
 - [ ] Commit sugerido: `chore(backend): inicializar backend FastAPI`
 
 ---
