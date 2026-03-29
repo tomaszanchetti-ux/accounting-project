@@ -183,8 +183,11 @@ Al cerrar una sesión:
 ### Estado actual
 
 - `Backlog documentado: 100%`
-- `Implementación real: 0%`  
-  Esto puede actualizarse en sesiones futuras.
+- `Implementación real: iniciada`
+
+| Epic | Estado Docs | Estado Implementación | Cards completadas | Observaciones |
+| --- | --- | --- | --- | --- |
+| EPIC 00 | ✅ | EN PROGRESO | 1 / 17 | Estructura raiz creada y validada en el repo oficial |
 
 ### Cómo registrar avance
 

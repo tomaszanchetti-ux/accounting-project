@@ -40,7 +40,7 @@ Ninguna. Es la primera epic del backlog.
 - [ ] El proyecto puede desplegarse en una configuración simple de demo
 - [ ] Hay documentación mínima de setup para retomar el proyecto sin ambigüedad
 
-## Estado: PENDIENTE
+## Estado: EN PROGRESO
 
 ---
 
@@ -64,17 +64,17 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir estructura raíz recomendada:
+- [x] Definir estructura raíz recomendada:
   - `frontend/`
   - `backend/`
   - `data/`
   - `Backlog/` (ya creada)
-- [ ] Crear `.gitkeep` en carpetas vacías si hace falta
-- [ ] Validar que la estructura sirva tanto para desarrollo local como para demo
+- [x] Crear `.gitkeep` en carpetas vacías si hace falta
+- [x] Validar que la estructura sirva tanto para desarrollo local como para demo
 - [ ] Commit sugerido: `chore: crear estructura base del proyecto accounting-mvp`
 
 ---
