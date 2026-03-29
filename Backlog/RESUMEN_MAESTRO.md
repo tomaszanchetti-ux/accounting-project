@@ -187,7 +187,7 @@ Al cerrar una sesión:
 
 | Epic | Estado Docs | Estado Implementación | Cards completadas | Observaciones |
 | --- | --- | --- | --- | --- |
-| EPIC 00 | ✅ | EN PROGRESO | 6 / 17 | Frontend inicial y backend FastAPI base ya corren en local |
+| EPIC 00 | ✅ | EN PROGRESO | 7 / 17 | Frontend base listo y backend modular inicial ya armado |
 
 ### Cómo registrar avance
 

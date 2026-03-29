@@ -227,18 +227,18 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear estructura sugerida:
+- [x] Crear estructura sugerida:
   - `app/api/`
   - `app/core/`
   - `app/services/`
   - `app/schemas/`
   - `app/models/`
-- [ ] Mover la app a esa estructura
-- [ ] Validar imports y arranque
+- [x] Mover la app a esa estructura
+- [x] Validar imports y arranque
 - [ ] Commit sugerido: `chore(backend): crear estructura modular inicial`
 
 ---
