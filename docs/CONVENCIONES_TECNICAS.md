@@ -66,6 +66,11 @@ No se deben commitear secretos reales.
 - Bucket de archivos subidos: `accounting-mvp-raw-inputs`
 - Bucket de salidas/exportaciones: `accounting-mvp-run-exports`
 
+### Paths de storage
+
+- Inputs crudos por corrida: `runs/<run_id>/inputs/<filename>`
+- Exports por corrida: `runs/<run_id>/exports/<filename>`
+
 ### Tablas sugeridas
 
 - `runs`

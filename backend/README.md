@@ -33,3 +33,8 @@ El backend toma estos valores desde entorno:
 - `SUPABASE_DB_URL`
 - `STORAGE_BUCKET_RAW_INPUTS`
 - `STORAGE_BUCKET_RUN_EXPORTS`
+
+## Convencion inicial de storage
+
+- raw inputs: `runs/<run_id>/inputs/<filename>`
+- exports: `runs/<run_id>/exports/<filename>`

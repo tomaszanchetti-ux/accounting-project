@@ -307,7 +307,7 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
@@ -335,9 +335,9 @@ Ninguna. Es la primera epic del backlog.
 
 **Tasks:**
 
-- [ ] Crear bucket de storage para uploads del MVP
-- [ ] Definir convención de paths por `run_id`
-- [ ] Probar upload y acceso de archivo de prueba
+- [x] Crear bucket de storage para uploads del MVP
+- [x] Definir convención de paths por `run_id`
+- [x] Probar upload y acceso de archivo de prueba
 - [ ] Commit sugerido: `chore(storage): configurar bucket y convención de archivos`
 
 ---
