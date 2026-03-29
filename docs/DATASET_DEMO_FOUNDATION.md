@@ -290,3 +290,105 @@ no cierra:
 - valores concretos del mapping demo
 
 Esos puntos se completan cuando se cierre el universo de conceptos de la epic.
+
+## Definicion de `employee_reference.csv`
+
+### Decision de alcance
+
+`employee_reference.csv` si entra en el MVP base.
+
+La razon es simple:
+
+- el caso `CHILDCARE` fue definido como uno de los casos wow del demo
+- ese caso necesita una referencia de elegibilidad o poblacion esperada
+- resolverlo sin archivo auxiliar haria la explicacion menos creible
+
+Por lo tanto, el MVP incorpora `employee_reference.csv` como archivo auxiliar
+acotado y orientado a elegibilidad.
+
+### Rol funcional
+
+`employee_reference.csv` no es una fuente contable ni transaccional.
+
+Su funcion es aportar contexto de poblacion esperada para conceptos selectivos,
+especialmente beneficios donde no toda la nomina es elegible.
+
+En el MVP:
+
+- define que empleados son elegibles para ciertos conceptos
+- permite comparar poblacion esperada vs poblacion observada
+- sostiene la excepcion `missing population`
+- agrega contexto explicativo para conceptos como `CHILDCARE`
+
+### Columnas minimas
+
+Desde esta card quedan definidas como columnas minimas recomendadas:
+
+- `employee_id`
+- `employee_name`
+- `legal_entity`
+- `country`
+- `cost_center`
+- `payroll_period`
+- `is_childcare_eligible`
+
+### Sentido de cada columna
+
+- `employee_id`: identificador estable para cruzar con `payroll.csv`
+- `employee_name`: apoyo visual y validacion manual del demo
+- `legal_entity`: contexto organizativo minimo
+- `country`: contexto geografico para lectura del caso
+- `cost_center`: ayuda para drill-down y filtros futuros
+- `payroll_period`: periodo sobre el cual aplica la elegibilidad
+- `is_childcare_eligible`: marca booleana de elegibilidad para `CHILDCARE`
+
+### Uso en elegibilidad por concepto
+
+En esta primera version, `employee_reference.csv` se usara sobre todo para
+`CHILDCARE`.
+
+La logica base sera:
+
+- existe una poblacion elegible esperada para el periodo
+- parte de esa poblacion puede no aparecer en `payroll.csv` con el concepto
+- esa brecha ayuda a explicar una diferencia de tipo `missing population`
+
+Mas adelante el archivo podria ampliarse para otros beneficios selectivos, pero
+eso no es obligatorio para el MVP inicial.
+
+### Relacion con el producto
+
+Dentro de una corrida, `employee_reference.csv` funcionara como referencia
+auxiliar opcional pero prevista dentro del flujo base del demo.
+
+La secuencia esperada es:
+
+1. cargar `payroll.csv`
+2. cargar `expected_totals.csv`
+3. cargar `employee_reference.csv` cuando la corrida requiera validar
+   elegibilidad
+4. cruzar elegibilidad esperada contra poblacion observada
+5. explicar faltantes de cobertura en conceptos selectivos
+
+### Decision de simplificacion
+
+Para proteger el tiempo de build del MVP:
+
+- el archivo no modelara reglas HR complejas
+- no se versionaran decenas de flags por beneficio
+- no se intentara convertirlo en maestro global de empleados
+
+Su objetivo en esta etapa es resolver, de manera creible, el caso de
+`missing population` sin inflar el sistema.
+
+### Notas para las siguientes cards
+
+Esta card deja decidido que el archivo entra al MVP y define su estructura
+minima, pero todavia no cierra:
+
+- el volumen final de empleados elegibles
+- los valores concretos del caso `CHILDCARE`
+- si luego se agregan flags para otros beneficios
+
+Eso se completara cuando se diseñe el universo de empleados y los casos wow del
+dataset.

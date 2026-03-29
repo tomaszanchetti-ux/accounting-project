@@ -139,13 +139,13 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Decidir si `employee_reference.csv` entra en el MVP base
-- [ ] Si entra, definir columnas mínimas
-- [ ] Documentar su uso para elegibilidad por concepto
+- [x] Decidir si `employee_reference.csv` entra en el MVP base
+- [x] Si entra, definir columnas mínimas
+- [x] Documentar su uso para elegibilidad por concepto
 - [ ] Commit sugerido: `docs(data): definir employee_reference.csv opcional`
 
 ---
