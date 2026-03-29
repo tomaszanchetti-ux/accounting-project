@@ -202,15 +202,15 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir tipos de dato por columna
-- [ ] Fijar `payroll_period` como `YYYY-MM`
-- [ ] Fijar moneda principal como `EUR`
-- [ ] Fijar importes con 2 decimales
-- [ ] Fijar `concept_code` normalizado en mayúsculas
+- [x] Definir tipos de dato por columna
+- [x] Fijar `payroll_period` como `YYYY-MM`
+- [x] Fijar moneda principal como `EUR`
+- [x] Fijar importes con 2 decimales
+- [x] Fijar `concept_code` normalizado en mayúsculas
 - [ ] Commit sugerido: `docs(data): definir tipos y convenciones del payroll`
 
 ---

@@ -470,3 +470,84 @@ Esos puntos se completan en:
 
 - `Card 1.2.2`
 - `Card 1.2.3`
+
+## Tipos y convenciones de `payroll.csv`
+
+### Tipos sugeridos por columna
+
+Para el MVP, estas son las convenciones de tipo recomendadas:
+
+- `record_id`: string
+- `employee_id`: string
+- `employee_name`: string
+- `legal_entity`: string
+- `country`: string
+- `cost_center`: string
+- `payroll_period`: string con formato controlado
+- `posting_date`: date
+- `concept_code`: string
+- `concept_name`: string
+- `amount`: decimal
+- `currency`: string
+
+### Convenciones de formato
+
+Desde esta card quedan fijadas estas convenciones base:
+
+- `payroll_period` se expresa como `YYYY-MM`
+- `posting_date` se expresa como fecha ISO `YYYY-MM-DD`
+- la moneda principal del demo es `EUR`
+- `amount` se expresa con 2 decimales
+- `concept_code` se normaliza en mayusculas
+
+### Notas practicas por campo
+
+- `record_id` debe poder serializarse sin transformaciones especiales
+- `employee_id` no debe tratarse como entero, para evitar perdida de formato
+- `employee_name` mantiene capitalizacion legible para UI y drill-down
+- `legal_entity`, `country` y `cost_center` se almacenan como texto estable
+- `concept_name` preserva legibilidad humana aunque exista mapping canonico
+- `currency` admite texto corto ISO, aunque en el demo el valor dominante sera
+  `EUR`
+
+### Convencion para montos
+
+El campo `amount` debe representar el valor monetario de la linea con precision
+de 2 decimales.
+
+La expectativa del MVP es:
+
+- usar punto decimal
+- no incluir separadores de miles en el CSV
+- conservar signo explicito cuando aplique
+
+### Convencion para periodos y codigos
+
+El periodo principal del demo se modela a nivel mensual, por eso
+`payroll_period` queda estandarizado como `YYYY-MM`.
+
+`concept_code` debe venir ya normalizado en mayusculas para reducir ambiguedad
+en:
+
+- joins con `concept_master.csv`
+- agregacion por concepto
+- validaciones del motor
+
+### Objetivo de estas convenciones
+
+Estas decisiones buscan que el archivo sea:
+
+- facil de generar
+- facil de validar
+- facil de leer manualmente
+- consistente con el motor y la UI
+
+### Notas para la siguiente card
+
+Esta card cierra tipos y formatos base, pero todavia no define:
+
+- que columnas son estrictamente obligatorias
+- que errores se toleran como anomalias modelables
+- que errores deben invalidar una corrida
+
+Eso se cierra en `Card 1.2.3`.
