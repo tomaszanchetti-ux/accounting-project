@@ -284,7 +284,7 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
@@ -311,10 +311,10 @@ Ninguna. Es la primera epic del backlog.
 
 **Tasks:**
 
-- [ ] Elegir librería/patrón de acceso a DB para MVP
-- [ ] Crear módulo de conexión base
-- [ ] Probar conexión real con Supabase Postgres
-- [ ] Dejar lista la base para definir tablas en la epic correspondiente
+- [x] Elegir librería/patrón de acceso a DB para MVP
+- [x] Crear módulo de conexión base
+- [x] Probar conexión real con Supabase Postgres
+- [x] Dejar lista la base para definir tablas en la epic correspondiente
 - [ ] Commit sugerido: `chore(db): configurar conexión base a Supabase Postgres`
 
 ---

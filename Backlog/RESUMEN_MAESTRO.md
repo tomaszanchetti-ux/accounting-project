@@ -187,7 +187,7 @@ Al cerrar una sesión:
 
 | Epic | Estado Docs | Estado Implementación | Cards completadas | Observaciones |
 | --- | --- | --- | --- | --- |
-| EPIC 00 | ✅ | EN PROGRESO | 8 / 17 | Frontend base y backend con estructura modular, settings y CORS listos |
+| EPIC 00 | ✅ | EN PROGRESO | 9 / 17 | Frontend base y backend ya conectables a Supabase Postgres |
 
 ### Cómo registrar avance
 
