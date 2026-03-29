@@ -48,6 +48,7 @@ Estas convenciones priorizan:
 - `API_HOST`: host de uvicorn
 - `API_PORT`: puerto de FastAPI
 - `CORS_ALLOW_ORIGINS`: origenes permitidos separados por coma
+- `SUPABASE_DB_PASSWORD`: password local de referencia para armar o rotar la URI si hace falta
 - `STORAGE_BUCKET_RAW_INPUTS`: bucket de archivos fuente
 - `STORAGE_BUCKET_RUN_EXPORTS`: bucket de exports y artefactos
 

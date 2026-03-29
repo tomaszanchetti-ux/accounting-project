@@ -363,13 +363,13 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir `NEXT_PUBLIC_API_BASE_URL`
-- [ ] Definir cualquier URL pública necesaria de Supabase si aplica
-- [ ] Crear ejemplo de entorno si conviene
+- [x] Definir `NEXT_PUBLIC_API_BASE_URL`
+- [x] Definir cualquier URL pública necesaria de Supabase si aplica
+- [x] Crear ejemplo de entorno si conviene
 - [ ] Commit sugerido: `chore(frontend): definir variables de entorno base`
 
 ---
