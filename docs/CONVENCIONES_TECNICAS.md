@@ -41,6 +41,7 @@ Estas convenciones priorizan:
 - `NEXT_PUBLIC_API_BASE_URL`: base URL del backend
 - `NEXT_PUBLIC_SUPABASE_URL`: URL publica de Supabase
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: anon key publica
+- Helpers de fetch y clientes API viven en `frontend/lib/api/`
 
 ### Backend
 

@@ -173,13 +173,13 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear convención de `NEXT_PUBLIC_API_BASE_URL`
-- [ ] Crear carpeta o módulo para clientes API
-- [ ] Implementar un health check simple desde frontend hacia backend
+- [x] Crear convención de `NEXT_PUBLIC_API_BASE_URL`
+- [x] Crear carpeta o módulo para clientes API
+- [x] Implementar un health check simple desde frontend hacia backend
 - [ ] Commit sugerido: `chore(frontend): preparar patrón base de consumo de API`
 
 ---
