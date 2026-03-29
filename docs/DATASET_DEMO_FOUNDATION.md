@@ -15,6 +15,7 @@ cada uno y bajo que supuestos se construye el universo de datos del MVP.
 El archivo principal del demo sera:
 
 - `payroll.csv`
+- `expected_totals.csv` como referencia de control del periodo
 
 ## Definicion de `payroll.csv`
 
@@ -92,3 +93,108 @@ Esos puntos se completan en:
 - `Card 1.2.1`
 - `Card 1.2.2`
 - `Card 1.2.3`
+
+## Definicion de `expected_totals.csv`
+
+### Rol funcional
+
+`expected_totals.csv` es la referencia esperada contra la cual se compara el
+total observado consolidado desde `payroll.csv`.
+
+Su funcion no es reemplazar el detalle transaccional, sino actuar como verdad
+de control del periodo para la conciliacion por concepto.
+
+En el MVP:
+
+- define que total deberia cerrar por concepto
+- permite calcular `diff = observed - expected`
+- habilita clasificacion de estado como `reconciled`, `minor` o
+  `unreconciled`
+- sostiene la narrativa explicativa del resumen
+
+### Grano minimo
+
+Desde esta card queda definido que `expected_totals.csv` tendra, como base, una
+fila por:
+
+- `payroll_period`
+- `concept_code`
+
+Ese es el grano minimo de conciliacion del MVP.
+
+La comparacion principal del producto no estara gobernada inicialmente por
+empleado ni por cost center, sino por concepto consolidado del periodo.
+
+### Decision sobre `legal_entity`
+
+Para el MVP base, `legal_entity` no sera una dimension obligatoria del archivo.
+
+La decision operativa es:
+
+- dejar `legal_entity` fuera del alcance inicial del grano obligatorio
+- permitir que pueda incorporarse mas adelante como columna opcional o nullable
+- mantener la conciliacion core enfocada en `periodo + concepto`
+
+Esto reduce complejidad temprana y protege la claridad del demo comercial.
+
+### Que representa
+
+`expected_totals.csv` representa el total esperado del periodo segun la
+referencia de control del negocio.
+
+Puede pensarse como una tabla preparada por:
+
+- controlling
+- contabilidad
+- una referencia funcional acordada para el cierre
+
+No es un calculo derivado de `payroll.csv`, sino el benchmark contra el cual se
+mide lo observado.
+
+### Relacion con la unidad de conciliacion
+
+La unidad de conciliacion del MVP queda definida, en esta etapa, como:
+
+- un concepto en un periodo determinado
+
+Por lo tanto:
+
+- `payroll.csv` aporta el total observado por concepto
+- `expected_totals.csv` aporta el total esperado por concepto
+- el motor compara ambos universos sobre esa misma llave logica
+
+### Relacion con el producto
+
+Dentro del producto, `expected_totals.csv` podra cargarse como archivo de
+control complementario de la corrida.
+
+La secuencia esperada es:
+
+1. cargar `payroll.csv` como fuente observada
+2. cargar `expected_totals.csv` como referencia esperada
+3. ejecutar la conciliacion por concepto y periodo
+4. mostrar resumen, diferencias y explicaciones
+
+### Visualizacion y uso en la demo
+
+En la experiencia del MVP, el usuario no necesita ver todas las filas crudas de
+`expected_totals.csv` como tabla protagonista.
+
+Su rol visible sera:
+
+- alimentar el resumen de expected vs observed
+- sostener el calculo de diferencias por concepto
+- justificar por que un concepto aparece como reconciliado o no
+
+### Notas para las siguientes cards
+
+Esta card deja cerrado el rol funcional del archivo, pero todavia no cierra:
+
+- columnas finales exactas
+- tipos de dato
+- valores concretos por concepto del demo
+
+Esos puntos se completan mas adelante cuando se definan:
+
+- conceptos del MVP
+- tabla objetivo de `expected / observed / diff / estado`

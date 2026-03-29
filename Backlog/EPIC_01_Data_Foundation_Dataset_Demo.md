@@ -92,14 +92,14 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir que `expected_totals.csv` tiene una fila por concepto y período
-- [ ] Evaluar si incluye `legal_entity` en MVP o queda nullable/fuera de alcance inicial
-- [ ] Documentar que actúa como referencia esperada del período
-- [ ] Documentar cómo se visualizará o cargará en el producto
+- [x] Definir que `expected_totals.csv` tiene una fila por concepto y período
+- [x] Evaluar si incluye `legal_entity` en MVP o queda nullable/fuera de alcance inicial
+- [x] Documentar que actúa como referencia esperada del período
+- [x] Documentar cómo se visualizará o cargará en el producto
 - [ ] Commit sugerido: `docs(data): definir expected_totals.csv del MVP`
 
 ---
