@@ -91,16 +91,16 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir nombres base:
+- [x] Definir nombres base:
   - proyecto: `accounting-reconciliation-mvp`
   - frontend local: `http://localhost:3000`
   - backend local: `http://localhost:8000`
-- [ ] Definir variables de entorno mínimas esperadas para todo el proyecto
-- [ ] Documentar convención de naming para buckets, tablas y servicios
+- [x] Definir variables de entorno mínimas esperadas para todo el proyecto
+- [x] Documentar convención de naming para buckets, tablas y servicios
 - [ ] Commit sugerido: `docs: definir convenciones base de entorno y naming`
 
 ---
