@@ -551,3 +551,102 @@ Esta card cierra tipos y formatos base, pero todavia no define:
 - que errores deben invalidar una corrida
 
 Eso se cierra en `Card 1.2.3`.
+
+## Supuestos de calidad e input valido de `payroll.csv`
+
+### Baseline de input valido
+
+El MVP no asume un archivo perfecto, pero si asume un baseline minimo de orden
+y consistencia para poder ejecutar una corrida util.
+
+El principio rector es:
+
+- errores de negocio plausibles se modelan como excepciones explicables
+- errores estructurales graves invalidan la corrida
+
+### Columnas obligatorias
+
+Para considerar que un `payroll.csv` es procesable en el MVP, estas columnas
+son obligatorias:
+
+- `record_id`
+- `employee_id`
+- `payroll_period`
+- `posting_date`
+- `concept_code`
+- `amount`
+- `currency`
+
+Las siguientes columnas son esperadas y muy recomendables para una buena demo,
+pero no necesariamente deben invalidar una corrida si el producto luego decide
+soportar defaults o degradacion controlada:
+
+- `employee_name`
+- `legal_entity`
+- `country`
+- `cost_center`
+- `concept_name`
+
+### Errores tolerados como anomalias modelables
+
+Estos casos no deben romper automaticamente la corrida, porque forman parte del
+valor analitico del MVP:
+
+- registros fuera del periodo esperado (`out-of-period`)
+- conceptos sin mapping valido (`unmapped concept`)
+- duplicados plausibles (`duplicates`)
+- importes atipicos dentro de un concepto (`outlier`)
+- signos inconsistentes respecto a lo esperado (`sign error`)
+- faltantes de poblacion elegible (`missing population`)
+
+La idea es que estos casos entren al motor, se detecten y luego se expliquen.
+
+### Errores que deben romper la corrida
+
+Estos casos deben invalidar la corrida porque impiden una lectura confiable del
+dataset:
+
+- falta de columnas obligatorias
+- archivo vacio o sin filas procesables
+- `amount` no parseable como valor numerico
+- `posting_date` invalida o no parseable
+- `payroll_period` ausente o fuera del formato esperado
+- `currency` vacia de forma masiva o inconsistente al punto de impedir lectura
+- archivos corruptos o delimitacion incompatible con el parser esperado
+
+### Regla de realismo controlado
+
+El dataset demo debe sentirse realista, pero no caotico.
+
+Eso significa:
+
+- se aceptan desvíos plausibles diseñados a propósito
+- no se acepta suciedad estructural masiva que opaque la narrativa
+- la corrida debe fallar solo cuando el input deja de ser interpretable
+
+En otras palabras, queremos un universo donde los numeros no cierran por
+motivos analizables, no por un CSV roto.
+
+### Criterio operativo para futuras implementaciones
+
+Cuando el backend procese `payroll.csv`, deberia seguir esta logica:
+
+1. validar estructura minima del archivo
+2. rechazar errores destructivos
+3. procesar filas validas bajo convenciones conocidas
+4. detectar anomalias modelables como parte del analisis
+
+### Objetivo de esta separacion
+
+Esta separacion protege dos cosas al mismo tiempo:
+
+- la credibilidad tecnica del MVP
+- la claridad comercial de la demo
+
+Si todo error rompe la corrida, el producto pierde valor analitico.
+Si nada rompe la corrida, el sistema pierde confiabilidad.
+
+El balance correcto para el MVP es:
+
+- tolerar anomalias explicables
+- frenar inputs estructuralmente invalidos

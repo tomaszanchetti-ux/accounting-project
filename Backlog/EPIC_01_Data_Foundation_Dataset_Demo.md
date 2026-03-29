@@ -227,14 +227,14 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir columnas obligatorias
-- [ ] Definir qué errores se toleran como anomalías modelables
-- [ ] Definir qué errores rompen la corrida
-- [ ] Documentar el nivel de “realismo controlado” esperado
+- [x] Definir columnas obligatorias
+- [x] Definir qué errores se toleran como anomalías modelables
+- [x] Definir qué errores rompen la corrida
+- [x] Documentar el nivel de “realismo controlado” esperado
 - [ ] Commit sugerido: `docs(data): definir supuestos de calidad del input`
 
 ---
