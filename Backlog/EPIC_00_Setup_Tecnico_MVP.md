@@ -439,7 +439,7 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
@@ -496,10 +496,10 @@ Ninguna. Es la primera epic del backlog.
 
 **Tasks:**
 
-- [ ] Crear README técnico mínimo del proyecto
-- [ ] Documentar cómo levantar frontend y backend
-- [ ] Documentar variables requeridas
-- [ ] Documentar dependencias externas del setup
+- [x] Crear README técnico mínimo del proyecto
+- [x] Documentar cómo levantar frontend y backend
+- [x] Documentar variables requeridas
+- [x] Documentar dependencias externas del setup
 - [ ] Commit sugerido: `docs: agregar guía mínima de setup del MVP`
 
 ---

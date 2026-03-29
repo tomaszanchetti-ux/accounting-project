@@ -187,7 +187,7 @@ Al cerrar una sesión:
 
 | Epic | Estado Docs | Estado Implementación | Cards completadas | Observaciones |
 | --- | --- | --- | --- | --- |
-| EPIC 00 | ✅ | EN PROGRESO | 14 / 17 | Setup, Supabase y chequeos minimos de calidad ya quedaron definidos |
+| EPIC 00 | ✅ | EN PROGRESO | 15 / 17 | Setup tecnico, Supabase, calidad minima y guia de arranque ya definidos |
 
 ### Cómo registrar avance
 
