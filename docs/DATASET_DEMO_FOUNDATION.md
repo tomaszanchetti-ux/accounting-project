@@ -198,3 +198,95 @@ Esos puntos se completan mas adelante cuando se definan:
 
 - conceptos del MVP
 - tabla objetivo de `expected / observed / diff / estado`
+
+## Definicion de `concept_master.csv`
+
+### Rol funcional
+
+`concept_master.csv` es el archivo de referencia que normaliza el universo de
+conceptos del MVP.
+
+Su funcion principal es servir como capa de mapping entre los conceptos que
+aparecen en `payroll.csv` y la logica de conciliacion que el producto necesita
+para agregar, comparar y explicar.
+
+En el MVP:
+
+- traduce conceptos observados a una taxonomia controlada
+- define como se agrupa cada concepto para conciliar
+- fija el signo esperado de cada concepto
+- aporta metadata util para explicacion y analisis
+
+### Columnas minimas
+
+Desde esta card quedan definidas como columnas minimas recomendadas:
+
+- `source_concept_code`
+- `source_concept_name`
+- `normalized_concept_code`
+- `normalized_concept_name`
+- `concept_category`
+- `reconciliation_group`
+- `expected_sign`
+- `is_active`
+
+### Sentido de cada columna
+
+- `source_concept_code`: codigo tal como puede venir en la fuente observada
+- `source_concept_name`: descripcion original del concepto observado
+- `normalized_concept_code`: codigo canonico usado por el MVP
+- `normalized_concept_name`: nombre legible del concepto canonico
+- `concept_category`: categoria funcional, por ejemplo salary, benefit o bonus
+- `reconciliation_group`: grupo sobre el cual el motor agrega y compara
+- `expected_sign`: signo esperado del concepto, por ejemplo positive o negative
+- `is_active`: indica si el mapping sigue vigente para el periodo demo
+
+### Rol en normalizacion y conciliacion
+
+`concept_master.csv` evita que el motor dependa directamente de nombres o
+codigos crudos del export.
+
+Eso permite:
+
+- estabilizar la agregacion por concepto
+- manejar variantes de nombres o codigos de origen
+- controlar de forma centralizada la logica de agrupacion
+- sostener explicaciones mas consistentes en UI y backend
+
+### Relacion con excepciones y explicacion
+
+Este archivo tambien habilita varias excepciones del MVP.
+
+En particular:
+
+- si un concepto observado no encuentra mapping valido, puede disparar
+  `unmapped concept`
+- si el signo observado contradice el `expected_sign`, puede disparar
+  `sign error`
+
+Ademas, `concept_category` y `reconciliation_group` ayudan a construir
+explicaciones mas claras sobre por que una diferencia pertenece a cierto bloque
+funcional del payroll.
+
+### Relacion con el producto
+
+Dentro de una corrida, `concept_master.csv` funcionara como archivo de apoyo o
+tabla de referencia previa al calculo.
+
+La secuencia esperada es:
+
+1. leer los conceptos observados desde `payroll.csv`
+2. resolver su mapping con `concept_master.csv`
+3. normalizar los conceptos a la taxonomia del MVP
+4. consolidar resultados para conciliacion y excepciones
+
+### Notas para las siguientes cards
+
+Esta card deja cerrado el rol del archivo y sus columnas minimas, pero todavia
+no cierra:
+
+- la lista final de conceptos canonicos del MVP
+- categorias definitivas por concepto
+- valores concretos del mapping demo
+
+Esos puntos se completan cuando se cierre el universo de conceptos de la epic.

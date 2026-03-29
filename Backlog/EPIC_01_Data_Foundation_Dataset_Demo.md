@@ -116,13 +116,13 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir columnas mínimas de mapping y normalización
-- [ ] Incluir categoría, signo esperado y grupo de conciliación
-- [ ] Documentar que habilita excepciones como `unmapped concept` y `sign error`
+- [x] Definir columnas mínimas de mapping y normalización
+- [x] Incluir categoría, signo esperado y grupo de conciliación
+- [x] Documentar que habilita excepciones como `unmapped concept` y `sign error`
 - [ ] Commit sugerido: `docs(data): definir concept_master.csv`
 
 ---
