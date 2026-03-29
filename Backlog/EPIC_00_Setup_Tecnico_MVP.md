@@ -291,6 +291,9 @@ Ninguna. Es la primera epic del backlog.
 - [ ] Crear proyecto Supabase para este MVP
 - [ ] Guardar `project URL`, `anon key`, `service role key` y credenciales de DB
 - [ ] Verificar acceso al panel
+- [x] Crear proyecto Supabase para este MVP
+- [x] Guardar `project URL`, `anon key`, `service role key` y credenciales de DB
+- [x] Verificar acceso al panel
 - [ ] Commit sugerido: no aplica si no hay cambios en repo
 
 ---
@@ -331,7 +334,7 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
