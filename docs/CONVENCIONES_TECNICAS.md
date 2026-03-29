@@ -79,6 +79,16 @@ No se deben commitear secretos reales.
 - backend api: `accounting-mvp-api`
 - engine: `reconciliation-engine`
 
+## Decision inicial de componentes UI
+
+Por ahora no se instala una libreria de componentes adicional.
+
+La decision para el setup base es:
+
+- usar Tailwind nativo
+- crear componentes propios en `frontend/components/`
+- reevaluar una libreria liviana recien en `EPIC 05` si acelera la demo sin agregar complejidad innecesaria
+
 ## Regla de consistencia
 
 Si en una sesion futura hace falta ajustar algun nombre, el cambio debe reflejarse en:
@@ -87,4 +97,3 @@ Si en una sesion futura hace falta ajustar algun nombre, el cambio debe reflejar
 2. `.env.example`
 3. la configuracion real afectada
 4. la nota `ARD_WS...` de cierre de sesion
-

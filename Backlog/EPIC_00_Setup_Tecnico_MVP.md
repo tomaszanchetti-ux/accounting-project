@@ -149,14 +149,14 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Limpiar estilos de ejemplo del scaffold inicial
-- [ ] Dejar `globals.css` con una base simple y neutra
-- [ ] Crear carpeta para componentes propios del proyecto
-- [ ] Evaluar si conviene instalar una librería de componentes liviana desde el inicio
+- [x] Limpiar estilos de ejemplo del scaffold inicial
+- [x] Dejar `globals.css` con una base simple y neutra
+- [x] Crear carpeta para componentes propios del proyecto
+- [x] Evaluar si conviene instalar una librería de componentes liviana desde el inicio
 - [ ] Commit sugerido: `chore(frontend): configurar base visual mínima`
 
 ---
