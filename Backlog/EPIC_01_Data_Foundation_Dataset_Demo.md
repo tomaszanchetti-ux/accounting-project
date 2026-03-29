@@ -168,11 +168,11 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir columnas recomendadas:
+- [x] Definir columnas recomendadas:
   - `record_id`
   - `employee_id`
   - `employee_name`
@@ -185,7 +185,7 @@ Al terminar esta epic, el proyecto debe tener:
   - `concept_name`
   - `amount`
   - `currency`
-- [ ] Validar que el esquema cubre los casos wow definidos
+- [x] Validar que el esquema cubre los casos wow definidos
 - [ ] Commit sugerido: `docs(data): cerrar columnas de payroll.csv`
 
 ---

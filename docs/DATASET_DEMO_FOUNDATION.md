@@ -392,3 +392,81 @@ minima, pero todavia no cierra:
 
 Eso se completara cuando se diseñe el universo de empleados y los casos wow del
 dataset.
+
+## Esquema base de `payroll.csv`
+
+### Columnas cerradas del archivo
+
+Desde esta card queda definida la siguiente estructura base para `payroll.csv`:
+
+- `record_id`
+- `employee_id`
+- `employee_name`
+- `legal_entity`
+- `country`
+- `cost_center`
+- `payroll_period`
+- `posting_date`
+- `concept_code`
+- `concept_name`
+- `amount`
+- `currency`
+
+### Proposito funcional de cada columna
+
+- `record_id`: identificador unico por fila para trazabilidad y drill-down
+- `employee_id`: llave principal para agrupar registros por empleado
+- `employee_name`: apoyo visual para lectura humana y demo comercial
+- `legal_entity`: contexto organizativo de la linea de payroll
+- `country`: contexto geografico del empleado o registro
+- `cost_center`: dimension organizativa util para filtros y explicacion
+- `payroll_period`: periodo contable o de nomina al que pertenece la linea
+- `posting_date`: fecha de imputacion o contabilizacion del registro
+- `concept_code`: codigo del concepto observado en la fuente
+- `concept_name`: descripcion legible del concepto observado
+- `amount`: importe monetario de la linea
+- `currency`: moneda en que viene expresado el importe
+
+### Por que este esquema es suficiente para el MVP
+
+Este esquema sostiene las tres necesidades clave del producto:
+
+- conciliacion:
+  permite agregar por `concept_code`, periodo y otras dimensiones si hiciera
+  falta
+- explicacion:
+  preserva suficiente contexto para entender de donde viene una diferencia
+- drill-down:
+  permite bajar desde resumen a fila individual con identidad clara
+
+### Cobertura de los casos wow
+
+La estructura definida cubre los casos wow ya planteados para el demo:
+
+- `MEAL_VOUCHER`:
+  puede observarse como concepto con multiples lineas por empleado
+- `CHILDCARE`:
+  puede cruzarse con `employee_reference.csv` para analizar poblacion faltante
+- `OVERTIME`:
+  puede analizarse por concepto y monto para detectar outliers plausibles
+
+Ademas, `posting_date`, `concept_code` y `amount` ayudan a sostener
+excepciones futuras como:
+
+- `out-of-period`
+- `unmapped concept`
+- `sign error`
+- `outlier`
+
+### Notas para las siguientes cards
+
+Esta card cierra la lista de columnas, pero todavia no cierra:
+
+- tipos concretos por columna
+- formatos esperados
+- reglas de calidad del input
+
+Esos puntos se completan en:
+
+- `Card 1.2.2`
+- `Card 1.2.3`
