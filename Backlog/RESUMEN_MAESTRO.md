@@ -187,7 +187,7 @@ Al cerrar una sesión:
 
 | Epic | Estado Docs | Estado Implementación | Cards completadas | Observaciones |
 | --- | --- | --- | --- | --- |
-| EPIC 00 | ✅ | EN PROGRESO | 15 / 17 | Setup tecnico, Supabase, calidad minima y guia de arranque ya definidos |
+| EPIC 00 | ✅ | EN PROGRESO | 16 / 17 | Solo falta validar deploy funcional del frontend en Vercel |
 
 ### Cómo registrar avance
 

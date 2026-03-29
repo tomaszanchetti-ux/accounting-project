@@ -21,6 +21,7 @@ MVP de conciliacion entre payroll/RRHH y contabilidad con foco en:
 - Node.js 24+
 - Python 3.13+
 - proyecto Supabase activo
+- cuenta activa en Vercel para frontend
 - buckets creados:
   - `accounting-mvp-raw-inputs`
   - `accounting-mvp-run-exports`
@@ -86,6 +87,12 @@ Comandos individuales:
 - frontend: `cd frontend && npm run lint`
 - backend: `cd backend && .venv/bin/ruff check app`
 
+## Deploy
+
+- frontend publico esperado: `https://accounting-project-blond.vercel.app/`
+- estrategia del backend: `docs/DEPLOY_BACKEND.md`
+- mientras el backend productivo no exista, `NEXT_PUBLIC_API_BASE_URL` puede quedar temporalmente con placeholder
+
 ## Rutina de arranque de cada WS
 
 1. entrar al repo oficial
@@ -104,4 +111,3 @@ Para retomar el proyecto hoy:
 
 - revisar `Backlog/EPIC_00_Setup_Tecnico_MVP.md`
 - continuar desde la siguiente card pendiente de `EPIC 00`
-

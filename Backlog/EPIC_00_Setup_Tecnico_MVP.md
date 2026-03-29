@@ -64,7 +64,7 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** COMPLETADA
+**Estado:** PENDIENTE
 
 **Tasks:**
 
@@ -420,8 +420,8 @@ Ninguna. Es la primera epic del backlog.
 
 **Tasks:**
 
-- [ ] Conectar repo o carpeta frontend a Vercel
-- [ ] Configurar variables necesarias
+- [x] Conectar repo o carpeta frontend a Vercel
+- [x] Configurar variables necesarias
 - [ ] Verificar deploy exitoso
 - [ ] Commit sugerido: no aplica si el cambio es solo de plataforma
 
@@ -443,10 +443,10 @@ Ninguna. Es la primera epic del backlog.
 
 **Tasks:**
 
-- [ ] Evaluar despliegue simple del backend para MVP
-- [ ] Definir URL base productiva del backend
-- [ ] Verificar compatibilidad con CORS, DB y storage
-- [ ] Documentar la decisión para no reabrirla más adelante
+- [x] Evaluar despliegue simple del backend para MVP
+- [x] Definir URL base productiva del backend
+- [x] Verificar compatibilidad con CORS, DB y storage
+- [x] Documentar la decisión para no reabrirla más adelante
 - [ ] Commit sugerido: `docs(deploy): definir estrategia de despliegue del backend`
 
 ---
@@ -469,7 +469,7 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
@@ -492,7 +492,7 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
