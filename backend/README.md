@@ -34,6 +34,24 @@ El backend toma estos valores desde entorno:
 - `STORAGE_BUCKET_RAW_INPUTS`
 - `STORAGE_BUCKET_RUN_EXPORTS`
 
+## Archivo de entorno local
+
+Crear `backend/.env` con este set minimo:
+
+```env
+ENVIRONMENT=local
+API_HOST=0.0.0.0
+API_PORT=8000
+CORS_ALLOW_ORIGINS=http://localhost:3000
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+SUPABASE_DB_PASSWORD=your-db-password
+SUPABASE_DB_URL=postgresql://postgres:postgres@db.your-project.supabase.co:5432/postgres
+STORAGE_BUCKET_RAW_INPUTS=accounting-mvp-raw-inputs
+STORAGE_BUCKET_RUN_EXPORTS=accounting-mvp-run-exports
+```
+
 ## Convencion inicial de storage
 
 - raw inputs: `runs/<run_id>/inputs/<filename>`

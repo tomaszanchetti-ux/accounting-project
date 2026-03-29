@@ -386,14 +386,14 @@ Ninguna. Es la primera epic del backlog.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir variables para DB
-- [ ] Definir variables para Supabase Storage
-- [ ] Definir variables para CORS y ambiente
-- [ ] Documentar el set mínimo requerido
+- [x] Definir variables para DB
+- [x] Definir variables para Supabase Storage
+- [x] Definir variables para CORS y ambiente
+- [x] Documentar el set mínimo requerido
 - [ ] Commit sugerido: `chore(backend): definir variables de entorno base`
 
 ---

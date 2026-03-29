@@ -187,7 +187,7 @@ Al cerrar una sesión:
 
 | Epic | Estado Docs | Estado Implementación | Cards completadas | Observaciones |
 | --- | --- | --- | --- | --- |
-| EPIC 00 | ✅ | EN PROGRESO | 12 / 17 | Supabase y variables publicas base del frontend ya quedaron definidas |
+| EPIC 00 | ✅ | EN PROGRESO | 13 / 17 | Supabase y variables base de frontend/backend ya quedaron definidas |
 
 ### Cómo registrar avance
 
