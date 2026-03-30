@@ -1,34 +1,70 @@
 @import "tailwindcss";
 
 :root {
-  --background: #07111f;
-  --foreground: #f7fafc;
-  --surface: rgba(255, 255, 255, 0.05);
-  --surface-strong: rgba(15, 23, 42, 0.82);
-  --border-subtle: rgba(255, 255, 255, 0.1);
+  --background: #f3f1ea;
+  --background-accent: #e3dccd;
+  --foreground: #1c2738;
+  --surface: #fcfbf7;
+  --surface-strong: #f1ecdf;
+  --surface-ink: #132033;
+  --border-subtle: #d8d1c3;
+  --text-secondary: #586579;
+  --text-muted: #7b8697;
+  --status-reconciled: #2d6a4f;
+  --status-minor-difference: #b7791f;
+  --status-unreconciled: #b23a48;
+  --status-invalid: #5a6472;
+  --status-processing: #295c8a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-background-accent: var(--background-accent);
   --color-surface: var(--surface);
   --color-surface-strong: var(--surface-strong);
+  --color-surface-ink: var(--surface-ink);
   --color-border-subtle: var(--border-subtle);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-status-reconciled: var(--status-reconciled);
+  --color-status-minor-difference: var(--status-minor-difference);
+  --color-status-unreconciled: var(--status-unreconciled);
+  --color-status-invalid: var(--status-invalid);
+  --color-status-processing: var(--status-processing);
+  --font-sans: var(--font-ibm-plex-sans);
+  --font-mono: var(--font-ibm-plex-mono);
+}
+
+html {
+  min-height: 100%;
 }
 
 body {
-  background: var(--background);
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top left, rgba(41, 92, 138, 0.08), transparent 32%),
+    radial-gradient(circle at top right, rgba(183, 121, 31, 0.09), transparent 28%),
+    linear-gradient(180deg, var(--background) 0%, #ece7db 100%);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-ibm-plex-sans), sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
 
+*::selection {
+  background: rgba(41, 92, 138, 0.16);
+}
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
 }
