@@ -71,6 +71,12 @@ class ExpectedTotalsValidationResult:
 
 
 @dataclass(slots=True)
+class PayrollNormalizationResult:
+    normalized_records: pd.DataFrame
+    column_mapping: dict[str, str]
+
+
+@dataclass(slots=True)
 class ReconciliationEngineInput:
     payroll: DataFrameLike
     expected_totals: DataFrameLike

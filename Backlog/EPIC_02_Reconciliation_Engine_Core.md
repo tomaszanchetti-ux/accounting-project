@@ -244,14 +244,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Estandarizar nombres de columnas a la convención interna
-- [ ] Convertir `amount` a decimal/float controlado
-- [ ] Convertir `posting_date` a fecha interpretable
-- [ ] Normalizar strings relevantes (`trim`, casing, espacios)
+- [x] Estandarizar nombres de columnas a la convención interna
+- [x] Convertir `amount` a decimal/float controlado
+- [x] Convertir `posting_date` a fecha interpretable
+- [x] Normalizar strings relevantes (`trim`, casing, espacios)
 - [ ] Commit sugerido: `feat(engine): normalizar columnas y tipos base`
 
 ---
