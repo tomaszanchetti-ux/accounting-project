@@ -1,0 +1,11 @@
+source_concept_code,source_concept_name,normalized_concept_code,normalized_concept_name,concept_category,reconciliation_group,expected_sign,is_active
+BASE_SALARY,Base Salary,BASE_SALARY,Base Salary,salary,BASE_SALARY,positive,true
+BONUS,Bonus,BONUS,Bonus,bonus,BONUS,positive,true
+MEAL_VOUCHER,Meal Voucher,MEAL_VOUCHER,Meal Voucher,benefit,MEAL_VOUCHER,positive,true
+CHILDCARE,Childcare,CHILDCARE,Childcare,benefit,CHILDCARE,positive,true
+TRANSPORT,Transport,TRANSPORT,Transport,benefit,TRANSPORT,positive,true
+HEALTH_INSURANCE,Health Insurance,HEALTH_INSURANCE,Health Insurance,benefit,HEALTH_INSURANCE,positive,true
+SOCIAL_SECURITY,Social Security,SOCIAL_SECURITY,Social Security,deduction,SOCIAL_SECURITY,negative,true
+INCOME_TAX,Income Tax,INCOME_TAX,Income Tax,deduction,INCOME_TAX,negative,true
+OVERTIME,Overtime,OVERTIME,Overtime,variable_compensation,OVERTIME,positive,true
+OTHER_ADJUSTMENT,Other Adjustment,OTHER_ADJUSTMENT,Other Adjustment,adjustment,OTHER_ADJUSTMENT,positive,true

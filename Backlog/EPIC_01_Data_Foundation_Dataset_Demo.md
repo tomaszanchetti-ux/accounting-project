@@ -46,7 +46,7 @@ Al terminar esta epic, el proyecto debe tener:
 - [ ] Existe una tabla de diseño objetivo por concepto con `expected`, `observed`, `diff`, `estado` y explicación principal
 - [ ] El dataset puede ser generado o cargado de manera reproducible
 
-## Estado: PENDIENTE
+## Estado: COMPLETADA
 
 ---
 
@@ -447,16 +447,16 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir distribución target:
+- [x] Definir distribución target:
   - `60%–70%` reconciled
   - `20%–25%` minor difference
   - `10%–20%` unreconciled
-- [ ] Asociar conceptos a cada banda
-- [ ] Documentar racional narrativo de esa distribución
+- [x] Asociar conceptos a cada banda
+- [x] Documentar racional narrativo de esa distribución
 - [ ] Commit sugerido: `docs(data): definir distribución objetivo de estados`
 
 ---
@@ -473,19 +473,19 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Incluir anomalías objetivo:
+- [x] Incluir anomalías objetivo:
   - `duplicates`
   - `unmapped concept`
   - `out-of-period`
   - `missing population`
   - `outlier`
   - `sign error` opcional
-- [ ] Documentar volúmenes esperados por tipo
-- [ ] Validar que no se sature el dataset con ruido
+- [x] Documentar volúmenes esperados por tipo
+- [x] Validar que no se sature el dataset con ruido
 - [ ] Commit sugerido: `docs(data): definir catálogo de anomalías del demo`
 
 ---
@@ -502,20 +502,20 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Diseñar `MEAL_VOUCHER` con:
+- [x] Diseñar `MEAL_VOUCHER` con:
   - líneas fuera de período
   - posibles duplicados
   - códigos no mapeados
-- [ ] Diseñar `CHILDCARE` con:
+- [x] Diseñar `CHILDCARE` con:
   - empleados elegibles ausentes
   - importes incorrectos
-- [ ] Diseñar `OVERTIME` con:
+- [x] Diseñar `OVERTIME` con:
   - 1 o 2 outliers claros
-- [ ] Diseñar `TRANSPORT` como minor difference
+- [x] Diseñar `TRANSPORT` como minor difference
 - [ ] Commit sugerido: `docs(data): diseñar anomalías concretas por concepto`
 
 ---
@@ -538,19 +538,19 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear tabla de diseño interno con columnas:
+- [x] Crear tabla de diseño interno con columnas:
   - `concepto`
   - `expected`
   - `observed`
   - `diff`
   - `estado`
   - `explicacion_principal`
-- [ ] Incluir al menos los conceptos principales del MVP
-- [ ] Revisar coherencia matemática y narrativa
+- [x] Incluir al menos los conceptos principales del MVP
+- [x] Revisar coherencia matemática y narrativa
 - [ ] Commit sugerido: `docs(data): crear tabla maestra de control por concepto`
 
 ---
@@ -567,15 +567,15 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Documentar método recomendado:
+- [x] Documentar método recomendado:
   - construir payroll base
   - derivar o diseñar expected totals coherentes
   - inyectar anomalías controladas
-- [ ] Definir qué elementos serán generados y cuáles curados manualmente
+- [x] Definir qué elementos serán generados y cuáles curados manualmente
 - [ ] Commit sugerido: `docs(data): definir método de construcción del dataset`
 
 ---
@@ -598,16 +598,16 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Evaluar enfoque:
+- [x] Evaluar enfoque:
   - generación programática
   - curación manual
   - enfoque híbrido
-- [ ] Priorizar control narrativo y reproducibilidad
-- [ ] Definir carpeta destino para archivos demo
+- [x] Priorizar control narrativo y reproducibilidad
+- [x] Definir carpeta destino para archivos demo
 - [ ] Commit sugerido: `docs(data): definir estrategia de generación del dataset`
 
 ---
@@ -624,15 +624,15 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear `payroll.csv`
-- [ ] Crear `expected_totals.csv`
-- [ ] Crear `concept_master.csv`
-- [ ] Crear `employee_reference.csv` si aplica
-- [ ] Verificar consistencia estructural básica
+- [x] Crear `payroll.csv`
+- [x] Crear `expected_totals.csv`
+- [x] Crear `concept_master.csv`
+- [x] Crear `employee_reference.csv` si aplica
+- [x] Verificar consistencia estructural básica
 - [ ] Commit sugerido: `feat(data): crear dataset demo inicial del MVP`
 
 ---

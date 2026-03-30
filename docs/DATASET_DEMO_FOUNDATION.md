@@ -1074,6 +1074,354 @@ Eso se completa en:
 
 - `Feature 1.6`
 
+## Distribucion objetivo de estados
+
+### Objetivo de balance
+
+Desde `Card 1.6.1` queda definida una distribucion objetivo de estados para el
+demo.
+
+El objetivo no es maximizar errores. El objetivo es que el dataset se sienta
+real:
+
+- la mayoria de los conceptos debe cerrar bien
+- algunos deben mostrar diferencias menores
+- pocos deben concentrar los casos mas interesantes
+
+### Distribucion target del MVP
+
+Con un universo de `10 conceptos`, la distribucion objetivo queda asi:
+
+- `6 / 10` conceptos `reconciled` -> `60%`
+- `2 / 10` conceptos `minor difference` -> `20%`
+- `2 / 10` conceptos `unreconciled` -> `20%`
+
+Esta distribucion cae dentro del rango narrativo esperado para el MVP:
+
+- `60%-70%` reconciled
+- `20%-25%` minor difference
+- `10%-20%` unreconciled
+
+### Conceptos por banda de estado
+
+La asignacion target por concepto sera:
+
+- `reconciled`:
+  `BASE_SALARY`, `BONUS`, `HEALTH_INSURANCE`, `SOCIAL_SECURITY`,
+  `INCOME_TAX`, `OTHER_ADJUSTMENT`
+- `minor difference`:
+  `TRANSPORT`, `OVERTIME`
+- `unreconciled`:
+  `MEAL_VOUCHER`, `CHILDCARE`
+
+### Racional narrativo
+
+Esta distribucion funciona bien para el demo porque:
+
+- deja una base amplia de conceptos sanos y creibles
+- reserva pocos conceptos para revision real
+- hace que los casos wow destaquen sin que todo el summary se vea rojo
+
+Ademas:
+
+- `MEAL_VOUCHER` y `CHILDCARE` sostienen los rojos mas demostrables
+- `TRANSPORT` y `OVERTIME` permiten mostrar criterio y matiz analitico
+- los conceptos estructurales del payroll se mantienen mayormente estables
+
+## Catalogo de anomalias del demo
+
+### Principio general
+
+Desde `Card 1.6.2` queda definido que el dataset usara un catalogo acotado de
+anomalias deliberadas.
+
+La regla es:
+
+- pocas anomalias
+- claras
+- cuantificables
+- distribuidas
+
+### Anomalias objetivo del MVP
+
+El catalogo base del MVP quedara compuesto por:
+
+- `duplicates`
+- `unmapped concept`
+- `out-of-period`
+- `missing population`
+- `outlier`
+- `sign error` opcional
+
+### Volumen esperado por tipo
+
+Para no saturar el dataset con ruido, el volumen objetivo sera:
+
+- `duplicates`: `3` lineas
+- `unmapped concept`: `5` lineas
+- `out-of-period`: `8` lineas
+- `missing population`: `6` empleados elegibles ausentes
+- `outlier`: `1-2` registros fuertes
+- `sign error`: `0` en el seed inicial, reservado como anomalia opcional
+
+### Rol funcional de cada anomalia
+
+- `duplicates`: sostener explicaciones de sobreconteo o ruido operacional
+- `unmapped concept`: demostrar valor de `concept_master.csv`
+- `out-of-period`: reforzar lectura temporal del motor
+- `missing population`: mostrar explicacion basada en elegibilidad
+- `outlier`: sostener drill-down analitico claro
+- `sign error`: dejar abierta una expansion futura sin cargar el seed inicial
+
+### Regla de higiene narrativa
+
+El seed inicial no debe usar todas las anomalias en todos los conceptos.
+
+El objetivo es que cada anomalia:
+
+- tenga un lugar claro
+- pueda explicarse rapido
+- no opaque el resto del dataset
+
+## Anomalias concretas por concepto
+
+### `MEAL_VOUCHER`
+
+Desde `Card 1.6.3`, `MEAL_VOUCHER` queda diseñado como el caso multi-causa del
+demo.
+
+Anomalias concretas:
+
+- `8` lineas con `payroll_period = 2026-02`
+- `3` posibles duplicados
+- `5` lineas con codigo no mapeado `MEAL_VCHR`
+
+Resultado narrativo esperado:
+
+- diferencia material
+- mezcla de temporalidad, mapping y calidad de carga
+- explicacion rica para summary y concept analysis
+
+### `CHILDCARE`
+
+`CHILDCARE` queda diseñado como el caso principal de `missing population`.
+
+Anomalias concretas:
+
+- `6` empleados elegibles ausentes respecto a `employee_reference.csv`
+- `2` registros observados con importe inferior al esperado
+
+Resultado narrativo esperado:
+
+- diferencia negativa clara
+- explicacion centrada en poblacion faltante
+- lectura muy entendible para negocio
+
+### `OVERTIME`
+
+`OVERTIME` queda diseñado como caso analitico de outlier con estado amarillo.
+
+Anomalias concretas:
+
+- `1` registro principal con importe mayor a `5x` la mediana del concepto
+- `1` segundo registro alto, pero no dominante, como apoyo analitico opcional
+
+Resultado narrativo esperado:
+
+- diferencia menor o moderada
+- explicacion dominada por outlier
+- drill-down fuerte sin convertir el concepto en rojo principal
+
+### `TRANSPORT`
+
+`TRANSPORT` queda diseñado como caso amarillo de diferencia menor.
+
+Anomalias concretas:
+
+- `4` importes parciales o microdesvios
+- sin outliers extremos
+- sin ruido adicional innecesario
+
+Resultado narrativo esperado:
+
+- diferencia acotada
+- caso util para mostrar bandas de tolerancia
+- resumen mas creible y menos binario
+
+## Tabla maestra de control por concepto
+
+### Objetivo
+
+Desde `Card 1.7.1` queda definida la tabla cuantitativa maestra del demo.
+
+Esta tabla sera la referencia de control para:
+
+- dataset
+- expected totals
+- validacion de consistencia
+- narrativa comercial
+
+### Tabla maestra
+
+| concepto | expected | observed | diff | estado target | explicacion_principal |
+| --- | ---: | ---: | ---: | --- | --- |
+| `BASE_SALARY` | `1200000.00` | `1200010.00` | `10.00` | `reconciled` | redondeo insignificante |
+| `BONUS` | `48000.00` | `48000.00` | `0.00` | `reconciled` | pagos variables dentro de lo esperado |
+| `MEAL_VOUCHER` | `42000.00` | `38820.00` | `-3180.00` | `unreconciled` | out-of-period + unmapped + duplicates |
+| `CHILDCARE` | `18500.00` | `17050.00` | `-1450.00` | `unreconciled` | missing eligible population |
+| `TRANSPORT` | `21000.00` | `20760.00` | `-240.00` | `minor_difference` | diferencias menores en importes parciales |
+| `HEALTH_INSURANCE` | `18000.00` | `18000.00` | `0.00` | `reconciled` | beneficio estable sin desvio material |
+| `SOCIAL_SECURITY` | `-216000.00` | `-216000.00` | `0.00` | `reconciled` | deduccion estructural estable |
+| `INCOME_TAX` | `-198000.00` | `-198000.00` | `0.00` | `reconciled` | retencion estable y coherente |
+| `OVERTIME` | `14000.00` | `14950.00` | `950.00` | `minor_difference` | un registro atipico eleva el total |
+| `OTHER_ADJUSTMENT` | `3200.00` | `3180.00` | `-20.00` | `reconciled` | ajuste menor dentro de tolerancia |
+
+### Coherencia matematica y narrativa
+
+Esta tabla fue elegida para que:
+
+- los conceptos grandes den sensacion de estabilidad
+- los casos wow tengan diferencias visibles pero plausibles
+- el resumen final no quede dominado por errores artificiales
+
+### Coherencia de estados
+
+La tabla maestra respeta la distribucion objetivo definida antes:
+
+- `6` reconciled
+- `2` minor difference
+- `2` unreconciled
+
+## Metodo de construccion del dataset
+
+### Regla recomendada
+
+Desde `Card 1.7.2` queda definido que el metodo recomendado sera:
+
+1. construir un payroll observado base creible
+2. fijar la tabla maestra por concepto
+3. derivar `expected_totals.csv` coherentes con esa tabla
+4. inyectar anomalias controladas en conceptos concretos
+5. verificar que el resultado final preserve estados y narrativa target
+
+### Enfoque conceptual
+
+El dataset no se construira ni completamente manual ni completamente aleatorio.
+
+La logica sera:
+
+- base observada generada de forma deterministica
+- expected totals curados para sostener estados target
+- anomalias inyectadas deliberadamente
+
+### Que se genera y que se cura manualmente
+
+Elementos principalmente generados:
+
+- `employee_reference.csv`
+- gran parte de `payroll.csv`
+
+Elementos principalmente curados:
+
+- tabla maestra de control
+- `expected_totals.csv`
+- definicion de anomalias por concepto
+- `concept_master.csv`
+
+### Criterio de reproducibilidad
+
+El dataset debe poder regenerarse sin reinterpretar la logica del demo.
+
+Por eso:
+
+- la verdad narrativa vive en esta documentacion
+- la materializacion se resuelve con una generacion deterministica
+- el resultado final debe ser inspeccionable dentro del repo
+
+## Estrategia de generacion del dataset
+
+### Decision de estrategia
+
+Desde `Card 1.8.1` queda definida una estrategia `hibrida`.
+
+La estrategia elegida combina:
+
+- generacion programatica deterministica
+- curacion manual de objetivos narrativos
+
+### Por que se elige un enfoque hibrido
+
+Este enfoque protege simultaneamente:
+
+- control narrativo
+- reproducibilidad
+- velocidad de mantenimiento
+
+Una generacion totalmente manual haria mas lento ajustar el dataset.
+
+Una generacion totalmente automatica pondria en riesgo la historia comercial.
+
+### Carpeta destino
+
+Los archivos demo iniciales del MVP viviran en:
+
+- `data/demo_seed/`
+
+Dentro de esa carpeta el repo debera contener:
+
+- archivos CSV resultantes
+- un script simple de regeneracion deterministica
+
+### Regla operativa para el seed
+
+El seed inicial debe:
+
+- poder inspeccionarse directamente en el repo
+- poder regenerarse sin tocar logica del producto
+- mantenerse alineado con la tabla maestra de control
+
+## Archivos demo iniciales materializados
+
+### Estado del seed inicial
+
+Desde `Card 1.8.2` el repo ya contiene un seed inicial materializado en:
+
+- `data/demo_seed/payroll.csv`
+- `data/demo_seed/expected_totals.csv`
+- `data/demo_seed/concept_master.csv`
+- `data/demo_seed/employee_reference.csv`
+- `data/demo_seed/generate_dataset.py`
+
+### Consistencia basica validada
+
+El seed inicial queda validado a nivel estructural con estas referencias:
+
+- `360` empleados en `employee_reference.csv`
+- `3268` lineas en `payroll.csv`
+- `10` filas en `expected_totals.csv`
+- `10` filas en `concept_master.csv`
+
+### Coherencia con la tabla maestra
+
+El seed generado queda alineado con la tabla maestra documentada para los
+conceptos canonicos del MVP.
+
+Tambien incorpora las anomalias clave previstas:
+
+- `8` lineas `out-of-period`
+- `5` lineas `unmapped concept`
+- `3` duplicados intencionales
+- `6` empleados elegibles ausentes en `CHILDCARE`
+
+### Criterio de reutilizacion
+
+Estos archivos pasan a ser la base versionada de trabajo para:
+
+- desarrollo del motor
+- pruebas locales del backend
+- validacion temprana de flujos y payloads
+- futuras corridas de demo controlada
+
 Su objetivo en esta etapa es resolver, de manera creible, el caso de
 `missing population` sin inflar el sistema.
 

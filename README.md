@@ -110,6 +110,7 @@ Comandos individuales:
 Para retomar el proyecto hoy:
 
 - `EPIC 00` ya esta cerrada
-- revisar `Backlog/EPIC_01_Data_Foundation_Dataset_Demo.md`
-- continuar desde `Card 1.6.1`
+- `EPIC 01` ya esta cerrada
+- revisar `Backlog/EPIC_02_Reconciliation_Engine_Core.md`
+- continuar desde `Card 2.1.1`
 - branch de trabajo actual: `codex/epic-01-data-foundation`
