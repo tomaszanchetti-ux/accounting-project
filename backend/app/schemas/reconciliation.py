@@ -77,6 +77,14 @@ class PayrollNormalizationResult:
 
 
 @dataclass(slots=True)
+class PayrollPeriodNormalizationResult:
+    normalized_records: pd.DataFrame
+    target_period: str
+    in_target_period_count: int
+    out_of_period_count: int
+
+
+@dataclass(slots=True)
 class ReconciliationEngineInput:
     payroll: DataFrameLike
     expected_totals: DataFrameLike

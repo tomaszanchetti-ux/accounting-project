@@ -268,14 +268,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Normalizar `payroll_period` al formato interno `YYYY-MM`
-- [ ] Derivar o validar período desde `posting_date` si hace falta
-- [ ] Crear flag preliminar de alineación temporal
-- [ ] Separar registros del período objetivo de registros externos
+- [x] Normalizar `payroll_period` al formato interno `YYYY-MM`
+- [x] Derivar o validar período desde `posting_date` si hace falta
+- [x] Crear flag preliminar de alineación temporal
+- [x] Separar registros del período objetivo de registros externos
 - [ ] Commit sugerido: `feat(engine): normalizar periodo y lógica temporal`
 
 ---

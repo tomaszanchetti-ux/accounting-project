@@ -1,6 +1,7 @@
 from app.schemas.reconciliation import (
     ExpectedTotalsValidationResult,
     PayrollNormalizationResult,
+    PayrollPeriodNormalizationResult,
     PayrollRecordValidationResult,
     PayrollSchemaValidationResult,
     ReconciliationDebugArtifacts,
@@ -14,6 +15,7 @@ from app.schemas.reconciliation import (
 __all__ = [
     "ExpectedTotalsValidationResult",
     "PayrollNormalizationResult",
+    "PayrollPeriodNormalizationResult",
     "PayrollRecordValidationResult",
     "PayrollSchemaValidationResult",
     "ReconciliationDebugArtifacts",
