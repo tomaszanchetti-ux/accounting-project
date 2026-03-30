@@ -57,7 +57,7 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 - [ ] Existe un guión de demo con apertura, wow moment y cierre
 - [ ] Existe un checklist de preparación y validación pre-demo
 
-## Estado: PENDIENTE
+## Estado: COMPLETADA
 
 ---
 
@@ -79,16 +79,16 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Evaluar alternativas:
+- [x] Evaluar alternativas:
   - corrida precargada persistida
   - regeneración programática de run demo
   - enfoque híbrido
-- [ ] Elegir estrategia recomendada para MVP
-- [ ] Documentar ventajas y trade-offs
+- [x] Elegir estrategia recomendada para MVP
+- [x] Documentar ventajas y trade-offs
 - [ ] Commit sugerido: `docs(demo): definir estrategia de seed del MVP`
 
 ---
@@ -105,17 +105,17 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir si el seed crea:
+- [x] Definir si el seed crea:
   - archivos demo
   - run demo
   - resultados persistidos
   - excepciones persistidas
   - exportables sample opcionales
-- [ ] Documentar qué debe quedar listo al finalizar el seed
+- [x] Documentar qué debe quedar listo al finalizar el seed
 - [ ] Commit sugerido: `docs(demo): definir alcance del seed demo`
 
 ---
@@ -138,17 +138,17 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Consolidar versión final de:
+- [x] Consolidar versión final de:
   - `payroll.csv`
   - `expected_totals.csv`
   - `concept_master.csv`
   - `employee_reference.csv` si aplica
-- [ ] Verificar naming y estructura definitivos
-- [ ] Validar que sean fácilmente reutilizables en local/demo
+- [x] Verificar naming y estructura definitivos
+- [x] Validar que sean fácilmente reutilizables en local/demo
 - [ ] Commit sugerido: `feat(demo): consolidar archivos demo finales`
 
 ---
@@ -165,13 +165,13 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Revisar expected, observed, diff y status por concepto
-- [ ] Confirmar conceptos verdes, amarillos y rojos
-- [ ] Confirmar explicación principal esperada por concepto
+- [x] Revisar expected, observed, diff y status por concepto
+- [x] Confirmar conceptos verdes, amarillos y rojos
+- [x] Confirmar explicación principal esperada por concepto
 - [ ] Commit sugerido: `docs(demo): validar tabla maestra final del demo`
 
 ---
@@ -194,13 +194,13 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir nombre/label de la run demo
-- [ ] Confirmar período `2026-03`
-- [ ] Definir si habrá una única run principal o una pequeña familia de runs demo
+- [x] Definir nombre/label de la run demo
+- [x] Confirmar período `2026-03`
+- [x] Definir si habrá una única run principal o una pequeña familia de runs demo
 - [ ] Commit sugerido: `docs(demo): definir run demo canonica`
 
 ---
@@ -217,13 +217,13 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear script/comando para seed de run demo
-- [ ] Asociar archivos a la run
-- [ ] Ejecutar pipeline completo o cargar resultados persistidos
+- [x] Crear script/comando para seed de run demo
+- [x] Asociar archivos a la run
+- [x] Ejecutar pipeline completo o cargar resultados persistidos
 - [ ] Commit sugerido: `feat(demo): implementar script de creacion de run demo`
 
 ---
@@ -240,16 +240,16 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir qué limpia el reset:
+- [x] Definir qué limpia el reset:
   - runs demo
   - uploaded files demo
   - resultados y excepciones demo
-- [ ] Implementar script/comando de reset
-- [ ] Validar que el entorno pueda sembrarse de nuevo sin conflictos
+- [x] Implementar script/comando de reset
+- [x] Validar que el entorno pueda sembrarse de nuevo sin conflictos
 - [ ] Commit sugerido: `feat(demo): implementar reset del entorno demo`
 
 ---
@@ -272,14 +272,14 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Validar status esperado
-- [ ] Validar causas principales visibles
-- [ ] Validar drill-down consistente
-- [ ] Ajustar si el caso no produce suficiente wow
+- [x] Validar status esperado
+- [x] Validar causas principales visibles
+- [x] Validar drill-down consistente
+- [x] Ajustar si el caso no produce suficiente wow
 - [ ] Commit sugerido: `test(demo): validar wow case meal voucher`
 
 ---
@@ -296,13 +296,13 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Validar empleados faltantes o elegibilidad esperada
-- [ ] Validar copy explicativo y recomendación
-- [ ] Confirmar legibilidad del caso en demo
+- [x] Validar empleados faltantes o elegibilidad esperada
+- [x] Validar copy explicativo y recomendación
+- [x] Confirmar legibilidad del caso en demo
 - [ ] Commit sugerido: `test(demo): validar caso childcare`
 
 ---
@@ -319,13 +319,13 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Validar outlier y métricas asociadas
-- [ ] Confirmar que el caso no se diluye entre otras anomalías
-- [ ] Revisar claridad de recomendación
+- [x] Validar outlier y métricas asociadas
+- [x] Confirmar que el caso no se diluye entre otras anomalías
+- [x] Revisar claridad de recomendación
 - [ ] Commit sugerido: `test(demo): validar caso overtime`
 
 ---
@@ -342,13 +342,13 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Validar `Minor Difference`
-- [ ] Confirmar tono sobrio de explicación
-- [ ] Ajustar visual si compite demasiado con casos wow
+- [x] Validar `Minor Difference`
+- [x] Confirmar tono sobrio de explicación
+- [x] Ajustar visual si compite demasiado con casos wow
 - [ ] Commit sugerido: `test(demo): validar caso transport`
 
 ---
@@ -371,18 +371,18 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir secuencia:
+- [x] Definir secuencia:
   - contexto
   - setup breve
   - summary
   - caso wow principal
   - drill-down
   - cierre de valor
-- [ ] Estimar tiempos por tramo
+- [x] Estimar tiempos por tramo
 - [ ] Commit sugerido: `docs(demo): definir estructura del demo comercial`
 
 ---
@@ -399,16 +399,16 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir wow moment como secuencia:
+- [x] Definir wow moment como secuencia:
   - summary con rojo visible
   - apertura de `MEAL_VOUCHER`
   - top causes
   - bajada a drill-down
-- [ ] Documentar por qué esa secuencia vende valor
+- [x] Documentar por qué esa secuencia vende valor
 - [ ] Commit sugerido: `docs(demo): definir wow moment principal`
 
 ---
@@ -425,12 +425,12 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Redactar mensaje de cierre
-- [ ] Vincular con:
+- [x] Redactar mensaje de cierre
+- [x] Vincular con:
   - reducción de trabajo manual
   - explicación inmediata
   - trazabilidad
@@ -457,13 +457,13 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Documentar pantalla por pantalla qué mostrar
-- [ ] Documentar qué decir en cada tramo
-- [ ] Documentar qué evitar mostrar para no dispersar el foco
+- [x] Documentar pantalla por pantalla qué mostrar
+- [x] Documentar qué decir en cada tramo
+- [x] Documentar qué evitar mostrar para no dispersar el foco
 - [ ] Commit sugerido: `docs(demo): crear guion operativo paso a paso`
 
 ---
@@ -480,16 +480,16 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Identificar preguntas típicas:
+- [x] Identificar preguntas típicas:
   - ¿esto se integra con SAP?
   - ¿cómo se configura para otro cliente?
   - ¿qué tan manual es el setup?
   - ¿cómo se explican diferencias complejas?
-- [ ] Redactar respuestas honestas y comercialmente útiles
+- [x] Redactar respuestas honestas y comercialmente útiles
 - [ ] Commit sugerido: `docs(demo): documentar faq del walkthrough`
 
 ---
@@ -512,18 +512,18 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Verificar:
+- [x] Verificar:
   - app levantada
   - backend operativo
   - run demo presente
   - conceptos wow correctos
   - drill-down funcionando
   - exports descargables
-- [ ] Documentar responsable y momento de ejecución
+- [x] Documentar responsable y momento de ejecución
 - [ ] Commit sugerido: `docs(demo): definir checklist tecnico pre-demo`
 
 ---
@@ -540,16 +540,16 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Verificar:
+- [x] Verificar:
   - historia principal clara
   - wow moment identificado
   - cierre comercial preparado
   - respuestas a objeciones revisadas
-- [ ] Documentar tiempos recomendados
+- [x] Documentar tiempos recomendados
 - [ ] Commit sugerido: `docs(demo): definir checklist narrativo pre-demo`
 
 ---
@@ -572,14 +572,14 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Correr demo completa como ensayo
-- [ ] Medir duración real
-- [ ] Registrar puntos de fricción
-- [ ] Ajustar si el flujo se cae o pierde fuerza
+- [x] Correr demo completa como ensayo
+- [x] Medir duración real
+- [x] Registrar puntos de fricción
+- [x] Ajustar si el flujo se cae o pierde fuerza
 - [ ] Commit sugerido: `test(demo): ejecutar ensayo completo de demo`
 
 ---
@@ -596,17 +596,17 @@ No es un dominio funcional nuevo. Es una epic transversal de producto/demo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Evaluar:
+- [x] Evaluar:
   - estabilidad funcional
   - consistencia narrativa
   - wow moment
   - calidad visual mínima
   - exportables mínimos
-- [ ] Documentar gaps restantes si existen
+- [x] Documentar gaps restantes si existen
 - [ ] Commit sugerido: `docs(demo): validar demo-ready criteria del MVP`
 
 ---

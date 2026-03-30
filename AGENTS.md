@@ -238,8 +238,9 @@ La idea es dejar un **handoff útil para el yo futuro o para otro agente**.
 - `EPIC 03` completada
 - `EPIC 04` completada
 - `EPIC 05` completada, smoke-tested y mergeada a `main`
-- `EPIC 06` implementada en branch y validada con lint/build
-- el siguiente paso lógico es continuar con `EPIC 07`
+- `EPIC 06` completada
+- `EPIC 07` completada
+- `EPIC 08` completada con seed demo, run canonica, walkthrough comercial y ensayo end-to-end documentados
 
 ---
 
@@ -247,7 +248,7 @@ La idea es dejar un **handoff útil para el yo futuro o para otro agente**.
 
 La prioridad actual del proyecto es:
 
-> **construir `EPIC 07 — Drill-down, Exports & Demo Traceability` sobre la Summary y Concept Analysis ya disponibles, manteniendo continuidad narrativa desde insight ejecutivo hasta evidencia operativa.**
+> **ejecutar `EPIC 09 — Hardening, QA & Demo-Ready Closure` para pulir bordes finales, reforzar QA visual y cerrar el MVP con criterio formal de demo-ready.**
 
 ---
 
