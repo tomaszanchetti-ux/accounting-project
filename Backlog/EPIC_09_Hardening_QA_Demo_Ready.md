@@ -78,19 +78,25 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear o resetear entorno demo
-- [ ] Ejecutar setup de una run
-- [ ] Correr la conciliación
-- [ ] Revisar summary
-- [ ] Abrir concept analysis
-- [ ] Abrir drill-down
-- [ ] Descargar exportables
-- [ ] Registrar issues detectados
+- [x] Crear o resetear entorno demo
+- [x] Ejecutar setup de una run
+- [x] Correr la conciliación
+- [x] Revisar summary
+- [x] Abrir concept analysis
+- [x] Abrir drill-down
+- [x] Descargar exportables
+- [x] Registrar issues detectados
 - [ ] Commit sugerido: `test(qa): validar flujo funcional integral del MVP`
+
+**Resultado de ejecucion:**
+
+- validacion end-to-end documentada en `docs/EPIC09_FUNCTIONAL_FLOW_QA.md`
+- run QA recreada y validada: `ee9e80e7-5fe0-4a3e-a8ef-7f98eb15cf27`
+- sin bloqueos funcionales graves detectados en el flujo principal
 
 ---
 
