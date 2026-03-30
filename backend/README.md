@@ -64,9 +64,11 @@ STORAGE_BUCKET_RUN_EXPORTS=accounting-mvp-run-exports
 - `POST /runs/{run_id}/upload`
 - `POST /runs/{run_id}/execute`
 - `GET /runs/{run_id}/summary`
+- `GET /runs/{run_id}/exports/summary`
 - `GET /runs/{run_id}/results`
 - `GET /runs/{run_id}/results/{result_id}`
 - `GET /runs/{run_id}/results/{result_id}/drilldown`
+- `GET /runs/{run_id}/results/{result_id}/exports/detail`
 
 ## Nota sobre upload
 

@@ -124,6 +124,28 @@ export type RunExceptionRecord = {
   severity: string;
 };
 
+export type RunPayrollLineRecord = {
+  amount: string | null;
+  concept_code_normalized: string | null;
+  concept_code_raw: string | null;
+  concept_name_normalized: string | null;
+  concept_name_raw: string | null;
+  cost_center: string | null;
+  country: string | null;
+  currency: string | null;
+  employee_id: string | null;
+  employee_name: string | null;
+  exception_flags: string[];
+  id: string;
+  invalid_reasons: string[];
+  is_valid: boolean;
+  legal_entity: string | null;
+  payroll_period: string | null;
+  posting_date: string | null;
+  record_id: string;
+  run_id: string;
+};
+
 export type ConceptAnalysisHeader = {
   concept_code_normalized: string;
   concept_name_normalized: string;
@@ -165,6 +187,30 @@ export type RunResultDetailResponse = {
   exceptions: RunExceptionRecord[];
   result: RunResultRecord;
   run: RunRecord;
+};
+
+export type DrilldownSummary = {
+  concept_code_normalized: string;
+  exception_types_present: string[];
+  rows_with_exception: number;
+  total_amount: string | null;
+  total_rows: number;
+};
+
+export type DrilldownFilterContext = {
+  available_exception_types: string[];
+  countries: string[];
+  legal_entities: string[];
+};
+
+export type RunDrilldownResponse = {
+  event_log: RunEventRecord[];
+  filter_context: DrilldownFilterContext;
+  result: RunResultRecord;
+  rows: RunPayrollLineRecord[];
+  run: RunRecord;
+  summary: DrilldownSummary;
+  total_rows: number;
 };
 
 export type RunCreatePayload = {
@@ -315,4 +361,10 @@ export function getRunResults(runId: string) {
 
 export function getRunResultDetail(runId: string, resultId: string) {
   return fetchApi<RunResultDetailResponse>(`/runs/${runId}/results/${resultId}`);
+}
+
+export function getRunResultDrilldown(runId: string, resultId: string) {
+  return fetchApi<RunDrilldownResponse>(
+    `/runs/${runId}/results/${resultId}/drilldown`,
+  );
 }

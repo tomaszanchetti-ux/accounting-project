@@ -1,6 +1,10 @@
 import Link from "next/link";
 
-import type { RunResultRecord, RunSummaryResponse } from "@/lib/api/client";
+import {
+  API_BASE_URL,
+  type RunResultRecord,
+  type RunSummaryResponse,
+} from "@/lib/api/client";
 import { formatCurrency, formatDateTime, formatRunStatus } from "@/lib/utils/format";
 import { getOverallRunStatusMeta } from "@/lib/utils/reconciliation";
 
@@ -34,7 +38,14 @@ export function RunSummaryScreen({
             <div className="space-y-1 font-mono text-xs text-text-muted">
               <p>{summary.run.id}</p>
               <p>{summary.run.source_file_name ?? "Source file pending"}</p>
+              <p>{summary.run.rules_version ?? "rules unavailable"}</p>
             </div>
+            <a
+              className="inline-flex items-center justify-center rounded-full bg-surface-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
+              href={`${API_BASE_URL}/runs/${summary.run.id}/exports/summary`}
+            >
+              Export summary CSV
+            </a>
           </div>
         }
         eyebrow="Run Summary"
@@ -124,8 +135,9 @@ export function RunSummaryScreen({
             Ready to continue from explanation into records?
           </p>
           <p className="text-sm leading-6 text-text-secondary">
-            Concept Analysis is already wired. Drill-down remains intentionally
-            prepared as the next operational layer.
+            Concept Analysis and Drill-down now preserve the same run context,
+            traceability framing and export path so the review can move from
+            executive view into evidence without losing continuity.
           </p>
         </div>
         <Link
