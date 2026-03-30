@@ -46,7 +46,7 @@ Al terminar esta epic, el proyecto debe tener:
 - [ ] Existe una tabla de diseño objetivo por concepto con `expected`, `observed`, `diff`, `estado` y explicación principal
 - [ ] El dataset puede ser generado o cargado de manera reproducible
 
-## Estado: PENDIENTE
+## Estado: COMPLETADA
 
 ---
 
@@ -68,14 +68,14 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Confirmar que `payroll.csv` será el archivo principal del demo
-- [ ] Documentar que representa el export mensual de nómina / beneficios
-- [ ] Definir que contendrá múltiples líneas por empleado y concepto
-- [ ] Dejar explícito que es la fuente observada a conciliar
+- [x] Confirmar que `payroll.csv` será el archivo principal del demo
+- [x] Documentar que representa el export mensual de nómina / beneficios
+- [x] Definir que contendrá múltiples líneas por empleado y concepto
+- [x] Dejar explícito que es la fuente observada a conciliar
 - [ ] Commit sugerido: `docs(data): definir payroll.csv como fuente principal del demo`
 
 ---
@@ -92,14 +92,14 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir que `expected_totals.csv` tiene una fila por concepto y período
-- [ ] Evaluar si incluye `legal_entity` en MVP o queda nullable/fuera de alcance inicial
-- [ ] Documentar que actúa como referencia esperada del período
-- [ ] Documentar cómo se visualizará o cargará en el producto
+- [x] Definir que `expected_totals.csv` tiene una fila por concepto y período
+- [x] Evaluar si incluye `legal_entity` en MVP o queda nullable/fuera de alcance inicial
+- [x] Documentar que actúa como referencia esperada del período
+- [x] Documentar cómo se visualizará o cargará en el producto
 - [ ] Commit sugerido: `docs(data): definir expected_totals.csv del MVP`
 
 ---
@@ -116,13 +116,13 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir columnas mínimas de mapping y normalización
-- [ ] Incluir categoría, signo esperado y grupo de conciliación
-- [ ] Documentar que habilita excepciones como `unmapped concept` y `sign error`
+- [x] Definir columnas mínimas de mapping y normalización
+- [x] Incluir categoría, signo esperado y grupo de conciliación
+- [x] Documentar que habilita excepciones como `unmapped concept` y `sign error`
 - [ ] Commit sugerido: `docs(data): definir concept_master.csv`
 
 ---
@@ -139,13 +139,13 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Decidir si `employee_reference.csv` entra en el MVP base
-- [ ] Si entra, definir columnas mínimas
-- [ ] Documentar su uso para elegibilidad por concepto
+- [x] Decidir si `employee_reference.csv` entra en el MVP base
+- [x] Si entra, definir columnas mínimas
+- [x] Documentar su uso para elegibilidad por concepto
 - [ ] Commit sugerido: `docs(data): definir employee_reference.csv opcional`
 
 ---
@@ -168,11 +168,11 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir columnas recomendadas:
+- [x] Definir columnas recomendadas:
   - `record_id`
   - `employee_id`
   - `employee_name`
@@ -185,7 +185,7 @@ Al terminar esta epic, el proyecto debe tener:
   - `concept_name`
   - `amount`
   - `currency`
-- [ ] Validar que el esquema cubre los casos wow definidos
+- [x] Validar que el esquema cubre los casos wow definidos
 - [ ] Commit sugerido: `docs(data): cerrar columnas de payroll.csv`
 
 ---
@@ -202,15 +202,15 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir tipos de dato por columna
-- [ ] Fijar `payroll_period` como `YYYY-MM`
-- [ ] Fijar moneda principal como `EUR`
-- [ ] Fijar importes con 2 decimales
-- [ ] Fijar `concept_code` normalizado en mayúsculas
+- [x] Definir tipos de dato por columna
+- [x] Fijar `payroll_period` como `YYYY-MM`
+- [x] Fijar moneda principal como `EUR`
+- [x] Fijar importes con 2 decimales
+- [x] Fijar `concept_code` normalizado en mayúsculas
 - [ ] Commit sugerido: `docs(data): definir tipos y convenciones del payroll`
 
 ---
@@ -227,14 +227,14 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir columnas obligatorias
-- [ ] Definir qué errores se toleran como anomalías modelables
-- [ ] Definir qué errores rompen la corrida
-- [ ] Documentar el nivel de “realismo controlado” esperado
+- [x] Definir columnas obligatorias
+- [x] Definir qué errores se toleran como anomalías modelables
+- [x] Definir qué errores rompen la corrida
+- [x] Documentar el nivel de “realismo controlado” esperado
 - [ ] Commit sugerido: `docs(data): definir supuestos de calidad del input`
 
 ---
@@ -257,13 +257,13 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Fijar universo target de `360 empleados`
-- [ ] Documentar que el rango aceptable es `300–500`
-- [ ] Definir perfiles estándar y casos especiales
+- [x] Fijar universo target de `360 empleados`
+- [x] Documentar que el rango aceptable es `300–500`
+- [x] Definir perfiles estándar y casos especiales
 - [ ] Commit sugerido: `docs(data): cerrar universo de empleados del demo`
 
 ---
@@ -280,14 +280,14 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir `legal_entities` del MVP
-- [ ] Fijar foco principal en España
-- [ ] Definir lista acotada de `cost_centers`
-- [ ] Documentar que estas dimensiones enriquecen, pero no gobiernan la conciliación base
+- [x] Definir `legal_entities` del MVP
+- [x] Fijar foco principal en España
+- [x] Definir lista acotada de `cost_centers`
+- [x] Documentar que estas dimensiones enriquecen, pero no gobiernan la conciliación base
 - [ ] Commit sugerido: `docs(data): definir estructura organizativa del dataset`
 
 ---
@@ -310,12 +310,12 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir lista objetivo de `8–10 conceptos`
-- [ ] Incluir al menos:
+- [x] Definir lista objetivo de `8–10 conceptos`
+- [x] Incluir al menos:
   - `BASE_SALARY`
   - `BONUS`
   - `MEAL_VOUCHER`
@@ -326,7 +326,7 @@ Al terminar esta epic, el proyecto debe tener:
   - `INCOME_TAX`
   - `OVERTIME`
   - `OTHER_ADJUSTMENT`
-- [ ] Confirmar conceptos limpios vs protagonistas del wow
+- [x] Confirmar conceptos limpios vs protagonistas del wow
 - [ ] Commit sugerido: `docs(data): definir universo de conceptos del MVP`
 
 ---
@@ -343,13 +343,13 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Asignar categoría por concepto
-- [ ] Definir signo esperado por concepto
-- [ ] Documentar qué conceptos son candidatos a `sign error`
+- [x] Asignar categoría por concepto
+- [x] Definir signo esperado por concepto
+- [x] Documentar qué conceptos son candidatos a `sign error`
 - [ ] Commit sugerido: `docs(data): categorizar conceptos y signos esperados`
 
 ---
@@ -366,14 +366,14 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Fijar `MEAL_VOUCHER` como caso wow principal
-- [ ] Fijar `CHILDCARE` como caso de población faltante
-- [ ] Fijar `OVERTIME` como caso analítico/outlier
-- [ ] Documentar rol de `TRANSPORT` como caso amarillo
+- [x] Fijar `MEAL_VOUCHER` como caso wow principal
+- [x] Fijar `CHILDCARE` como caso de población faltante
+- [x] Fijar `OVERTIME` como caso analítico/outlier
+- [x] Documentar rol de `TRANSPORT` como caso amarillo
 - [ ] Commit sugerido: `docs(data): definir conceptos estrella del demo`
 
 ---
@@ -396,12 +396,12 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Fijar `2026-03` como período principal del demo
-- [ ] Documentar que expected totals y mayoría de registros responden a ese período
+- [x] Fijar `2026-03` como período principal del demo
+- [x] Documentar que expected totals y mayoría de registros responden a ese período
 - [ ] Commit sugerido: `docs(data): definir periodo principal del MVP`
 
 ---
@@ -418,13 +418,13 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir qué significa estar fuera de período
-- [ ] Documentar uso de `2026-02` como período incorrecto inyectado
-- [ ] Documentar uso de `posting_date` inconsistente como refuerzo narrativo
+- [x] Definir qué significa estar fuera de período
+- [x] Documentar uso de `2026-02` como período incorrecto inyectado
+- [x] Documentar uso de `posting_date` inconsistente como refuerzo narrativo
 - [ ] Commit sugerido: `docs(data): definir casos temporales y out-of-period`
 
 ---
@@ -447,16 +447,16 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir distribución target:
+- [x] Definir distribución target:
   - `60%–70%` reconciled
   - `20%–25%` minor difference
   - `10%–20%` unreconciled
-- [ ] Asociar conceptos a cada banda
-- [ ] Documentar racional narrativo de esa distribución
+- [x] Asociar conceptos a cada banda
+- [x] Documentar racional narrativo de esa distribución
 - [ ] Commit sugerido: `docs(data): definir distribución objetivo de estados`
 
 ---
@@ -473,19 +473,19 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Incluir anomalías objetivo:
+- [x] Incluir anomalías objetivo:
   - `duplicates`
   - `unmapped concept`
   - `out-of-period`
   - `missing population`
   - `outlier`
   - `sign error` opcional
-- [ ] Documentar volúmenes esperados por tipo
-- [ ] Validar que no se sature el dataset con ruido
+- [x] Documentar volúmenes esperados por tipo
+- [x] Validar que no se sature el dataset con ruido
 - [ ] Commit sugerido: `docs(data): definir catálogo de anomalías del demo`
 
 ---
@@ -502,20 +502,20 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Diseñar `MEAL_VOUCHER` con:
+- [x] Diseñar `MEAL_VOUCHER` con:
   - líneas fuera de período
   - posibles duplicados
   - códigos no mapeados
-- [ ] Diseñar `CHILDCARE` con:
+- [x] Diseñar `CHILDCARE` con:
   - empleados elegibles ausentes
   - importes incorrectos
-- [ ] Diseñar `OVERTIME` con:
+- [x] Diseñar `OVERTIME` con:
   - 1 o 2 outliers claros
-- [ ] Diseñar `TRANSPORT` como minor difference
+- [x] Diseñar `TRANSPORT` como minor difference
 - [ ] Commit sugerido: `docs(data): diseñar anomalías concretas por concepto`
 
 ---
@@ -538,19 +538,19 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear tabla de diseño interno con columnas:
+- [x] Crear tabla de diseño interno con columnas:
   - `concepto`
   - `expected`
   - `observed`
   - `diff`
   - `estado`
   - `explicacion_principal`
-- [ ] Incluir al menos los conceptos principales del MVP
-- [ ] Revisar coherencia matemática y narrativa
+- [x] Incluir al menos los conceptos principales del MVP
+- [x] Revisar coherencia matemática y narrativa
 - [ ] Commit sugerido: `docs(data): crear tabla maestra de control por concepto`
 
 ---
@@ -567,15 +567,15 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Documentar método recomendado:
+- [x] Documentar método recomendado:
   - construir payroll base
   - derivar o diseñar expected totals coherentes
   - inyectar anomalías controladas
-- [ ] Definir qué elementos serán generados y cuáles curados manualmente
+- [x] Definir qué elementos serán generados y cuáles curados manualmente
 - [ ] Commit sugerido: `docs(data): definir método de construcción del dataset`
 
 ---
@@ -598,16 +598,16 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Evaluar enfoque:
+- [x] Evaluar enfoque:
   - generación programática
   - curación manual
   - enfoque híbrido
-- [ ] Priorizar control narrativo y reproducibilidad
-- [ ] Definir carpeta destino para archivos demo
+- [x] Priorizar control narrativo y reproducibilidad
+- [x] Definir carpeta destino para archivos demo
 - [ ] Commit sugerido: `docs(data): definir estrategia de generación del dataset`
 
 ---
@@ -624,15 +624,15 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear `payroll.csv`
-- [ ] Crear `expected_totals.csv`
-- [ ] Crear `concept_master.csv`
-- [ ] Crear `employee_reference.csv` si aplica
-- [ ] Verificar consistencia estructural básica
+- [x] Crear `payroll.csv`
+- [x] Crear `expected_totals.csv`
+- [x] Crear `concept_master.csv`
+- [x] Crear `employee_reference.csv` si aplica
+- [x] Verificar consistencia estructural básica
 - [ ] Commit sugerido: `feat(data): crear dataset demo inicial del MVP`
 
 ---
