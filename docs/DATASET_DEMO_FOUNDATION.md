@@ -378,6 +378,102 @@ Para proteger el tiempo de build del MVP:
 - no se versionaran decenas de flags por beneficio
 - no se intentara convertirlo en maestro global de empleados
 
+## Universo de empleados del demo
+
+### Tamaño objetivo
+
+Desde `Card 1.3.1` queda fijado que el universo target del demo sera de:
+
+- `360 empleados`
+
+Ese valor se considera el punto de diseno recomendado para el MVP porque:
+
+- permite suficiente volumen para que la conciliacion se sienta real
+- sostiene varios conceptos repetidos sobre una base poblacional creible
+- habilita casos wow sin que el dataset se vuelva pesado de operar
+- mantiene el drill-down legible para demo comercial
+
+### Rango aceptable
+
+Aunque el target de trabajo queda fijado en `360`, el rango aceptable del MVP
+sera:
+
+- `300-500 empleados`
+
+Ese rango protege flexibilidad operativa en la generacion del dataset sin
+romper la narrativa del producto.
+
+Por debajo de `300` empleados el demo empieza a sentirse demasiado pequeno y
+artificial.
+
+Por encima de `500` empleados el volumen deja de agregar valor claro al MVP y
+puede introducir complejidad innecesaria en construccion, QA y demo.
+
+### Composicion esperada del universo
+
+El universo del demo no buscara representar una estructura HR exhaustiva. Su
+objetivo es sostener una nomina plausible, diversa y util para conciliacion.
+
+La composicion esperada sera:
+
+- una mayoria de empleados regulares con conceptos recurrentes de nomina
+- un subconjunto menor con beneficios selectivos
+- un subconjunto menor con conceptos variables o extraordinarios
+- unos pocos casos especiales diseniados para sostener diferencias explicables
+
+### Perfiles estandar
+
+Como base del dataset, se asumen estos perfiles estandar:
+
+- empleados administrativos con conceptos estables y baja variabilidad
+- empleados operativos con presencia ocasional de `OVERTIME`
+- empleados con beneficios comunes como `MEAL_VOUCHER` o `TRANSPORT`
+- empleados con deducciones regulares como `SOCIAL_SECURITY` e `INCOME_TAX`
+
+Estos perfiles ayudan a que la mayor parte del universo se comporte de forma
+esperable y sostenga una distribucion sana de conceptos reconciliados.
+
+### Casos especiales del demo
+
+Ademas del universo base, el dataset debera incluir algunos casos especiales
+deliberados.
+
+Los casos especiales esperados son:
+
+- empleados elegibles para `CHILDCARE` que no aparezcan observados en el
+  payroll del periodo
+- pocos empleados con importes extraordinarios de `OVERTIME` para sostener
+  outliers claros
+- algunos registros con variaciones o errores controlados en conceptos
+  protagonistas del demo
+- empleados con combinacion de beneficios y conceptos variables para enriquecer
+  el drill-down
+
+### Criterio narrativo
+
+El universo de `360 empleados` no existe para impresionar por volumen. Existe
+para que el usuario perciba que:
+
+- hay una base poblacional suficientemente real
+- los conceptos wow no estan fabricados sobre una muestra diminuta
+- las diferencias pueden explicarse sobre patrones plausibles de operacion
+
+### Relacion con las siguientes cards
+
+Esta decision deja cerrado el tamano y la composicion minima del universo, pero
+todavia no cierra:
+
+- la distribucion exacta por `legal_entity`
+- la distribucion exacta por `country`
+- la lista final de `cost_centers`
+- la asignacion concreta de empleados a conceptos y anomalias
+
+Eso se completa en:
+
+- `Card 1.3.2`
+- `Feature 1.4`
+- `Feature 1.6`
+
 Su objetivo en esta etapa es resolver, de manera creible, el caso de
 `missing population` sin inflar el sistema.
 

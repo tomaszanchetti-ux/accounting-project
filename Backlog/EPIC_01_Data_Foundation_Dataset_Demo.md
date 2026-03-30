@@ -257,13 +257,13 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Fijar universo target de `360 empleados`
-- [ ] Documentar que el rango aceptable es `300–500`
-- [ ] Definir perfiles estándar y casos especiales
+- [x] Fijar universo target de `360 empleados`
+- [x] Documentar que el rango aceptable es `300–500`
+- [x] Definir perfiles estándar y casos especiales
 - [ ] Commit sugerido: `docs(data): cerrar universo de empleados del demo`
 
 ---

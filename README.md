@@ -111,5 +111,5 @@ Para retomar el proyecto hoy:
 
 - `EPIC 00` ya esta cerrada
 - revisar `Backlog/EPIC_01_Data_Foundation_Dataset_Demo.md`
-- continuar desde `Card 1.3.1`
+- continuar desde `Card 1.3.2`
 - branch de trabajo actual: `codex/epic-01-data-foundation`
