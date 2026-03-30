@@ -125,8 +125,11 @@ Para retomar el proyecto hoy:
 - `EPIC 03` ya esta completada
 - `EPIC 04` ya esta completada
 - `EPIC 05` ya esta completada y mergeada a `main`
-- `EPIC 06` ya esta implementada en `codex/epic-06-summary-ui`
+- `EPIC 06` ya esta completada
+- `EPIC 07` ya esta completada en `codex/epic-07-drilldown-exports`
 - revisar `docs/SUMMARY_CONCEPT_UI_BLUEPRINT.md`
-- revisar `Backlog/EPIC_06_Summary_Concept_Analysis_UI.md`
-- siguiente bloque funcional recomendado: `EPIC 07`
-- proxima branch recomendada: `codex/epic-07-drilldown-exports`
+- revisar `docs/DRILLDOWN_UI_BLUEPRINT.md`
+- revisar `docs/EXPORTS_MVP.md`
+- revisar `Backlog/EPIC_07_Drilldown_Exports_Traceability.md`
+- siguiente bloque funcional recomendado: `EPIC 08`
+- proxima branch recomendada: `codex/epic-08-demo-narrative`

@@ -194,6 +194,7 @@ Al cerrar una sesión:
 | EPIC 04 | ✅ | COMPLETADA | 34 / 34 | Vertical slice operativo implementado con schema SQL, repositorios, `execute_run`, endpoints principales, upload multipart, payloads UI, timeline minima y tests de trazabilidad; siguiente paso recomendado: preparar `EPIC 05` |
 | EPIC 05 | ✅ | COMPLETADA | 24 / 24 | Base visual, setup flow, lifecycle de run, uploads, validación previa, smoke visual/manual y merge a `main` completados; siguiente paso recomendado: `EPIC 06 / Card 6.1.1` |
 | EPIC 06 | ✅ | COMPLETADA | 31 / 31 | Summary Screen real, Concept Analysis dedicada, loading/error/empty states, CTA a drill-down y blueprint funcional implementados; siguiente paso recomendado: `EPIC 07 / Card 7.1.1` |
+| EPIC 07 | ✅ | COMPLETADA | 29 / 29 | Drill-down real, filtros, exports CSV, metadata de trazabilidad visible y validación end-to-end cerrados; siguiente paso recomendado: `EPIC 08 / Card 8.1.1` |
 
 ### Cómo registrar avance
 
@@ -230,8 +231,8 @@ El proyecto empieza a degradarse si:
 
 Con el estado actual del proyecto, el siguiente paso lógico es:
 
-1. abrir branch y contexto de `EPIC 07`
-2. construir Drill-down UI, exports y continuidad de trazabilidad sobre la navegación ya preparada en `EPIC 06`
-3. avanzar card por card hasta cerrar la capa operativa del demo
+1. abrir branch y contexto de `EPIC 08`
+2. sembrar la demo narrativa y el flujo comercial sobre Summary, Concept Analysis, Drill-down y exports ya cerrados
+3. avanzar card por card hasta dejar la historia demo lista para `EPIC 09`
 
 Este documento queda como tablero maestro para medir si ese avance está ocurriendo de forma ordenada.

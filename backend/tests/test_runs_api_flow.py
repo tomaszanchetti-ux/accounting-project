@@ -1,5 +1,7 @@
 import unittest
+from csv import DictReader
 from datetime import datetime, timezone
+from io import StringIO
 from pathlib import Path
 from uuid import uuid4
 
@@ -344,6 +346,38 @@ class RunsApiFlowTest(unittest.TestCase):
         self.assertEqual(len(self.repository.results[run_id]), 10)
         self.assertGreater(len(self.repository.exceptions[run_id]), 0)
         self.assertIn("overall_run_status", self.repository.runs[run_id].run_metrics)
+
+        summary_export_response = self.client.get(f"/runs/{run_id}/exports/summary")
+        self.assertEqual(summary_export_response.status_code, 200)
+        self.assertIn(
+            "attachment; filename=",
+            summary_export_response.headers["content-disposition"],
+        )
+        summary_rows = list(DictReader(StringIO(summary_export_response.text)))
+        self.assertEqual(len(summary_rows), 10)
+        self.assertTrue(
+            any(row["concept_code"] == "MEAL_VOUCHER" for row in summary_rows)
+        )
+
+        detail_export_response = self.client.get(
+            f"/runs/{run_id}/results/{meal_voucher['id']}/exports/detail"
+        )
+        self.assertEqual(detail_export_response.status_code, 200)
+        self.assertIn(
+            "attachment; filename=",
+            detail_export_response.headers["content-disposition"],
+        )
+        detail_rows = list(DictReader(StringIO(detail_export_response.text)))
+        self.assertGreater(len(detail_rows), 0)
+        self.assertTrue(
+            all(row["concept_code"] == "MEAL_VOUCHER" for row in detail_rows)
+        )
+        self.assertTrue(
+            any(
+                "Out-of-Period Record" in row["exception_type"]
+                for row in detail_rows
+            )
+        )
 
     def test_multipart_upload_persists_to_storage_and_is_executable(self) -> None:
         repo_root = Path(__file__).resolve().parents[2]

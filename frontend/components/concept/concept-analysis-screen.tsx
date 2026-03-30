@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { RunResultDetailResponse } from "@/lib/api/client";
+import { API_BASE_URL, type RunResultDetailResponse } from "@/lib/api/client";
 import {
   formatCompactNumber,
   formatCurrency,
@@ -27,6 +27,12 @@ export function ConceptAnalysisScreen({ detail }: ConceptAnalysisScreenProps) {
       <AppHeader
         actions={
           <div className="flex flex-wrap items-center gap-3">
+            <a
+              className="inline-flex items-center justify-center rounded-full border border-border-subtle bg-surface px-4 py-2 text-sm font-semibold text-foreground transition hover:border-surface-ink hover:bg-surface-ink hover:text-white"
+              href={`${API_BASE_URL}/runs/${detail.run.id}/results/${detail.result.id}/exports/detail`}
+            >
+              Export detail CSV
+            </a>
             <Link
               className="inline-flex items-center justify-center rounded-full border border-border-subtle bg-white/70 px-4 py-2 text-sm font-semibold text-foreground transition hover:border-surface-ink hover:bg-surface-ink hover:text-white"
               href={`/runs/${detail.run.id}`}
@@ -87,6 +93,14 @@ export function ConceptAnalysisScreen({ detail }: ConceptAnalysisScreenProps) {
               <p className="mt-2 text-base leading-7 text-slate-100">
                 Start with the top ranked causes, then continue into the detailed
                 records if confirmation is needed.
+              </p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                Rules Version
+              </p>
+              <p className="mt-2 text-base leading-7 text-slate-100">
+                {detail.run.rules_version ?? "Rules version unavailable"}
               </p>
             </div>
           </div>
@@ -345,6 +359,49 @@ export function ConceptAnalysisScreen({ detail }: ConceptAnalysisScreenProps) {
                 View detailed records
               </Link>
             </div>
+          </div>
+        </article>
+      </section>
+
+      <section className="grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
+        <article className="rounded-[24px] border border-border-subtle bg-white/75 p-5 md:p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
+            Traceability
+          </p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-foreground">
+            The concept view stays anchored to concrete run metadata.
+          </h2>
+          <div className="mt-4 grid gap-3 md:grid-cols-2">
+            <MetricCard
+              label="Records Analyzed"
+              value={formatCompactNumber(detail.result.record_count)}
+            />
+            <MetricCard
+              label="Impacted Rows"
+              value={formatCompactNumber(
+                detail.result.impacted_records_count ??
+                  detail.concept_analysis.evidence_summary.records_with_exception,
+              )}
+            />
+          </div>
+        </article>
+
+        <article className="rounded-[24px] border border-border-subtle bg-white/72 p-5 md:p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
+            Run Events
+          </p>
+          <div className="mt-4 space-y-4">
+            {detail.event_log.slice(-3).map((event) => (
+              <div className="border-l border-border-subtle pl-4" key={event.event_code}>
+                <p className="text-sm font-semibold text-foreground">{event.title}</p>
+                <p className="mt-1 text-sm leading-6 text-text-secondary">
+                  {event.detail}
+                </p>
+                <p className="mt-1 text-xs text-text-muted">
+                  {formatDateTime(event.event_at)}
+                </p>
+              </div>
+            ))}
           </div>
         </article>
       </section>

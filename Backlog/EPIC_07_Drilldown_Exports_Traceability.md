@@ -50,16 +50,45 @@ Al terminar esta epic, el producto debe tener:
 
 ## Criterio de aceptación de la Epic completa
 
-- [ ] Existe una vista de drill-down conectada al backend
-- [ ] La vista muestra registros concretos que explican un concepto
-- [ ] Los registros muestran excepción asociada, empleado, importe y observación
-- [ ] Existen filtros ligeros y ordenamientos útiles
-- [ ] La navegación desde concept analysis hacia drill-down funciona correctamente
-- [ ] El usuario puede exportar un summary básico de conciliación
-- [ ] El usuario puede exportar un detalle básico de excepciones o registros impactados
-- [ ] La experiencia completa refuerza trazabilidad y credibilidad del producto
+- [x] Existe una vista de drill-down conectada al backend
+- [x] La vista muestra registros concretos que explican un concepto
+- [x] Los registros muestran excepción asociada, empleado, importe y observación
+- [x] Existen filtros ligeros y ordenamientos útiles
+- [x] La navegación desde concept analysis hacia drill-down funciona correctamente
+- [x] El usuario puede exportar un summary básico de conciliación
+- [x] El usuario puede exportar un detalle básico de excepciones o registros impactados
+- [x] La experiencia completa refuerza trazabilidad y credibilidad del producto
 
-## Estado: PENDIENTE
+## Estado: COMPLETADA
+
+## Implementacion WS16
+
+- `docs/DRILLDOWN_UI_BLUEPRINT.md` fija el objetivo funcional del drill-down y
+  confirma su alcance MVP antes de implementar UI
+- `docs/EXPORTS_MVP.md` fija el alcance final de exportables y naming de
+  archivos del MVP
+- el drill-down queda formalizado como la capa que aterriza la explanation
+  layer en evidencia concreta, no como una pantalla transaccional
+- se confirma que la vista mostrara detalle por linea y por empleado asociado,
+  con foco analitico, filtros ligeros y exportabilidad basica
+- el blueprint ya define anatomia visual, resumen superior y columnas base de
+  la tabla para implementar la pantalla con continuidad respecto de summary y
+  concept analysis
+- se implemento la pantalla real de drill-down conectada a
+  `GET /runs/{run_id}/results/{result_id}/drilldown`
+- se implementaron exports CSV reales desde backend para summary de run y
+  detalle por concepto
+- se integraron acciones de export en Summary, Concept Analysis y Drill-down
+- se reforzo la trazabilidad visible con metadata de run, `rules_version` y
+  eventos recientes en las pantallas analiticas
+- se agregaron tabla reusable, filtros por excepcion, empleado y
+  `legal_entity`, ordenamientos utiles y estados de loading/error/empty
+- la navegacion desde Concept Analysis ya aterriza en una vista operativa con
+  retorno claro a concept y summary
+- validacion ejecutada:
+  - `cd backend && .venv/bin/python -m unittest tests.test_runs_api_flow`
+  - `cd frontend && npm run lint`
+  - `cd frontend && npm run build`
 
 ---
 
@@ -81,15 +110,15 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Documentar que el drill-down debe responder:
+- [x] Documentar que el drill-down debe responder:
   - ¿qué registros explican esta diferencia?
   - ¿qué empleados están involucrados?
   - ¿qué anomalías concretas fueron detectadas?
-- [ ] Documentar que el drill-down no reemplaza la explanation layer, la aterriza
+- [x] Documentar que el drill-down no reemplaza la explanation layer, la aterriza
 - [ ] Commit sugerido: `docs(drilldown): definir objetivo funcional del drilldown`
 
 ---
@@ -106,13 +135,13 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Confirmar que el drill-down muestra detalle por línea y por empleado asociado
-- [ ] Confirmar que el MVP no incluye edición inline, comments ni workflow de aprobación
-- [ ] Definir que el drill-down es analítico y exportable, no transaccional
+- [x] Confirmar que el drill-down muestra detalle por línea y por empleado asociado
+- [x] Confirmar que el MVP no incluye edición inline, comments ni workflow de aprobación
+- [x] Definir que el drill-down es analítico y exportable, no transaccional
 - [ ] Commit sugerido: `docs(drilldown): definir alcance del drilldown del MVP`
 
 ---
@@ -135,17 +164,17 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir bloques:
+- [x] Definir bloques:
   - header del concepto
   - resumen superior del drill-down
   - filtros ligeros
   - tabla de registros
   - acciones de export
-- [ ] Definir orden de lectura visual
+- [x] Definir orden de lectura visual
 - [ ] Commit sugerido: `docs(drilldown-ui): diseñar estructura general de drilldown screen`
 
 ---
@@ -162,15 +191,15 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir resumen superior con:
+- [x] Definir resumen superior con:
   - registros impactados
   - empleados afectados
   - tipos de anomalía detectados
-- [ ] Definir tono y nivel de detalle adecuados
+- [x] Definir tono y nivel de detalle adecuados
 - [ ] Commit sugerido: `docs(drilldown-ui): definir resumen superior del drilldown`
 
 ---
@@ -193,11 +222,11 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Confirmar columnas base:
+- [x] Confirmar columnas base:
   - `Record ID`
   - `Employee ID`
   - `Employee Name`
@@ -207,7 +236,7 @@ Al terminar esta epic, el producto debe tener:
   - `Period`
   - `Exception Type`
   - `Observation`
-- [ ] Evaluar visibilidad de `cost_center` según espacio disponible
+- [x] Evaluar visibilidad de `cost_center` según espacio disponible
 - [ ] Commit sugerido: `docs(drilldown-ui): definir columnas de la tabla de drilldown`
 
 ---
@@ -224,14 +253,14 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar tabla con columnas definidas
-- [ ] Diseñar celdas numéricas alineadas y texto legible
-- [ ] Diseñar badges o labels de excepción
-- [ ] Implementar estados base de carga y vacío
+- [x] Implementar tabla con columnas definidas
+- [x] Diseñar celdas numéricas alineadas y texto legible
+- [x] Diseñar badges o labels de excepción
+- [x] Implementar estados base de carga y vacío
 - [ ] Commit sugerido: `feat(drilldown-ui): implementar ExceptionDrilldownTable`
 
 ---
@@ -248,13 +277,13 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir badge visual por `exception_type`
-- [ ] Aplicar color sutil o indicador por severidad
-- [ ] Evitar decoraciones ruidosas o excesivas
+- [x] Definir badge visual por `exception_type`
+- [x] Aplicar color sutil o indicador por severidad
+- [x] Evitar decoraciones ruidosas o excesivas
 - [ ] Commit sugerido: `feat(drilldown-ui): implementar resaltado visual de anomalias`
 
 ---
@@ -277,13 +306,13 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir control UI para filtro por excepción
-- [ ] Integrarlo con el dataset de drill-down
-- [ ] Soportar reset de filtro fácilmente
+- [x] Definir control UI para filtro por excepción
+- [x] Integrarlo con el dataset de drill-down
+- [x] Soportar reset de filtro fácilmente
 - [ ] Commit sugerido: `feat(drilldown-ui): implementar filtro por tipo de excepcion`
 
 ---
@@ -300,13 +329,13 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir control simple para empleado
-- [ ] Integrar con tabla existente
-- [ ] Manejar no-match y reset
+- [x] Definir control simple para empleado
+- [x] Integrar con tabla existente
+- [x] Manejar no-match y reset
 - [ ] Commit sugerido: `feat(drilldown-ui): implementar filtro por empleado`
 
 ---
@@ -323,13 +352,13 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar filtro por `legal_entity`
-- [ ] Mostrarlo solo cuando aporte valor
-- [ ] Validar compatibilidad con otros filtros
+- [x] Implementar filtro por `legal_entity`
+- [x] Mostrarlo solo cuando aporte valor
+- [x] Validar compatibilidad con otros filtros
 - [ ] Commit sugerido: `feat(drilldown-ui): implementar filtro por legal entity`
 
 ---
@@ -346,15 +375,15 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Soportar orden por:
+- [x] Soportar orden por:
   - mayor monto
   - severidad/anomalía
   - employee id si hace falta
-- [ ] Definir orden por defecto más útil
+- [x] Definir orden por defecto más útil
 - [ ] Commit sugerido: `feat(drilldown-ui): implementar ordenamientos utiles`
 
 ---
@@ -377,13 +406,13 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Consumir endpoint de drill-down
-- [ ] Mapear payload a tabla y resumen superior
-- [ ] Integrar estado de loading y error
+- [x] Consumir endpoint de drill-down
+- [x] Mapear payload a tabla y resumen superior
+- [x] Integrar estado de loading y error
 - [ ] Commit sugerido: `feat(drilldown-ui): conectar vista de detalle con backend`
 
 ---
@@ -400,16 +429,16 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Verificar consistencia entre:
+- [x] Verificar consistencia entre:
   - tabla de conceptos
   - detalle por concepto
   - drill-down de registros
-- [ ] Validar continuidad de `run_id`, `result_id` y concepto visible
-- [ ] Corregir cualquier drift entre payloads
+- [x] Validar continuidad de `run_id`, `result_id` y concepto visible
+- [x] Corregir cualquier drift entre payloads
 - [ ] Commit sugerido: `test(drilldown-ui): validar consistencia entre capas de analisis`
 
 ---
@@ -432,13 +461,13 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar navegación real
-- [ ] Preservar `run_id` y `result_id`
-- [ ] Mostrar contexto del concepto en destino
+- [x] Implementar navegación real
+- [x] Preservar `run_id` y `result_id`
+- [x] Mostrar contexto del concepto en destino
 - [ ] Commit sugerido: `feat(drilldown-ui): conectar concept analysis con drilldown`
 
 ---
@@ -455,12 +484,12 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Agregar breadcrumb, back action o navegación visible
-- [ ] Mantener contexto del concepto y la corrida
+- [x] Agregar breadcrumb, back action o navegación visible
+- [x] Mantener contexto del concepto y la corrida
 - [ ] Commit sugerido: `feat(drilldown-ui): implementar navegacion de retorno desde detalle`
 
 ---
@@ -483,17 +512,17 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Confirmar exportables mínimos:
+- [x] Confirmar exportables mínimos:
   - `Reconciliation Summary Export`
   - `Exception Detail Export`
-- [ ] Confirmar formato principal:
+- [x] Confirmar formato principal:
   - `CSV`
   - `Excel` si el costo de implementación es razonable
-- [ ] Documentar qué no entra todavía
+- [x] Documentar qué no entra todavía
 - [ ] Commit sugerido: `docs(exports): definir alcance de exportables del MVP`
 
 ---
@@ -510,11 +539,11 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir columnas del export summary:
+- [x] Definir columnas del export summary:
   - concepto
   - expected
   - observed
@@ -522,7 +551,7 @@ Al terminar esta epic, el producto debe tener:
   - diff %
   - status
   - explanation preview opcional
-- [ ] Definir nombre y convención del archivo
+- [x] Definir nombre y convención del archivo
 - [ ] Commit sugerido: `docs(exports): diseñar export de reconciliation summary`
 
 ---
@@ -539,11 +568,11 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir columnas del export detail:
+- [x] Definir columnas del export detail:
   - record id
   - employee id
   - employee name
@@ -553,7 +582,7 @@ Al terminar esta epic, el producto debe tener:
   - period
   - exception type
   - observation
-- [ ] Definir naming del archivo
+- [x] Definir naming del archivo
 - [ ] Commit sugerido: `docs(exports): diseñar export de exception detail`
 
 ---
@@ -570,13 +599,13 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar generación de CSV/archivo summary
-- [ ] Exponer endpoint de descarga
-- [ ] Integrar naming y metadata de la run
+- [x] Implementar generación de CSV/archivo summary
+- [x] Exponer endpoint de descarga
+- [x] Integrar naming y metadata de la run
 - [ ] Commit sugerido: `feat(exports): implementar export de summary desde backend`
 
 ---
@@ -593,13 +622,13 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar generación de CSV/archivo detail
-- [ ] Exponer endpoint de descarga
-- [ ] Validar consistencia con drill-down UI
+- [x] Implementar generación de CSV/archivo detail
+- [x] Exponer endpoint de descarga
+- [x] Validar consistencia con drill-down UI
 - [ ] Commit sugerido: `feat(exports): implementar export de exception detail desde backend`
 
 ---
@@ -616,14 +645,14 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir ubicación de acciones de export
-- [ ] Conectar summary export
-- [ ] Conectar detail export
-- [ ] Implementar feedback mínimo de descarga
+- [x] Definir ubicación de acciones de export
+- [x] Conectar summary export
+- [x] Conectar detail export
+- [x] Implementar feedback mínimo de descarga
 - [ ] Commit sugerido: `feat(exports-ui): implementar acciones de export en UI`
 
 ---
@@ -646,16 +675,16 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Mostrar metadata útil como:
+- [x] Mostrar metadata útil como:
   - período procesado
   - fuente de archivo
   - cantidad de registros
   - run label o timestamp
-- [ ] Ubicar metadata en summary/concept/drilldown donde aporte
+- [x] Ubicar metadata en summary/concept/drilldown donde aporte
 - [ ] Commit sugerido: `feat(traceability-ui): mostrar metadata visible de origen`
 
 ---
@@ -672,13 +701,13 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Evaluar si mostrar `rules_version` o similar
-- [ ] Mostrarlo solo si aporta valor en la narrativa demo
-- [ ] Evitar exponer detalles innecesariamente técnicos
+- [x] Evaluar si mostrar `rules_version` o similar
+- [x] Mostrarlo solo si aporta valor en la narrativa demo
+- [x] Evitar exponer detalles innecesariamente técnicos
 - [ ] Commit sugerido: `feat(traceability-ui): integrar metadata tecnica visible`
 
 ---
@@ -701,13 +730,13 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Diseñar skeleton o loading state para tabla
-- [ ] Diseñar loading state para resumen superior
-- [ ] Mantener consistencia visual con pantallas anteriores
+- [x] Diseñar skeleton o loading state para tabla
+- [x] Diseñar loading state para resumen superior
+- [x] Mantener consistencia visual con pantallas anteriores
 - [ ] Commit sugerido: `feat(drilldown-ui): implementar loading states del detalle`
 
 ---
@@ -724,13 +753,13 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Diseñar error state de carga de detalle
-- [ ] Agregar acción de retry si corresponde
-- [ ] Mantener contexto visible del concepto/run
+- [x] Diseñar error state de carga de detalle
+- [x] Agregar acción de retry si corresponde
+- [x] Mantener contexto visible del concepto/run
 - [ ] Commit sugerido: `feat(drilldown-ui): implementar error states del detalle`
 
 ---
@@ -747,13 +776,13 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Diseñar empty state por ausencia de registros
-- [ ] Diseñar empty state por filtros sin match
-- [ ] Ajustar copy al tono del producto
+- [x] Diseñar empty state por ausencia de registros
+- [x] Diseñar empty state por filtros sin match
+- [x] Ajustar copy al tono del producto
 - [ ] Commit sugerido: `feat(drilldown-ui): implementar empty states del detalle`
 
 ---
@@ -776,15 +805,15 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Abrir summary
-- [ ] Entrar a un concepto problemático
-- [ ] Abrir drill-down
-- [ ] Volver hacia arriba manteniendo contexto
-- [ ] Validar continuidad del flujo
+- [x] Abrir summary
+- [x] Entrar a un concepto problemático
+- [x] Abrir drill-down
+- [x] Volver hacia arriba manteniendo contexto
+- [x] Validar continuidad del flujo
 - [ ] Commit sugerido: `test(flow): validar recorrido summary-concept-drilldown`
 
 ---
@@ -801,13 +830,13 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Abrir `MEAL_VOUCHER` desde summary
-- [ ] Verificar causas y luego drill-down
-- [ ] Confirmar presencia de líneas out-of-period, unmapped o duplicate según diseño
+- [x] Abrir `MEAL_VOUCHER` desde summary
+- [x] Verificar causas y luego drill-down
+- [x] Confirmar presencia de líneas out-of-period, unmapped o duplicate según diseño
 - [ ] Commit sugerido: `test(drilldown-ui): validar wow case meal voucher end-to-end`
 
 ---
@@ -824,14 +853,14 @@ Al terminar esta epic, el producto debe tener:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Descargar summary export
-- [ ] Descargar exception detail export
-- [ ] Revisar columnas, naming y utilidad
-- [ ] Ajustar si el output no se sostiene por sí mismo
+- [x] Descargar summary export
+- [x] Descargar exception detail export
+- [x] Revisar columnas, naming y utilidad
+- [x] Ajustar si el output no se sostiene por sí mismo
 - [ ] Commit sugerido: `test(exports): validar utilidad de exportables del MVP`
 
 ---

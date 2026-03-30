@@ -1,9 +1,12 @@
 from __future__ import annotations
 
+import csv
+import re
 from collections import defaultdict
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from decimal import Decimal
-from io import BytesIO
+from io import BytesIO, StringIO
 from pathlib import Path
 from typing import Protocol
 from uuid import uuid4
@@ -50,6 +53,13 @@ from app.services.storage import (
 )
 
 RULES_VERSION_DEFAULT = "engine-v1"
+
+
+@dataclass(frozen=True)
+class RunExportArtifact:
+    content: bytes
+    filename: str
+    media_type: str = "text/csv; charset=utf-8"
 
 
 class RunNotFoundError(Exception):
@@ -439,6 +449,121 @@ class RunsService:
             filter_context=_build_drilldown_filter_context(rows),
             rows=rows,
             event_log=_build_run_event_log(run, uploaded_files, [result]),
+        )
+
+    def export_summary_csv(self, run_id: str) -> RunExportArtifact:
+        run = self.repository.get_run(run_id)
+        if not run:
+            raise RunNotFoundError(run_id)
+
+        results = self.repository.list_results(run_id)
+        buffer = StringIO()
+        writer = csv.DictWriter(
+            buffer,
+            fieldnames=[
+                "run_label",
+                "period",
+                "concept_code",
+                "concept_name",
+                "expected_amount",
+                "observed_amount",
+                "absolute_diff",
+                "relative_diff_pct",
+                "status",
+                "explanation_preview",
+            ],
+        )
+        writer.writeheader()
+        for result in results:
+            writer.writerow(
+                {
+                    "run_label": run.run_label,
+                    "period": result.period,
+                    "concept_code": result.concept_code_normalized,
+                    "concept_name": result.concept_name_normalized,
+                    "expected_amount": str(result.expected_amount),
+                    "observed_amount": str(result.observed_amount),
+                    "absolute_diff": str(result.absolute_diff),
+                    "relative_diff_pct": (
+                        ""
+                        if result.relative_diff_pct is None
+                        else str(result.relative_diff_pct)
+                    ),
+                    "status": result.status,
+                    "explanation_preview": result.summary_explanation or "",
+                }
+            )
+
+        return RunExportArtifact(
+            content=buffer.getvalue().encode("utf-8"),
+            filename=(
+                f"reconciliation-summary-{_slugify_filename(run.run_label)}-"
+                f"{run.period}.csv"
+            ),
+        )
+
+    def export_exception_detail_csv(
+        self,
+        run_id: str,
+        result_id: str,
+    ) -> RunExportArtifact:
+        run = self.repository.get_run(run_id)
+        if not run:
+            raise RunNotFoundError(run_id)
+
+        result = self.repository.get_result(run_id, result_id)
+        if not result:
+            raise RunResultNotFoundError(result_id)
+
+        rows = self.repository.list_payroll_lines(
+            run_id,
+            concept_code_normalized=result.concept_code_normalized,
+        )
+        buffer = StringIO()
+        writer = csv.DictWriter(
+            buffer,
+            fieldnames=[
+                "run_label",
+                "period",
+                "record_id",
+                "employee_id",
+                "employee_name",
+                "legal_entity",
+                "concept_code",
+                "concept_name",
+                "amount",
+                "currency",
+                "exception_type",
+                "observation",
+            ],
+        )
+        writer.writeheader()
+        for row in rows:
+            writer.writerow(
+                {
+                    "run_label": run.run_label,
+                    "period": row.payroll_period or result.period,
+                    "record_id": row.record_id,
+                    "employee_id": row.employee_id or "",
+                    "employee_name": row.employee_name or "",
+                    "legal_entity": row.legal_entity or "",
+                    "concept_code": row.concept_code_normalized or "",
+                    "concept_name": row.concept_name_normalized or "",
+                    "amount": "" if row.amount is None else str(row.amount),
+                    "currency": row.currency or "",
+                    "exception_type": _serialize_row_exception_types(row),
+                    "observation": _build_row_observation(row),
+                }
+            )
+
+        return RunExportArtifact(
+            content=buffer.getvalue().encode("utf-8"),
+            filename=(
+                "exception-detail-"
+                f"{_slugify_filename(run.run_label)}-"
+                f"{result.period}-"
+                f"{_slugify_filename(result.concept_code_normalized)}.csv"
+            ),
         )
 
 def _build_expected_totals_used_records(
@@ -843,3 +968,23 @@ def _optional_decimal(value: object) -> Decimal | None:
     if value is None or pd.isna(value):
         return None
     return Decimal(str(value))
+
+
+def _serialize_row_exception_types(row: RunPayrollLineRecord) -> str:
+    anomaly_labels = row.invalid_reasons or row.exception_flags
+    return " | ".join(anomaly_labels) if anomaly_labels else "Clear"
+
+
+def _build_row_observation(row: RunPayrollLineRecord) -> str:
+    if row.invalid_reasons:
+        return " | ".join(row.invalid_reasons)
+    if row.exception_flags:
+        count = len(row.exception_flags)
+        suffix = "s" if count > 1 else ""
+        return f"Detected {count} exception flag{suffix}."
+    return "No anomaly persisted for this row."
+
+
+def _slugify_filename(value: str) -> str:
+    normalized = re.sub(r"[^a-zA-Z0-9]+", "-", value.strip().lower()).strip("-")
+    return normalized or "run"
