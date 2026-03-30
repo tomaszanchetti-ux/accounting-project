@@ -556,15 +556,15 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar estado `Reconciled`
-- [ ] Implementar estado `Minor Difference`
-- [ ] Implementar estado `Unreconciled`
-- [ ] Implementar estado `Invalid / Incomplete`
-- [ ] Priorizar problemas de calidad por encima de semáforos numéricos cuando aplique
+- [x] Implementar estado `Reconciled`
+- [x] Implementar estado `Minor Difference`
+- [x] Implementar estado `Unreconciled`
+- [x] Implementar estado `Invalid / Incomplete`
+- [x] Priorizar problemas de calidad por encima de semáforos numéricos cuando aplique
 - [ ] Commit sugerido: `feat(engine): asignar estados de conciliacion`
 
 ---

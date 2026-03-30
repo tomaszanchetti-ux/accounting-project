@@ -189,7 +189,7 @@ Al cerrar una sesión:
 | --- | --- | --- | --- | --- |
 | EPIC 00 | ✅ | COMPLETADA | 17 / 17 | Setup tecnico, deploy frontend y estrategia de backend definidos |
 | EPIC 01 | ✅ | COMPLETADA | 21 / 21 | Dataset demo definido y seed inicial materializado en `data/demo_seed/`; siguiente paso recomendado: `EPIC 02 / Card 2.1.1` |
-| EPIC 02 | ✅ | EN PROGRESO | 18 / 26 | Observed totals, diffs y politica de tolerancia del MVP definidos; siguiente paso recomendado: `Card 2.7.2` |
+| EPIC 02 | ✅ | EN PROGRESO | 19 / 26 | Observed totals, diffs, tolerancias y estados de conciliacion definidos; siguiente paso recomendado: `Card 2.7.3` |
 
 ### Cómo registrar avance
 

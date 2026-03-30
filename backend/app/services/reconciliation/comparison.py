@@ -98,3 +98,28 @@ def apply_tolerance_policy(
     comparison.loc[reconciled_mask, "tolerance_band"] = "reconciled"
 
     return DifferenceCalculationResult(comparison_with_diffs=comparison)
+
+
+def assign_reconciliation_status(
+    payroll_source: DataFrameLike | pd.DataFrame,
+    expected_totals_source: DataFrameLike,
+    concept_master_source: DataFrameLike,
+    target_period: str,
+) -> DifferenceCalculationResult:
+    comparison = apply_tolerance_policy(
+        payroll_source,
+        expected_totals_source,
+        concept_master_source,
+        target_period=target_period,
+    ).comparison_with_diffs.copy()
+
+    comparison["status"] = comparison["tolerance_band"].replace(
+        {
+            "reconciled": "Reconciled",
+            "minor_difference": "Minor Difference",
+            "unreconciled": "Unreconciled",
+        }
+    )
+    comparison.loc[~comparison["has_expected_reference"], "status"] = "Invalid / Incomplete"
+
+    return DifferenceCalculationResult(comparison_with_diffs=comparison)
