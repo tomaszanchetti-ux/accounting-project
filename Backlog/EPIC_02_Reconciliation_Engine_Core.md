@@ -581,13 +581,13 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Comparar output por concepto con la tabla maestra de EPIC 01
-- [ ] Revisar conceptos verdes, amarillos y rojos
-- [ ] Ajustar reglas si el motor contradice el diseño del demo sin justificación
+- [x] Comparar output por concepto con la tabla maestra de EPIC 01
+- [x] Revisar conceptos verdes, amarillos y rojos
+- [x] Ajustar reglas si el motor contradice el diseño del demo sin justificación
 - [ ] Commit sugerido: `test(engine): validar estados del motor contra tabla maestra`
 
 ---
