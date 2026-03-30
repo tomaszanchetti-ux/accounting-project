@@ -207,3 +207,19 @@ La estrategia del MVP es:
 
 Esto permite detectar inconsistencias de polaridad sin alterar artificialmente
 el total observado.
+
+## 8. Base conciliable intermedia
+
+La base conciliable del MVP conserva todos los registros procesados y agrega
+flags para distinguir:
+
+- registros validos
+- registros invalidos
+- registros validos pero con excepcion analitica
+- registros elegibles para conciliacion
+
+La regla base es:
+
+1. no descartar filas temprano si todavia aportan trazabilidad
+2. marcar explicitamente si una fila es elegible o no para conciliacion
+3. usar esa base como insumo auditable para agregacion, explicacion y drill-down

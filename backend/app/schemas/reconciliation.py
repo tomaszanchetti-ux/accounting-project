@@ -98,6 +98,15 @@ class PayrollSignNormalizationResult:
 
 
 @dataclass(slots=True)
+class ReconcilablePayrollBaseResult:
+    reconciliable_base: pd.DataFrame
+    eligible_record_count: int
+    invalid_record_count: int
+    out_of_period_count: int
+    unmapped_record_count: int
+
+
+@dataclass(slots=True)
 class ReconciliationEngineInput:
     payroll: DataFrameLike
     expected_totals: DataFrameLike

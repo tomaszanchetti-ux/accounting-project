@@ -346,14 +346,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Diseñar estructura interna de la base conciliable
-- [ ] Incluir campos normalizados, flags de validez y metadata útil
-- [ ] Separar registros válidos, inválidos y observables con excepciones
-- [ ] Definir si la base contiene todos los registros o solo los elegibles
+- [x] Diseñar estructura interna de la base conciliable
+- [x] Incluir campos normalizados, flags de validez y metadata útil
+- [x] Separar registros válidos, inválidos y observables con excepciones
+- [x] Definir si la base contiene todos los registros o solo los elegibles
 - [ ] Commit sugerido: `feat(engine): construir base conciliable intermedia`
 
 ---
