@@ -1,4 +1,5 @@
 from app.schemas.reconciliation import (
+    PayrollRecordValidationResult,
     PayrollSchemaValidationResult,
     ReconciliationDebugArtifacts,
     ReconciliationEngineInput,
@@ -9,6 +10,7 @@ from app.schemas.reconciliation import (
 )
 
 __all__ = [
+    "PayrollRecordValidationResult",
     "PayrollSchemaValidationResult",
     "ReconciliationDebugArtifacts",
     "ReconciliationEngineInput",

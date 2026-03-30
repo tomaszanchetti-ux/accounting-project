@@ -189,15 +189,15 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Validar `amount` interpretable como numérico
-- [ ] Validar `payroll_period` presente o derivable
-- [ ] Validar `concept_code` o `concept_name` presente
-- [ ] Validar `employee_id` presente en registros trazables
-- [ ] Generar flags de invalidez por registro si aplica
+- [x] Validar `amount` interpretable como numérico
+- [x] Validar `payroll_period` presente o derivable
+- [x] Validar `concept_code` o `concept_name` presente
+- [x] Validar `employee_id` presente en registros trazables
+- [x] Generar flags de invalidez por registro si aplica
 - [ ] Commit sugerido: `feat(engine): validar tipos y consistencia mínima del input`
 
 ---

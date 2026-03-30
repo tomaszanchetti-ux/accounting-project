@@ -4,7 +4,11 @@ from pathlib import Path
 
 import pandas as pd
 
-from app.schemas import PayrollSchemaValidationResult, ValidationIssue
+from app.schemas import (
+    PayrollRecordValidationResult,
+    PayrollSchemaValidationResult,
+    ValidationIssue,
+)
 from app.schemas.reconciliation import DataFrameLike
 
 REQUIRED_PAYROLL_COLUMNS = [
@@ -24,6 +28,13 @@ RECOMMENDED_PAYROLL_COLUMNS = [
     "cost_center",
     "concept_name",
 ]
+
+
+def _get_string_series(dataframe: pd.DataFrame, column: str) -> pd.Series:
+    if column not in dataframe.columns:
+        return pd.Series(pd.NA, index=dataframe.index, dtype="string")
+
+    return dataframe[column].astype("string").str.strip()
 
 
 def _load_dataframe(source: DataFrameLike) -> pd.DataFrame:
@@ -68,6 +79,94 @@ def validate_payroll_schema(source: DataFrameLike) -> PayrollSchemaValidationRes
                 message=f"Missing recommended payroll column: {column}",
                 blocking=False,
                 column=column,
+            )
+        )
+
+    return result
+
+
+def validate_payroll_records(source: DataFrameLike) -> PayrollRecordValidationResult:
+    dataframe = _load_dataframe(source)
+    validated = dataframe.copy()
+
+    amount_numeric = pd.to_numeric(validated.get("amount"), errors="coerce")
+    posting_date_parsed = pd.to_datetime(
+        validated.get("posting_date"),
+        errors="coerce",
+    )
+    payroll_period_raw = _get_string_series(validated, "payroll_period")
+    payroll_period_present = payroll_period_raw.notna() & payroll_period_raw.ne("")
+    payroll_period_format_valid = payroll_period_raw.str.fullmatch(r"\d{4}-\d{2}", na=False)
+    derived_payroll_period = posting_date_parsed.dt.strftime("%Y-%m").astype("string")
+    payroll_period_derived = (~payroll_period_present) & derived_payroll_period.notna()
+    effective_payroll_period = payroll_period_raw.where(
+        payroll_period_present,
+        derived_payroll_period,
+    )
+    effective_payroll_period_valid = effective_payroll_period.str.fullmatch(
+        r"\d{4}-\d{2}",
+        na=False,
+    )
+
+    concept_code_raw = _get_string_series(validated, "concept_code")
+    concept_name_raw = _get_string_series(validated, "concept_name")
+    employee_id_raw = _get_string_series(validated, "employee_id")
+
+    validated["amount_numeric"] = amount_numeric
+    validated["amount_is_valid"] = amount_numeric.notna()
+    validated["posting_date_parsed"] = posting_date_parsed
+    validated["posting_date_is_valid"] = posting_date_parsed.notna()
+    validated["payroll_period_raw"] = payroll_period_raw
+    validated["payroll_period_present"] = payroll_period_present
+    validated["payroll_period_format_valid"] = payroll_period_format_valid
+    validated["derived_payroll_period"] = derived_payroll_period
+    validated["payroll_period_derived"] = payroll_period_derived
+    validated["effective_payroll_period"] = effective_payroll_period
+    validated["effective_payroll_period_is_valid"] = effective_payroll_period_valid
+    validated["concept_code_present"] = concept_code_raw.notna() & concept_code_raw.ne("")
+    validated["concept_name_present"] = concept_name_raw.notna() & concept_name_raw.ne("")
+    validated["concept_present"] = (
+        validated["concept_code_present"] | validated["concept_name_present"]
+    )
+    validated["employee_id_present"] = employee_id_raw.notna() & employee_id_raw.ne("")
+
+    invalid_reason_columns = {
+        "invalid_amount": ~validated["amount_is_valid"],
+        "invalid_posting_date": ~validated["posting_date_is_valid"],
+        "missing_or_invalid_payroll_period": ~validated["effective_payroll_period_is_valid"],
+        "missing_concept": ~validated["concept_present"],
+        "missing_employee_id": ~validated["employee_id_present"],
+    }
+
+    def collect_invalid_reasons(index: int) -> list[str]:
+        return [
+            reason
+            for reason, mask in invalid_reason_columns.items()
+            if bool(mask.iloc[index])
+        ]
+
+    validated["invalid_reasons"] = [
+        collect_invalid_reasons(index) for index in range(len(validated))
+    ]
+    validated["is_valid_record"] = validated["invalid_reasons"].map(lambda reasons: not reasons)
+
+    invalid_record_count = int((~validated["is_valid_record"]).sum())
+    result = PayrollRecordValidationResult(
+        validated_records=validated,
+        total_records=len(validated),
+        valid_record_count=int(validated["is_valid_record"].sum()),
+        invalid_record_count=invalid_record_count,
+    )
+
+    if invalid_record_count > 0:
+        result.validation_warnings.append(
+            ValidationIssue(
+                code="invalid_records_detected",
+                message=(
+                    f"Detected {invalid_record_count} payroll records with invalid or "
+                    "non-interpretable critical fields."
+                ),
+                blocking=False,
             )
         )
 

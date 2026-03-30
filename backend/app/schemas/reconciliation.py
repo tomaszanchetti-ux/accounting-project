@@ -42,6 +42,16 @@ class PayrollSchemaValidationResult:
 
 
 @dataclass(slots=True)
+class PayrollRecordValidationResult:
+    validated_records: pd.DataFrame
+    total_records: int
+    valid_record_count: int
+    invalid_record_count: int
+    validation_errors: list[ValidationIssue] = field(default_factory=list)
+    validation_warnings: list[ValidationIssue] = field(default_factory=list)
+
+
+@dataclass(slots=True)
 class ReconciliationEngineInput:
     payroll: DataFrameLike
     expected_totals: DataFrameLike
