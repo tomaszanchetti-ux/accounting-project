@@ -29,6 +29,39 @@ export function formatDateTime(value: string | null | undefined) {
   }).format(date);
 }
 
+export function formatPercentage(
+  value: boolean | number | string | null | undefined,
+  digits = 2,
+) {
+  if (value === null || value === undefined || value === "") {
+    return "N/A";
+  }
+
+  const numericValue =
+    typeof value === "string" ? Number.parseFloat(value) : Number(value);
+  if (!Number.isFinite(numericValue)) {
+    return "N/A";
+  }
+
+  return `${numericValue.toFixed(digits)}%`;
+}
+
+export function formatCompactNumber(value: number | string | null | undefined) {
+  if (value === null || value === undefined || value === "") {
+    return "0";
+  }
+
+  const numericValue =
+    typeof value === "string" ? Number.parseFloat(value) : Number(value);
+  if (!Number.isFinite(numericValue)) {
+    return "0";
+  }
+
+  return new Intl.NumberFormat("en-GB", {
+    maximumFractionDigits: 0,
+  }).format(numericValue);
+}
+
 export function formatFileSize(bytes: number | null | undefined) {
   if (!bytes) {
     return "Unknown size";

@@ -70,6 +70,7 @@ export type RunResultRecord = {
   observed_amount: string;
   period: string;
   record_count: number;
+  recommended_action?: string | null;
   relative_diff_pct: string | null;
   status: string;
   summary_explanation: string | null;
@@ -83,10 +84,86 @@ export type RunEventRecord = {
   title: string;
 };
 
+export type RunSummaryMetrics = {
+  concepts_invalid_incomplete?: number | null;
+  concepts_minor_difference?: number | null;
+  concepts_reconciled?: number | null;
+  concepts_unreconciled?: number | null;
+  expected_amount_total?: number | string | null;
+  observed_amount_total?: number | string | null;
+  overall_run_status?: string | null;
+  total_concepts?: number | null;
+};
+
 export type RunSummaryResponse = {
   event_log: RunEventRecord[];
-  metrics: Record<string, string | number | boolean | null>;
+  metrics: RunSummaryMetrics;
   preview_results: RunResultRecord[];
+  run: RunRecord;
+};
+
+export type RunResultsResponse = {
+  results: RunResultRecord[];
+  run: RunRecord;
+  total_results: number;
+};
+
+export type RunExceptionRecord = {
+  concept_scope: string | null;
+  confidence: string | null;
+  created_at: string;
+  employee_id: string | null;
+  estimated_impact_amount: string | null;
+  exception_type: string;
+  id: string;
+  observation: string | null;
+  record_id: string | null;
+  result_id: string | null;
+  run_id: string;
+  scope_level: string;
+  severity: string;
+};
+
+export type ConceptAnalysisHeader = {
+  concept_code_normalized: string;
+  concept_name_normalized: string;
+  period: string;
+  status: string;
+};
+
+export type ConceptAnalysisKpis = {
+  absolute_diff: string;
+  employee_count: number;
+  expected_amount: string;
+  explained_amount_estimate: string | null;
+  impacted_employees_count: number | null;
+  impacted_records_count: number | null;
+  observed_amount: string;
+  record_count: number;
+  relative_diff_pct: string | null;
+};
+
+export type ConceptAnalysisEvidenceSummary = {
+  employees_with_exception: number;
+  records_with_exception: number;
+  top_exception_types: string[];
+  total_exceptions: number;
+};
+
+export type ConceptAnalysisPayload = {
+  evidence_summary: ConceptAnalysisEvidenceSummary;
+  header: ConceptAnalysisHeader;
+  kpis: ConceptAnalysisKpis;
+  recommended_action: string | null;
+  summary_statement: string | null;
+  top_causes: RunExceptionRecord[];
+};
+
+export type RunResultDetailResponse = {
+  concept_analysis: ConceptAnalysisPayload;
+  event_log: RunEventRecord[];
+  exceptions: RunExceptionRecord[];
+  result: RunResultRecord;
   run: RunRecord;
 };
 
@@ -123,6 +200,16 @@ type RunExecuteResponse = {
   run: RunRecord;
 };
 
+export class ApiRequestError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = "ApiRequestError";
+    this.status = status;
+  }
+}
+
 async function extractApiError(response: Response) {
   try {
     const payload = (await response.json()) as ApiErrorPayload;
@@ -142,7 +229,7 @@ export async function fetchApi<T>(
   });
 
   if (!response.ok) {
-    throw new Error(await extractApiError(response));
+    throw new ApiRequestError(await extractApiError(response), response.status);
   }
 
   return (await response.json()) as T;
@@ -220,4 +307,12 @@ export function executeRun(runId: string) {
 
 export function getRunSummary(runId: string) {
   return fetchApi<RunSummaryResponse>(`/runs/${runId}/summary`);
+}
+
+export function getRunResults(runId: string) {
+  return fetchApi<RunResultsResponse>(`/runs/${runId}/results`);
+}
+
+export function getRunResultDetail(runId: string, resultId: string) {
+  return fetchApi<RunResultDetailResponse>(`/runs/${runId}/results/${resultId}`);
 }

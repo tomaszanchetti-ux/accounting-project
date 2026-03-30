@@ -125,7 +125,8 @@ Para retomar el proyecto hoy:
 - `EPIC 03` ya esta completada
 - `EPIC 04` ya esta completada
 - `EPIC 05` ya esta completada y mergeada a `main`
-- revisar `docs/UI_FOUNDATION_SETUP_FLOW.md`
-- revisar `Backlog/EPIC_05_UI_Foundation_Setup_Flow.md`
-- siguiente bloque funcional recomendado: `EPIC 06`
-- proxima branch recomendada: `codex/epic-06-summary-ui`
+- `EPIC 06` ya esta implementada en `codex/epic-06-summary-ui`
+- revisar `docs/SUMMARY_CONCEPT_UI_BLUEPRINT.md`
+- revisar `Backlog/EPIC_06_Summary_Concept_Analysis_UI.md`
+- siguiente bloque funcional recomendado: `EPIC 07`
+- proxima branch recomendada: `codex/epic-07-drilldown-exports`

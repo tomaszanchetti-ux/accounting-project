@@ -238,7 +238,8 @@ La idea es dejar un **handoff útil para el yo futuro o para otro agente**.
 - `EPIC 03` completada
 - `EPIC 04` completada
 - `EPIC 05` completada, smoke-tested y mergeada a `main`
-- el siguiente paso lógico es continuar con `EPIC 06`
+- `EPIC 06` implementada en branch y validada con lint/build
+- el siguiente paso lógico es continuar con `EPIC 07`
 
 ---
 
@@ -246,7 +247,7 @@ La idea es dejar un **handoff útil para el yo futuro o para otro agente**.
 
 La prioridad actual del proyecto es:
 
-> **construir `EPIC 06 — Summary, Concept Analysis & Explanation UI` sobre la base operativa y visual ya cerrada en `EPIC 05`, manteniendo validación end-to-end y foco en una demo navegable.**
+> **construir `EPIC 07 — Drill-down, Exports & Demo Traceability` sobre la Summary y Concept Analysis ya disponibles, manteniendo continuidad narrativa desde insight ejecutivo hasta evidencia operativa.**
 
 ---
 

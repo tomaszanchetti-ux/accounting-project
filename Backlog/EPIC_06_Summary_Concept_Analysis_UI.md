@@ -50,16 +50,25 @@ Al terminar esta epic, el producto debe tener:
 
 ## Criterio de aceptación de la Epic completa
 
-- [ ] Existe una pantalla de summary de corrida conectada al backend
-- [ ] La summary muestra KPIs ejecutivos claros
-- [ ] Existe tabla por concepto con expected, observed, diff, diff % y status
-- [ ] La tabla prioriza visualmente conceptos con problemas
-- [ ] Existe navegación o expansión hacia análisis por concepto
-- [ ] La vista por concepto muestra KPIs, statement principal, causas probables y recomendación
-- [ ] La experiencia es clara, sobria, data-first y consistente con el usuario objetivo
-- [ ] Los conceptos wow del demo lucen convincentes en esta capa
+- [x] Existe una pantalla de summary de corrida conectada al backend
+- [x] La summary muestra KPIs ejecutivos claros
+- [x] Existe tabla por concepto con expected, observed, diff, diff % y status
+- [x] La tabla prioriza visualmente conceptos con problemas
+- [x] Existe navegación o expansión hacia análisis por concepto
+- [x] La vista por concepto muestra KPIs, statement principal, causas probables y recomendación
+- [x] La experiencia es clara, sobria, data-first y consistente con el usuario objetivo
+- [x] Los conceptos wow del demo lucen convincentes en esta capa
 
-## Estado: PENDIENTE
+## Estado: COMPLETADA
+
+## Implementación WS15
+
+- `docs/SUMMARY_CONCEPT_UI_BLUEPRINT.md` cierra objetivo funcional, anatomía, KPIs, tabla, patrón de navegación y CTA hacia drill-down
+- la ruta `frontend/app/runs/[runId]/page.tsx` pasó de snapshot operativo a Summary Screen completa conectada a backend real
+- se implementó navegación dedicada a Concept Analysis en `frontend/app/runs/[runId]/concepts/[resultId]/page.tsx`
+- se dejaron loading, error y empty states consistentes para summary y concept analysis
+- se preparó el handoff narrativo a drill-down en `frontend/app/runs/[runId]/concepts/[resultId]/drilldown/page.tsx`
+- validación ejecutada: `cd frontend && npm run lint` y `cd frontend && npm run build`
 
 ---
 
