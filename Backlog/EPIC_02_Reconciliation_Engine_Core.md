@@ -697,14 +697,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Testear columnas faltantes
-- [ ] Testear `amount` inválido
-- [ ] Testear normalización de `payroll_period`
-- [ ] Testear mapping de conceptos con y sin match
+- [x] Testear columnas faltantes
+- [x] Testear `amount` inválido
+- [x] Testear normalización de `payroll_period`
+- [x] Testear mapping de conceptos con y sin match
 - [ ] Commit sugerido: `test(engine): cubrir validacion y normalizacion base`
 
 ---
@@ -721,14 +721,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Testear agregación por concepto/período
-- [ ] Testear `absolute_diff` y `relative_diff_pct`
-- [ ] Testear bandas verde/amarillo/rojo
-- [ ] Testear `Invalid / Incomplete`
+- [x] Testear agregación por concepto/período
+- [x] Testear `absolute_diff` y `relative_diff_pct`
+- [x] Testear bandas verde/amarillo/rojo
+- [x] Testear `Invalid / Incomplete`
 - [ ] Commit sugerido: `test(engine): cubrir agregacion y estados de conciliacion`
 
 ---
@@ -745,14 +745,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Cargar dataset demo o fixture equivalente
-- [ ] Ejecutar motor end-to-end
-- [ ] Validar outputs por concepto clave
-- [ ] Validar resumen general de corrida
+- [x] Cargar dataset demo o fixture equivalente
+- [x] Ejecutar motor end-to-end
+- [x] Validar outputs por concepto clave
+- [x] Validar resumen general de corrida
 - [ ] Commit sugerido: `test(engine): agregar prueba end-to-end del motor`
 
 ---
