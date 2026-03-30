@@ -57,7 +57,7 @@ Al terminar esta epic, el sistema debe poder:
 - [ ] Los casos wow del dataset (`MEAL_VOUCHER`, `CHILDCARE`, `OVERTIME`) producen explicaciones coherentes con la intención narrativa
 - [ ] La salida de explicación queda estructurada para API, persistencia y UI
 
-## Estado: PENDIENTE
+## Estado: COMPLETADA
 
 ---
 
@@ -79,11 +79,11 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Confirmar excepciones principales del MVP:
+- [x] Confirmar excepciones principales del MVP:
   - `Duplicate Record`
   - `Missing Record / Missing Population`
   - `Unmapped Concept`
@@ -91,12 +91,18 @@ Al terminar esta epic, el sistema debe poder:
   - `Outlier Amount`
   - `Missing Expected Total`
   - `Invalid Amount / Data Quality Issue`
-- [ ] Confirmar excepciones opcionales del MVP:
+- [x] Confirmar excepciones opcionales del MVP:
   - `Sign Error`
   - `Misclassified Concept`
-- [ ] Documentar definición funcional de cada excepción
-- [ ] Documentar cuáles son centrales para el demo y cuáles quedan como capacidad secundaria
+- [x] Documentar definición funcional de cada excepción
+- [x] Documentar cuáles son centrales para el demo y cuáles quedan como capacidad secundaria
 - [ ] Commit sugerido: `docs(exceptions): definir catalogo definitivo del MVP`
+
+**Resultado de la card:**
+
+- catálogo definitivo documentado en `docs/EXCEPTIONS_MVP_CATALOG.md`
+- excepciones principales y opcionales cerradas para el MVP
+- centralidad demo explicitada para `MEAL_VOUCHER`, `CHILDCARE` y `OVERTIME`
 
 ---
 
@@ -112,19 +118,27 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Clasificar excepciones en grupos:
+- [x] Clasificar excepciones en grupos:
   - calidad/invalidez
   - temporalidad
   - mapping
   - población
   - anomalía cuantitativa
-- [ ] Definir severidad base por tipo
-- [ ] Documentar relación entre tipo de excepción y tono de explicación
+- [x] Definir severidad base por tipo
+- [x] Documentar relación entre tipo de excepción y tono de explicación
 - [ ] Commit sugerido: `docs(exceptions): definir taxonomia y severidad base`
+
+**Resultado de la card:**
+
+- taxonomia funcional y severidad base documentadas en
+  `docs/EXCEPTIONS_MVP_CATALOG.md`
+- tono de explicacion alineado para calidad, temporalidad, mapping, poblacion y
+  anomalia cuantitativa
+- `Feature 3.1` queda cerrada a nivel documental
 
 ---
 
@@ -146,15 +160,24 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir condiciones exactas de `Invalid Amount / Data Quality Issue`
-- [ ] Implementar flags a nivel registro
-- [ ] Asociar observaciones estructuradas por causa
-- [ ] Diferenciar error bloqueante de calidad no bloqueante
+- [x] Definir condiciones exactas de `Invalid Amount / Data Quality Issue`
+- [x] Implementar flags a nivel registro
+- [x] Asociar observaciones estructuradas por causa
+- [x] Diferenciar error bloqueante de calidad no bloqueante
 - [ ] Commit sugerido: `feat(exceptions): detectar invalid amount y data quality issues`
+
+**Resultado de la card:**
+
+- detector `detect_invalid_data_quality_issues` implementado sobre la base
+  conciliable del motor
+- excepciones estructuradas a nivel registro con `issue_code`, `severity`,
+  `blocking` y `observation`
+- el motor expone artefactos y metricas para distinguir invalidacion bloqueante
+  vs invalidacion parcial
 
 ---
 
@@ -170,15 +193,23 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Comparar período del registro vs período objetivo
-- [ ] Considerar `posting_date` inconsistente como refuerzo de la anomalía
-- [ ] Marcar líneas fuera de período
-- [ ] Calcular impacto agregado preliminar por concepto
+- [x] Comparar período del registro vs período objetivo
+- [x] Considerar `posting_date` inconsistente como refuerzo de la anomalía
+- [x] Marcar líneas fuera de período
+- [x] Calcular impacto agregado preliminar por concepto
 - [ ] Commit sugerido: `feat(exceptions): detectar out-of-period records`
+
+**Resultado de la card:**
+
+- detector `detect_out_of_period_records` implementado con soporte para
+  `payroll_period` y `posting_date`
+- excepciones temporales expuestas a nivel línea con
+  `temporal_mismatch_source`
+- impacto agregado preliminar por concepto disponible en artefactos del motor
 
 ---
 
@@ -194,15 +225,21 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Detectar registros sin `concept_code_normalized`
-- [ ] Agrupar no mapeados por concepto raw o patrón útil
-- [ ] Calcular conteo e impacto por concepto conciliable afectado
-- [ ] Preparar observaciones útiles para explicación posterior
+- [x] Detectar registros sin `concept_code_normalized`
+- [x] Agrupar no mapeados por concepto raw o patrón útil
+- [x] Calcular conteo e impacto por concepto conciliable afectado
+- [x] Preparar observaciones útiles para explicación posterior
 - [ ] Commit sugerido: `feat(exceptions): detectar unmapped concept lines`
+
+**Resultado de la card:**
+
+- detector `detect_unmapped_concept_records` implementado
+- agrupacion por concepto raw/patron util disponible para explicacion
+- impacto preliminar de lineas no mapeadas expuesto en artefactos del motor
 
 ---
 
@@ -218,20 +255,26 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir combinación clave de duplicado potencial:
+- [x] Definir combinación clave de duplicado potencial:
   - `employee_id`
   - `payroll_period`
   - `concept_code_normalized`
   - `amount`
   - `legal_entity` si aplica
-- [ ] Implementar detección de repetición exacta o altamente similar
-- [ ] Marcar grupos de duplicados y registros afectados
-- [ ] Estimar monto duplicado explicable
+- [x] Implementar detección de repetición exacta o altamente similar
+- [x] Marcar grupos de duplicados y registros afectados
+- [x] Estimar monto duplicado explicable
 - [ ] Commit sugerido: `feat(exceptions): detectar duplicate records`
+
+**Resultado de la card:**
+
+- detector `detect_duplicate_records` implementado sobre registros elegibles
+- grupos y lineas afectadas quedan identificados con `duplicate_group_key`
+- impacto duplicado estimado por grupo y por concepto expuesto para ranking
 
 ---
 
@@ -247,14 +290,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Detectar unidades con observed pero sin expected
-- [ ] Generar excepción a nivel concepto
-- [ ] Vincularla con el estado de conciliación correspondiente
+- [x] Detectar unidades con observed pero sin expected
+- [x] Generar excepción a nivel concepto
+- [x] Vincularla con el estado de conciliación correspondiente
 - [ ] Commit sugerido: `feat(exceptions): detectar missing expected total`
+
+**Resultado de la card:**
+
+- detector `detect_missing_expected_totals` implementado a nivel concepto
+- excepcion estructurada expuesta sobre unidades observadas sin expected
+- salida alineada con estados `Invalid / Incomplete` y capas posteriores
 
 ---
 
@@ -276,17 +325,23 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Elegir método base del MVP:
+- [x] Elegir método base del MVP:
   - mediana por concepto
   - umbral `3x` o `5x` mediana
-- [ ] Implementar detección por registro
-- [ ] Calcular impacto agregado por concepto
-- [ ] Preparar observación específica del registro anómalo
+- [x] Implementar detección por registro
+- [x] Calcular impacto agregado por concepto
+- [x] Preparar observación específica del registro anómalo
 - [ ] Commit sugerido: `feat(exceptions): detectar outlier amounts`
+
+**Resultado de la card:**
+
+- detector `detect_outlier_amounts` implementado con regla `> 5x` mediana
+- impacto estimado calculado como exceso sobre mediana por concepto
+- `OVERTIME` queda identificado con un outlier dominante alineado al seed
 
 ---
 
@@ -302,17 +357,25 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir fuente de verdad para elegibilidad:
+- [x] Definir fuente de verdad para elegibilidad:
   - `employee_reference.csv`
   - baseline controlado del demo
-- [ ] Comparar población esperada vs población observada por concepto elegible
-- [ ] Identificar empleados ausentes
-- [ ] Estimar impacto agregado de la población faltante
+- [x] Comparar población esperada vs población observada por concepto elegible
+- [x] Identificar empleados ausentes
+- [x] Estimar impacto agregado de la población faltante
 - [ ] Commit sugerido: `feat(exceptions): detectar missing population`
+
+**Resultado de la card:**
+
+- detector `detect_missing_population` implementado usando
+  `employee_reference.csv`
+- empleados faltantes de `CHILDCARE` identificados a nivel individual
+- impacto agregado acotado por la brecha real del concepto para no
+  sobreatribuir
 
 ---
 
@@ -328,15 +391,21 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Leer signo esperado desde `concept_master`
-- [ ] Comparar signo observado vs esperado
-- [ ] Marcar registros sospechosos
-- [ ] Estimar impacto cuando corresponda
+- [x] Leer signo esperado desde `concept_master`
+- [x] Comparar signo observado vs esperado
+- [x] Marcar registros sospechosos
+- [x] Estimar impacto cuando corresponda
 - [ ] Commit sugerido: `feat(exceptions): detectar sign errors opcionales`
+
+**Resultado de la card:**
+
+- detector `detect_sign_errors` implementado sobre el flag `has_unexpected_sign`
+- la capacidad puede activarse en casos controlados sin alterar agregacion
+- impacto secundario calculado como magnitud absoluta del registro afectado
 
 ---
 
@@ -352,14 +421,22 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Diseñar heurística mínima de misclassification
-- [ ] Aplicarla solo en casos configurados del demo
-- [ ] Documentar límites y no generalizar la capacidad
+- [x] Diseñar heurística mínima de misclassification
+- [x] Aplicarla solo en casos configurados del demo
+- [x] Documentar límites y no generalizar la capacidad
 - [ ] Commit sugerido: `feat(exceptions): detectar misclassified concepts opcionales`
+
+**Resultado de la card:**
+
+- detector `detect_misclassified_concepts` implementado con activacion por
+  configuracion explicita
+- la heuristica queda acotada a conceptos raw configurados y no opera por
+  defecto
+- se evita contaminar el ranking principal con falsos positivos generalizados
 
 ---
 
@@ -381,11 +458,11 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir orden sugerido de prioridad:
+- [x] Definir orden sugerido de prioridad:
   1. `Invalid Amount / Data Quality Issue`
   2. `Out-of-Period Record`
   3. `Unmapped Concept`
@@ -395,9 +472,16 @@ Al terminar esta epic, el sistema debe poder:
   7. `Sign Error`
   8. `Outlier Amount`
   9. `Misclassified Concept`
-- [ ] Documentar criterio de negocio detrás del orden
-- [ ] Preparar uso de la prioridad en ranking explicativo
+- [x] Documentar criterio de negocio detrás del orden
+- [x] Preparar uso de la prioridad en ranking explicativo
 - [ ] Commit sugerido: `docs(exceptions): definir prioridad entre excepciones`
+
+**Resultado de la card:**
+
+- prioridad entre excepciones documentada en `docs/EXCEPTIONS_MVP_CATALOG.md`
+- orden alineado con calidad del dato, scope, distorsion del observado y
+  señales analiticas
+- prioridad reutilizable desde la capa de ranking explicativo
 
 ---
 
@@ -413,11 +497,11 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir campos mínimos del objeto excepción:
+- [x] Definir campos mínimos del objeto excepción:
   - `exception_type`
   - `severity`
   - `scope_level`
@@ -425,9 +509,15 @@ Al terminar esta epic, el sistema debe poder:
   - `employee_id` opcional
   - `estimated_impact_amount`
   - `observation`
-- [ ] Definir cómo agrupar excepciones por concepto
-- [ ] Reservar campo para `confidence` si hiciera falta
+- [x] Definir cómo agrupar excepciones por concepto
+- [x] Reservar campo para `confidence` si hiciera falta
 - [ ] Commit sugerido: `feat(exceptions): definir contrato estructurado de excepcion`
+
+**Resultado de la card:**
+
+- dataclass `ReconciliationExceptionItem` implementada como contrato comun
+- bundle estructurado expuesto en `debug_artifacts.structured_exceptions`
+- contrato deja lista la salida para persistencia, API y UI posteriores
 
 ---
 
@@ -449,19 +539,25 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir método para:
+- [x] Definir método para:
   - `Out-of-Period`
   - `Unmapped`
   - `Duplicate`
   - `Missing Population`
   - `Outlier`
-- [ ] Distinguir entre impacto exacto y estimado
-- [ ] Documentar límites de cada metodología
+- [x] Distinguir entre impacto exacto y estimado
+- [x] Documentar límites de cada metodología
 - [ ] Commit sugerido: `docs(exceptions): definir metodo de estimacion de impacto`
+
+**Resultado de la card:**
+
+- metodo de estimacion por tipo documentado en `docs/EXCEPTIONS_MVP_CATALOG.md`
+- distincion entre impacto exacto, estimado y no cuantificable explicitada
+- limites metodologicos del MVP documentados para evitar sobrelectura
 
 ---
 
@@ -477,15 +573,21 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar funciones de impacto por tipo principal
-- [ ] Consolidar impacto por `concept_code_normalized`
-- [ ] Preparar estructura ordenable por impacto
-- [ ] Validar resultados en `MEAL_VOUCHER`, `CHILDCARE` y `OVERTIME`
+- [x] Implementar funciones de impacto por tipo principal
+- [x] Consolidar impacto por `concept_code_normalized`
+- [x] Preparar estructura ordenable por impacto
+- [x] Validar resultados en `MEAL_VOUCHER`, `CHILDCARE` y `OVERTIME`
 - [ ] Commit sugerido: `feat(exceptions): calcular impacto agregado por causa`
+
+**Resultado de la card:**
+
+- `exception_impact_summary` implementado como consolidado por causa y concepto
+- impacto agregado validado sobre `MEAL_VOUCHER`, `CHILDCARE` y `OVERTIME`
+- estructura deja lista la capa de explicacion y UI para ordenar causas
 
 ---
 
@@ -507,18 +609,24 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir fórmula o criterio de ranking combinando:
+- [x] Definir fórmula o criterio de ranking combinando:
   - impacto estimado
   - severidad funcional
   - prioridad del tipo de excepción
   - confianza implícita
-- [ ] Limitar cantidad de causas top mostradas
-- [ ] Documentar desempates y bordes
+- [x] Limitar cantidad de causas top mostradas
+- [x] Documentar desempates y bordes
 - [ ] Commit sugerido: `docs(explanations): definir ranking de causas probables`
+
+**Resultado de la card:**
+
+- ranking documentado en `docs/EXCEPTIONS_MVP_CATALOG.md`
+- criterio implementado usando impacto, severidad, confianza y prioridad
+- limite por concepto fijado en `top 3`
 
 ---
 
@@ -534,15 +642,21 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Agrupar excepciones por concepto
-- [ ] Consolidar causas homogéneas
-- [ ] Seleccionar top causas por ranking
-- [ ] Preparar payload resumido por causa
+- [x] Agrupar excepciones por concepto
+- [x] Consolidar causas homogéneas
+- [x] Seleccionar top causas por ranking
+- [x] Preparar payload resumido por causa
 - [ ] Commit sugerido: `feat(explanations): agrupar causas multiples por concepto`
+
+**Resultado de la card:**
+
+- `ranked_exception_causes` implementado como payload resumido por concepto
+- causas homogéneas consolidadas antes del ranking
+- el motor ya puede devolver multiples causas relevantes sin duplicaciones
 
 ---
 
@@ -564,17 +678,24 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir estructura en tres capas:
+- [x] Definir estructura en tres capas:
   - statement principal
   - top causes
   - recomendación
-- [ ] Definir longitud y tono esperado
-- [ ] Documentar que la explicación es útil, no “literaria”
+- [x] Definir longitud y tono esperado
+- [x] Documentar que la explicación es útil, no “literaria”
 - [ ] Commit sugerido: `docs(explanations): definir estructura narrativa base`
+
+**Resultado de la card:**
+
+- estructura narrativa base documentada en `docs/EXPLANATION_NARRATIVE.md`
+- formato estable de `summary_statement`, `probable_causes` y
+  `recommended_action` definido
+- tono y longitud alineados con uso operativo, no literario
 
 ---
 
@@ -590,15 +711,21 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear template para `Unreconciled`
-- [ ] Crear template para `Minor Difference`
-- [ ] Crear template para `Invalid / Incomplete`
-- [ ] Incluir concepto, período y diff relevante
+- [x] Crear template para `Unreconciled`
+- [x] Crear template para `Minor Difference`
+- [x] Crear template para `Invalid / Incomplete`
+- [x] Incluir concepto, período y diff relevante
 - [ ] Commit sugerido: `feat(explanations): generar statement principal por concepto`
+
+**Resultado de la card:**
+
+- statements principales implementados por estado de conciliacion
+- el statement incluye concepto, periodo y direccion de la diferencia
+- salida ya disponible en `concept_explanations`
 
 ---
 
@@ -614,15 +741,21 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Construir templates por tipo de causa
-- [ ] Incorporar conteo de registros o empleados cuando aplique
-- [ ] Incorporar impacto estimado cuando exista
-- [ ] Limitar salida a un número razonable de causas
+- [x] Construir templates por tipo de causa
+- [x] Incorporar conteo de registros o empleados cuando aplique
+- [x] Incorporar impacto estimado cuando exista
+- [x] Limitar salida a un número razonable de causas
 - [ ] Commit sugerido: `feat(explanations): generar bloque de causas probables`
+
+**Resultado de la card:**
+
+- bloque de causas probables implementado sobre el ranking del motor
+- cada causa puede exponer evidencia resumida e impacto
+- la salida queda limitada a `top 3` por concepto
 
 ---
 
@@ -638,17 +771,23 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir expresiones estándar:
+- [x] Definir expresiones estándar:
   - “se detectaron indicios de…”
   - “la diferencia se explica principalmente por…”
   - “posibles causas identificadas…”
-- [ ] Aplicar framing según tipo de excepción
-- [ ] Evitar lenguaje absoluto en inferencias débiles
+- [x] Aplicar framing según tipo de excepción
+- [x] Evitar lenguaje absoluto en inferencias débiles
 - [ ] Commit sugerido: `feat(explanations): aplicar framing prudente de certeza`
+
+**Resultado de la card:**
+
+- framing prudente implementado en templates y recomendaciones
+- `duplicate`, `missing population` y `outlier` usan lenguaje no omnisciente
+- la narrativa preserva credibilidad cuando la causa es inferencial
 
 ---
 
@@ -670,19 +809,25 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir recomendaciones para:
+- [x] Definir recomendaciones para:
   - `Unmapped Concept`
   - `Out-of-Period`
   - `Duplicate`
   - `Outlier`
   - `Missing Expected Total`
   - `Missing Population`
-- [ ] Mantener tono profesional y orientado a revisión
+- [x] Mantener tono profesional y orientado a revisión
 - [ ] Commit sugerido: `docs(explanations): definir catalogo de recomendaciones`
+
+**Resultado de la card:**
+
+- catalogo base de recomendaciones definido e implementado por tipo
+- tono profesional y accionable mantenido
+- recomendaciones listas para reuso en summary y concept analysis
 
 ---
 
@@ -698,14 +843,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir lógica de selección de recomendación principal
-- [ ] Manejar casos multi-causa
-- [ ] Generar texto final breve por concepto
+- [x] Definir lógica de selección de recomendación principal
+- [x] Manejar casos multi-causa
+- [x] Generar texto final breve por concepto
 - [ ] Commit sugerido: `feat(explanations): generar recomendacion final por concepto`
+
+**Resultado de la card:**
+
+- recomendacion final implementada por concepto
+- seleccion alineada con la causa dominante del ranking
+- manejo multi-causa resuelto sin producir textos largos
 
 ---
 
@@ -727,20 +878,26 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir campos mínimos:
+- [x] Definir campos mínimos:
   - `summary_statement`
   - `probable_causes`
   - `recommended_action`
   - `explained_amount_estimate`
   - `impacted_records_count`
   - `impacted_employees_count`
-- [ ] Definir formato de `probable_causes`
-- [ ] Preparar compatibilidad con API/UI
+- [x] Definir formato de `probable_causes`
+- [x] Preparar compatibilidad con API/UI
 - [ ] Commit sugerido: `feat(explanations): definir contrato estructurado de explicacion`
+
+**Resultado de la card:**
+
+- dataclasses `ConceptExplanation` y `ExplanationCause` implementadas
+- contrato estructurado listo para serializacion y capas posteriores
+- metadata de impacto y volumen incluida por concepto
 
 ---
 
@@ -756,20 +913,26 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Diseñar secuencia:
+- [x] Diseñar secuencia:
   - detectar excepciones
   - agrupar por concepto
   - estimar impacto
   - rankear causas
   - generar narrativa
   - devolver payload estructurado
-- [ ] Integrar inputs provenientes de EPIC 02
-- [ ] Manejar salidas vacías o conceptos sin explicación relevante
+- [x] Integrar inputs provenientes de EPIC 02
+- [x] Manejar salidas vacías o conceptos sin explicación relevante
 - [ ] Commit sugerido: `feat(explanations): crear orquestador de excepciones y narrativa`
+
+**Resultado de la card:**
+
+- el motor ya orquesta deteccion, impacto, ranking y narrativa
+- payload final expuesto en `debug_artifacts.concept_explanations`
+- flujo reusable desde tests y capas futuras
 
 ---
 
@@ -791,14 +954,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Ejecutar capa explicativa sobre `MEAL_VOUCHER`
-- [ ] Validar orden e impacto de causas
-- [ ] Ajustar templates o ranking si la narrativa no queda sólida
+- [x] Ejecutar capa explicativa sobre `MEAL_VOUCHER`
+- [x] Validar orden e impacto de causas
+- [x] Ajustar templates o ranking si la narrativa no queda sólida
 - [ ] Commit sugerido: `test(explanations): validar caso wow meal voucher`
+
+**Resultado de la card:**
+
+- test funcional cubre el caso multi-causa principal
+- `MEAL_VOUCHER` ya muestra `out-of-period`, `unmapped` y `duplicate`
+- el ranking quedo ajustado para reflejar el concepto afectado narrativamente
 
 ---
 
@@ -814,14 +983,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Ejecutar capa explicativa sobre `CHILDCARE`
-- [ ] Verificar empleados faltantes y monto asociado
-- [ ] Validar recomendación final
+- [x] Ejecutar capa explicativa sobre `CHILDCARE`
+- [x] Verificar empleados faltantes y monto asociado
+- [x] Validar recomendación final
 - [ ] Commit sugerido: `test(explanations): validar caso childcare`
+
+**Resultado de la card:**
+
+- `CHILDCARE` validado con faltantes de poblacion elegible
+- impacto y empleados ausentes cubiertos por tests
+- recomendacion final alineada al patron de cobertura faltante
 
 ---
 
@@ -837,14 +1012,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Ejecutar capa explicativa sobre `OVERTIME`
-- [ ] Verificar identificación del outlier dominante
-- [ ] Validar statement y recomendación asociados
+- [x] Ejecutar capa explicativa sobre `OVERTIME`
+- [x] Verificar identificación del outlier dominante
+- [x] Validar statement y recomendación asociados
 - [ ] Commit sugerido: `test(explanations): validar caso overtime`
+
+**Resultado de la card:**
+
+- `OVERTIME` validado con foco en el outlier dominante
+- statement, causa principal y recomendacion final cubiertos por tests
+- el caso queda demostrable para drill-down analitico
 
 ---
 
@@ -860,14 +1041,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Ejecutar capa explicativa sobre `TRANSPORT`
-- [ ] Verificar tono y brevedad
-- [ ] Validar que la recomendación no escale innecesariamente
+- [x] Ejecutar capa explicativa sobre `TRANSPORT`
+- [x] Verificar tono y brevedad
+- [x] Validar que la recomendación no escale innecesariamente
 - [ ] Commit sugerido: `test(explanations): validar caso transport minor difference`
+
+**Resultado de la card:**
+
+- `TRANSPORT` validado como caso menor y sobrio
+- la explicacion no sobredimensiona la diferencia
+- el concepto puede quedar sin recomendacion cuando no hay causa fuerte
 
 ---
 

@@ -118,6 +118,7 @@ Para retomar el proyecto hoy:
 - `EPIC 00` ya esta cerrada
 - `EPIC 01` ya esta cerrada
 - `EPIC 02` ya esta completada
-- revisar `Backlog/EPIC_02_Reconciliation_Engine_Core.md`
-- continuar desde `EPIC 03`
-- branch de trabajo actual: `codex/epic-02-reconciliation-engine`
+- `EPIC 03` ya esta completada
+- revisar `Backlog/EPIC_03_Exception_Detection_Explanation.md`
+- continuar desde `EPIC 04`
+- branch de trabajo actual: `codex/epic-03-explanation-layer`
