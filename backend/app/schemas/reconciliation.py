@@ -124,6 +124,7 @@ class DrilldownPreparationResult:
 class ObservedTotalsResult:
     observed_totals: pd.DataFrame
     total_groups: int
+    segmented_by_legal_entity: bool = False
 
 
 @dataclass(slots=True)

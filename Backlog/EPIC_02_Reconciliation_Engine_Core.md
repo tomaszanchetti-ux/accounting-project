@@ -447,13 +447,13 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Diseñar agregación extensible con `legal_entity`
-- [ ] Permitir modo simple y modo segmentado
-- [ ] Documentar cuándo usar cada modo
+- [x] Diseñar agregación extensible con `legal_entity`
+- [x] Permitir modo simple y modo segmentado
+- [x] Documentar cuándo usar cada modo
 - [ ] Commit sugerido: `feat(engine): soportar agregacion opcional por legal entity`
 
 ---

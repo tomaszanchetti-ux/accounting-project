@@ -259,3 +259,16 @@ Ademas, el motor debe dejar join keys simples para enlazar mas adelante:
 - fila agregada -> registros origen
 - registro -> empleado
 - concepto/periodo -> detalle asociado
+
+## 11. Dimension opcional por legal entity
+
+La agregacion principal del MVP sigue siendo:
+
+- `period + concept`
+
+De forma opcional, el motor puede segmentar observed totals por:
+
+- `period + concept + legal_entity`
+
+Esta segmentacion no reemplaza el modo simple. Solo agrega un corte adicional
+cuando haga falta para narrativa o analisis.

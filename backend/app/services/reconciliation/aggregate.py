@@ -12,6 +12,7 @@ def build_observed_totals(
     concept_master_source: DataFrameLike,
     target_period: str,
     policy: ObservedTotalsInclusionPolicy | None = None,
+    segment_by_legal_entity: bool = False,
 ) -> ObservedTotalsResult:
     base = apply_observed_totals_policy(
         payroll_source,
@@ -21,13 +22,17 @@ def build_observed_totals(
     )
 
     included = base.loc[base["include_in_observed_totals"]].copy()
+    group_columns = [
+        "payroll_period_normalized",
+        "concept_code_normalized",
+        "concept_name_normalized",
+    ]
+    if segment_by_legal_entity:
+        group_columns.append("legal_entity")
+
     observed_totals = (
         included.groupby(
-            [
-                "payroll_period_normalized",
-                "concept_code_normalized",
-                "concept_name_normalized",
-            ],
+            group_columns,
             as_index=False,
         )
         .agg(
@@ -42,4 +47,5 @@ def build_observed_totals(
     return ObservedTotalsResult(
         observed_totals=observed_totals,
         total_groups=len(observed_totals),
+        segmented_by_legal_entity=segment_by_legal_entity,
     )
