@@ -188,7 +188,7 @@ Al cerrar una sesión:
 | Epic | Estado Docs | Estado Implementación | Cards completadas | Observaciones |
 | --- | --- | --- | --- | --- |
 | EPIC 00 | ✅ | COMPLETADA | 17 / 17 | Setup tecnico, deploy frontend y estrategia de backend definidos |
-| EPIC 01 | ✅ | EN PROGRESO | 12 / 21 | Cerradas `Feature 1.1`, `Feature 1.2`, `Feature 1.3` y `Feature 1.4`; siguiente card recomendada: `1.5.1` |
+| EPIC 01 | ✅ | EN PROGRESO | 13 / 21 | Cerradas `Feature 1.1`, `Feature 1.2`, `Feature 1.3`, `Feature 1.4` y `Card 1.5.1`; siguiente card recomendada: `1.5.2` |
 
 ### Cómo registrar avance
 

@@ -396,12 +396,12 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Fijar `2026-03` como período principal del demo
-- [ ] Documentar que expected totals y mayoría de registros responden a ese período
+- [x] Fijar `2026-03` como período principal del demo
+- [x] Documentar que expected totals y mayoría de registros responden a ese período
 - [ ] Commit sugerido: `docs(data): definir periodo principal del MVP`
 
 ---

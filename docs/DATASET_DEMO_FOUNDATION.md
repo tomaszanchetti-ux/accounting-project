@@ -900,6 +900,79 @@ Eso se completa en:
 - `Feature 1.5`
 - `Feature 1.6`
 
+## Periodo principal del MVP
+
+### Periodo objetivo
+
+Desde `Card 1.5.1` queda fijado que el periodo principal del demo sera:
+
+- `2026-03`
+
+Este sera el corte temporal central sobre el cual se diseniara la corrida del
+MVP.
+
+### Por que se elige `2026-03`
+
+Se toma `2026-03` porque ya aparece alineado con el plan maestro y funciona
+bien como referencia unica para:
+
+- `payroll.csv`
+- `expected_totals.csv`
+- `employee_reference.csv`
+- resumen ejecutivo
+- demo comercial y narrativa de explicacion
+
+Al fijar un solo periodo central, el producto gana claridad y reduce
+ambiguedad operativa.
+
+### Regla para los datos esperados y observados
+
+Desde esta card queda definido que:
+
+- `expected_totals.csv` representara los totales esperados de `2026-03`
+- la gran mayoria de las lineas de `payroll.csv` pertenecera a `2026-03`
+- la elegibilidad principal de `employee_reference.csv` tambien se modelara
+  para `2026-03`
+
+Esto significa que el dataset del MVP se construira alrededor de un unico mes
+principal y no como una serie historica completa.
+
+### Impacto en la experiencia del producto
+
+Al ejecutar una corrida del demo, el usuario deberia percibir con claridad que:
+
+- el periodo analizado es `2026-03`
+- los expected totals fueron preparados para ese mismo mes
+- las diferencias se explican contra ese corte temporal
+
+Eso ayuda a que la lectura del summary sea inmediata y que los casos wow se
+entiendan sin contexto adicional.
+
+### Alcance temporal del MVP
+
+El MVP no necesita modelar comparativas mensuales, tendencias ni multiples
+cierres simultaneos.
+
+En esta etapa alcanza con:
+
+- un periodo principal fuerte
+- pocos registros de borde para excepciones temporales
+
+La complejidad temporal adicional se deja fuera del alcance inicial para
+proteger time-to-demo.
+
+### Relacion con las siguientes cards
+
+Esta card deja cerrado el periodo principal del demo, pero todavia no cierra:
+
+- la definicion exacta de `out-of-period`
+- el uso de `2026-02` como periodo incorrecto inyectado
+- el rol de `posting_date` como refuerzo narrativo de anomalias temporales
+
+Eso se completa en:
+
+- `Card 1.5.2`
+
 Su objetivo en esta etapa es resolver, de manera creible, el caso de
 `missing population` sin inflar el sistema.
 
