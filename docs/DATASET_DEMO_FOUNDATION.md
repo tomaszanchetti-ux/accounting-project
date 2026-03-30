@@ -973,6 +973,107 @@ Eso se completa en:
 
 - `Card 1.5.2`
 
+## Reglas temporales y casos out-of-period
+
+### Definicion de `out-of-period`
+
+Desde `Card 1.5.2` queda definido que un registro estara `out-of-period` cuando:
+
+- la corrida se ejecute para `2026-03`
+- y el valor de `payroll_period` del registro sea distinto de `2026-03`
+
+Para el MVP, la senal principal de esta anomalia sera `payroll_period`.
+
+`posting_date` podra reforzar la lectura del caso, pero no reemplaza la regla
+base.
+
+### Regla temporal del demo
+
+La corrida principal del MVP se entiende asi:
+
+- periodo objetivo de analisis: `2026-03`
+- expected totals preparados para `2026-03`
+- mayoria de registros observados correspondientes a `2026-03`
+
+Sobre esa base, el dataset podra incluir pocos registros deliberadamente fuera
+de periodo para sostener explicaciones creibles.
+
+### Uso de `2026-02` como periodo incorrecto inyectado
+
+El periodo incorrecto recomendado para inyectar en el demo sera:
+
+- `2026-02`
+
+La razon es simple:
+
+- es el mes inmediatamente anterior
+- resulta intuitivo para negocio
+- hace que la explicacion temporal se entienda en segundos
+
+No hace falta introducir varios meses erroneos. Con `2026-02` alcanza para
+crear una anomalia temporal clara sin ensuciar el dataset.
+
+### Uso de `posting_date` inconsistente
+
+Ademas del `payroll_period`, el campo `posting_date` podra utilizarse como
+refuerzo narrativo.
+
+Su uso recomendado en el MVP es:
+
+- acompañar registros cuyo `payroll_period` sea `2026-02`
+- o mostrar fechas de imputacion que no calzan naturalmente con la corrida de
+  marzo 2026
+
+Esto ayuda a construir explicaciones mas convincentes, por ejemplo:
+
+- lineas etiquetadas como febrero dentro de un archivo del periodo marzo
+- fechas de posting que hacen visible el arrastre temporal
+
+### Jerarquia de evidencia temporal
+
+Para evitar ambiguedad en el futuro motor, la jerarquia queda asi:
+
+1. la regla principal se evalua con `payroll_period`
+2. `posting_date` funciona como evidencia adicional
+3. la explicacion final puede mencionar ambas senales cuando convenga
+
+### Uso narrativo recomendado
+
+La anomalia temporal debe ayudar a contar una historia concreta, no a agregar
+ruido.
+
+Ejemplo de narrativa esperada:
+
+"Se detectaron lineas de `MEAL_VOUCHER` correspondientes a `2026-02` dentro de
+la corrida objetivo de `2026-03`, reforzadas por fechas de posting
+inconsistentes."
+
+Este tipo de explicacion es:
+
+- facil de entender
+- plausible para negocio
+- fuerte para demo comercial
+
+### Limites del alcance
+
+Para proteger simplicidad y time-to-demo:
+
+- no se modelaran calendarios complejos
+- no se definiran reglas avanzadas de cierre contable
+- no se hara reconciliacion multi-periodo en esta epic
+
+### Relacion con las siguientes cards
+
+Esta card deja cerrada la logica temporal del demo, pero todavia no cierra:
+
+- cuantas anomalias temporales habra por concepto
+- en que conceptos exactos se inyectaran
+- como se combinan con duplicates, unmapped o outliers
+
+Eso se completa en:
+
+- `Feature 1.6`
+
 Su objetivo en esta etapa es resolver, de manera creible, el caso de
 `missing population` sin inflar el sistema.
 

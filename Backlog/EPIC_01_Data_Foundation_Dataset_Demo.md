@@ -418,13 +418,13 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir qué significa estar fuera de período
-- [ ] Documentar uso de `2026-02` como período incorrecto inyectado
-- [ ] Documentar uso de `posting_date` inconsistente como refuerzo narrativo
+- [x] Definir qué significa estar fuera de período
+- [x] Documentar uso de `2026-02` como período incorrecto inyectado
+- [x] Documentar uso de `posting_date` inconsistente como refuerzo narrativo
 - [ ] Commit sugerido: `docs(data): definir casos temporales y out-of-period`
 
 ---
