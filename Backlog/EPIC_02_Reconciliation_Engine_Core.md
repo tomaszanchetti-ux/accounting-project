@@ -49,7 +49,7 @@ Al terminar esta epic, el motor debe poder:
 - [ ] El resultado agregado por concepto es reproducible y consistente con la tabla maestra del dataset
 - [ ] El motor expone outputs estructurados reutilizables por API, persistencia y UI
 
-## Estado: PENDIENTE
+## Estado: EN PROGRESO
 
 ---
 
@@ -71,14 +71,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Documentar que la unidad principal es `periodo + concepto`
-- [ ] Documentar que `legal_entity` puede ser dimensión secundaria opcional
-- [ ] Documentar que `employee_id` y `record_id` quedan fuera de la conciliación primaria
-- [ ] Dejar explícito que el empleado vive en la capa analítica/drill-down
+- [x] Documentar que la unidad principal es `periodo + concepto`
+- [x] Documentar que `legal_entity` puede ser dimensión secundaria opcional
+- [x] Documentar que `employee_id` y `record_id` quedan fuera de la conciliación primaria
+- [x] Dejar explícito que el empleado vive en la capa analítica/drill-down
 - [ ] Commit sugerido: `docs(engine): definir unidad de conciliación del MVP`
 
 ---
@@ -95,20 +95,20 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir inputs obligatorios:
+- [x] Definir inputs obligatorios:
   - `payroll dataframe` o archivo fuente
   - `expected totals`
   - `periodo objetivo`
-- [ ] Definir inputs opcionales:
+- [x] Definir inputs opcionales:
   - `concept master`
   - `employee reference`
   - `legal entity filter`
   - `tolerance profile`
-- [ ] Documentar formato esperado de entrada para uso programático
+- [x] Documentar formato esperado de entrada para uso programático
 - [ ] Commit sugerido: `docs(engine): definir contrato de input del motor`
 
 ---
@@ -125,11 +125,11 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir output agregado con campos mínimos:
+- [x] Definir output agregado con campos mínimos:
   - `period`
   - `concept_code_normalized`
   - `concept_name_normalized`
@@ -138,11 +138,11 @@ Al terminar esta epic, el motor debe poder:
   - `absolute_diff`
   - `relative_diff_pct`
   - `status`
-- [ ] Definir métricas auxiliares:
+- [x] Definir métricas auxiliares:
   - `record_count`
   - `employee_count`
   - `invalid_record_count`
-- [ ] Definir output técnico intermedio para debugging
+- [x] Definir output técnico intermedio para debugging
 - [ ] Commit sugerido: `docs(engine): definir contrato de output del motor`
 
 ---
@@ -165,14 +165,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar lista de columnas obligatorias del payroll
-- [ ] Validar presencia de todas las columnas críticas
-- [ ] Devolver estructura de errores/advertencias
-- [ ] Definir respuesta bloqueante si falta una columna esencial
+- [x] Implementar lista de columnas obligatorias del payroll
+- [x] Validar presencia de todas las columnas críticas
+- [x] Devolver estructura de errores/advertencias
+- [x] Definir respuesta bloqueante si falta una columna esencial
 - [ ] Commit sugerido: `feat(engine): validar esquema base del payroll`
 
 ---

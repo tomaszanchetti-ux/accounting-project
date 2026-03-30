@@ -16,6 +16,12 @@ MVP de conciliacion entre payroll/RRHH y contabilidad con foco en:
 - `docs/`: documentacion tecnica complementaria
 - `Backlog/`: ejecucion por epicas, features y cards
 
+## Documentos clave para el motor
+
+- `docs/DATASET_DEMO_FOUNDATION.md`
+- `docs/RECONCILIATION_ENGINE_CONTRACT.md`
+- `Backlog/EPIC_02_Reconciliation_Engine_Core.md`
+
 ## Dependencias externas del setup
 
 - Node.js 24+
@@ -111,6 +117,7 @@ Para retomar el proyecto hoy:
 
 - `EPIC 00` ya esta cerrada
 - `EPIC 01` ya esta cerrada
+- `EPIC 02` ya esta en progreso
 - revisar `Backlog/EPIC_02_Reconciliation_Engine_Core.md`
-- continuar desde `Card 2.1.1`
-- branch de trabajo actual: `codex/epic-01-data-foundation`
+- continuar desde `Card 2.2.2`
+- branch de trabajo actual: `codex/epic-02-reconciliation-engine`
