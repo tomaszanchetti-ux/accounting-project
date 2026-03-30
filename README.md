@@ -124,7 +124,9 @@ Para retomar el proyecto hoy:
 - `EPIC 02` ya esta completada
 - `EPIC 03` ya esta completada
 - `EPIC 04` ya esta completada
-- revisar `Backlog/EPIC_04_Runs_API_Persistence_Traceability.md`
-- revisar `docs/RUNS_PERSISTENCE_MODEL.md`
-- continuar desde `EPIC 05`
-- proxima branch recomendada: `codex/epic-05-ui-foundation`
+- `EPIC 05` quedo implementada en branch
+- revisar `docs/UI_FOUNDATION_SETUP_FLOW.md`
+- revisar `Backlog/EPIC_05_UI_Foundation_Setup_Flow.md`
+- hacer smoke visual/manual del setup flow antes de merge
+- siguiente bloque funcional recomendado: `EPIC 06`
+- branch activa recomendada: `codex/epic-05-ui-foundation`

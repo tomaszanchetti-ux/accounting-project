@@ -44,16 +44,47 @@ Al terminar esta epic, el producto debe tener:
 
 ## Criterio de aceptación de la Epic completa
 
-- [ ] Existe una base visual consistente y reusable para el MVP
-- [ ] La app presenta una landing interna o pantalla inicial del producto con framing claro
-- [ ] Existe un flujo funcional para crear una run desde UI
-- [ ] El usuario puede cargar payroll y expected totals desde la pantalla de setup
-- [ ] La UI muestra validación/preparación de inputs de forma clara
-- [ ] Existe una preview mínima de expected totals o configuración de corrida
-- [ ] El botón principal `Run Reconciliation` está disponible y conectado al backend
-- [ ] La experiencia de setup se siente enterprise, sobria y orientada a negocio
+- [x] Existe una base visual consistente y reusable para el MVP
+- [x] La app presenta una landing interna o pantalla inicial del producto con framing claro
+- [x] Existe un flujo funcional para crear una run desde UI
+- [x] El usuario puede cargar payroll y expected totals desde la pantalla de setup
+- [x] La UI muestra validación/preparación de inputs de forma clara
+- [x] Existe una preview mínima de expected totals o configuración de corrida
+- [x] El botón principal `Run Reconciliation` está disponible y conectado al backend
+- [x] La experiencia de setup se siente enterprise, sobria y orientada a negocio
 
-## Estado: PENDIENTE
+## Estado: EN PROGRESO
+
+## Estado de implementación WS13
+
+Implementación materializada sobre branch:
+
+- `codex/epic-05-ui-foundation`
+
+Entregables principales:
+
+- documento `docs/UI_FOUNDATION_SETUP_FLOW.md`
+- nueva gramática visual del frontend
+- `AppShell`, `AppHeader`, badges, métricas y feedback reusable
+- estado vacío/landing interna del producto
+- `RunSetupForm`, `UploadBox`, `ExpectedTotalsPreview`,
+  `RunValidationSummary`
+- lifecycle de setup con `POST /runs`
+- registro automático de `concept_master.csv`,
+  `employee_reference.csv` y `expected_totals.csv` demo
+- upload real de `payroll.csv` y reemplazo opcional de expected totals
+- `Run Reconciliation` conectado a `POST /runs/{run_id}/execute`
+- snapshot post-ejecución y ruta `/runs/[runId]`
+
+Validación ejecutada en esta WS:
+
+- `cd frontend && npm run lint`
+- `cd frontend && npm run build`
+
+Nota operativa:
+
+- la implementación queda lista para continuar con `EPIC 06`
+- antes de mergear a `main` sigue siendo recomendable un smoke visual/manual en navegador
 
 ---
 
