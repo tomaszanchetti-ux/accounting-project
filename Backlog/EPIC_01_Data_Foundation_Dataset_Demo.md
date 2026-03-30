@@ -280,14 +280,14 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir `legal_entities` del MVP
-- [ ] Fijar foco principal en España
-- [ ] Definir lista acotada de `cost_centers`
-- [ ] Documentar que estas dimensiones enriquecen, pero no gobiernan la conciliación base
+- [x] Definir `legal_entities` del MVP
+- [x] Fijar foco principal en España
+- [x] Definir lista acotada de `cost_centers`
+- [x] Documentar que estas dimensiones enriquecen, pero no gobiernan la conciliación base
 - [ ] Commit sugerido: `docs(data): definir estructura organizativa del dataset`
 
 ---

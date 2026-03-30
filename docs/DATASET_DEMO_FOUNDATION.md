@@ -474,6 +474,132 @@ Eso se completa en:
 - `Feature 1.4`
 - `Feature 1.6`
 
+## Estructura organizativa del dataset
+
+### Principio de diseno
+
+Desde `Card 1.3.2` queda definido que el dataset demo incluira textura
+organizativa suficiente para sentirse real, pero sin convertir esa dimension en
+el eje de conciliacion del MVP.
+
+La regla de diseno es simple:
+
+- `legal_entity`, `country` y `cost_center` enriquecen el analisis
+- no gobiernan la unidad base de conciliacion
+- la comparacion principal sigue ocurriendo sobre `payroll_period + concept_code`
+
+### `legal_entities` del MVP
+
+Para el demo base se define un set acotado de entidades legales:
+
+- `ARD Spain SL`
+- `ARD Iberia Services SL`
+- `ARD Portugal Unipessoal Lda`
+
+La intencion de esta lista no es modelar una estructura corporativa compleja,
+sino aportar realismo suficiente para:
+
+- mostrar que el payroll puede venir de mas de una entidad
+- habilitar filtros y drill-down mas creibles
+- sostener una narrativa regional iberica con foco comercial claro
+
+### Foco principal en Espana
+
+El pais principal del demo sera:
+
+- `Spain`
+
+La mayor parte del universo de empleados y de los registros de `payroll.csv`
+debera concentrarse en Espana.
+
+Esto ayuda a:
+
+- mantener coherencia con el contexto funcional ya definido
+- simplificar la narrativa del demo comercial
+- evitar dispersion geografica innecesaria en la explicacion
+
+### Distribucion simple por pais
+
+La distribucion geografica recomendada para el MVP sera deliberadamente simple:
+
+- mayoria clara de registros en `Spain`
+- minoria acotada en `Portugal`
+
+No hace falta que ambos paises tengan el mismo peso ni la misma riqueza de
+casos.
+
+El objetivo es que `Portugal` aporte variacion organizativa visible, sin
+competir con el escenario principal del demo.
+
+### Lista acotada de `cost_centers`
+
+Para el MVP se define una lista pequena y legible de `cost_centers`:
+
+- `FIN-ADM`
+- `HR-OPS`
+- `SALES`
+- `TECH`
+- `CUSTOMER_SUCCESS`
+- `SHARED_SERVICES`
+
+Esta lista esta pensada para:
+
+- dar textura realista a los registros individuales
+- habilitar filtros simples en drill-down futuro
+- sostener explicaciones mas creibles cuando se revisen poblaciones o outliers
+
+### Rol funcional de estas dimensiones
+
+En el MVP base:
+
+- `legal_entity` agrega contexto organizativo de alto nivel
+- `country` aporta lectura geografica del caso
+- `cost_center` agrega granularidad util para exploracion posterior
+
+Sin embargo, estas dimensiones no cambian la definicion del core del producto.
+
+La conciliacion principal:
+
+- no se cerrara por entidad legal
+- no se cerrara por pais
+- no se cerrara por cost center
+- seguira centrada en el total por concepto dentro del periodo
+
+### Relacion con el demo
+
+Estas dimensiones se incluyen porque mejoran la credibilidad del producto
+cuando el usuario baja desde el resumen hacia registros concretos.
+
+Permiten que el drill-down muestre un universo mas plausible y que algunas
+explicaciones suenen menos abstractas, especialmente en:
+
+- `missing population`
+- `outlier`
+- revisiones manuales de conceptos con diferencia
+
+### Limites del alcance
+
+Para proteger el tiempo de build del MVP:
+
+- no se modelaran jerarquias organizativas complejas
+- no habra consolidacion por multiples niveles contables
+- no se intentara reconciliar por subpoblaciones organizativas en esta epic
+
+### Relacion con las siguientes cards
+
+Esta card deja cerrada la textura organizativa minima del dataset, pero todavia
+no cierra:
+
+- la lista final de conceptos del MVP
+- la asignacion exacta de conceptos por perfil de empleado
+- la tabla objetivo final de expected vs observed por concepto
+
+Eso se completa en:
+
+- `Feature 1.4`
+- `Feature 1.6`
+- `Feature 1.7`
+
 Su objetivo en esta etapa es resolver, de manera creible, el caso de
 `missing population` sin inflar el sistema.
 
