@@ -370,14 +370,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir si registros `out-of-period` quedan fuera del cálculo observado
-- [ ] Definir tratamiento de registros `unmapped`
-- [ ] Definir tratamiento de montos inválidos o conceptos indeterminados
-- [ ] Documentar implicancias de negocio de cada exclusión
+- [x] Definir si registros `out-of-period` quedan fuera del cálculo observado
+- [x] Definir tratamiento de registros `unmapped`
+- [x] Definir tratamiento de montos inválidos o conceptos indeterminados
+- [x] Documentar implicancias de negocio de cada exclusión
 - [ ] Commit sugerido: `docs(engine): definir reglas de inclusion del observed total`
 
 ---

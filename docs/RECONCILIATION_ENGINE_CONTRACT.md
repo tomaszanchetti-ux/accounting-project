@@ -223,3 +223,20 @@ La regla base es:
 1. no descartar filas temprano si todavia aportan trazabilidad
 2. marcar explicitamente si una fila es elegible o no para conciliacion
 3. usar esa base como insumo auditable para agregacion, explicacion y drill-down
+
+## 9. Regla base de inclusion del observed total
+
+Para el MVP, el observed total debe incluir solo registros que sean:
+
+- validos
+- mapeados a un concepto normalizado
+- pertenecientes al periodo objetivo
+
+Por lo tanto, quedan fuera del observed total:
+
+- registros `invalid`
+- registros `unmapped`
+- registros `out-of-period`
+
+Estos registros no se pierden: permanecen en la base conciliable con sus flags y
+razones de exclusion para auditoria, explicacion y drill-down posterior.

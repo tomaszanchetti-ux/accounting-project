@@ -107,6 +107,14 @@ class ReconcilablePayrollBaseResult:
 
 
 @dataclass(slots=True)
+class ObservedTotalsInclusionPolicy:
+    include_valid_mapped_records: bool = True
+    exclude_out_of_period_records: bool = True
+    exclude_unmapped_records: bool = True
+    exclude_invalid_records: bool = True
+
+
+@dataclass(slots=True)
 class ReconciliationEngineInput:
     payroll: DataFrameLike
     expected_totals: DataFrameLike
