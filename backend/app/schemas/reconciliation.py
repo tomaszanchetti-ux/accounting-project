@@ -128,6 +128,17 @@ class ObservedTotalsResult:
 
 
 @dataclass(slots=True)
+class ComparisonBaseResult:
+    comparison_base: pd.DataFrame
+    missing_expected_count: int
+
+
+@dataclass(slots=True)
+class DifferenceCalculationResult:
+    comparison_with_diffs: pd.DataFrame
+
+
+@dataclass(slots=True)
 class ReconciliationEngineInput:
     payroll: DataFrameLike
     expected_totals: DataFrameLike

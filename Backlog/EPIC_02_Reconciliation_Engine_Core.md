@@ -476,13 +476,13 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar join entre observed y expected
-- [ ] Resolver casos faltantes de expected
-- [ ] Definir placeholders o estado intermedio si falta expected
+- [x] Implementar join entre observed y expected
+- [x] Resolver casos faltantes de expected
+- [x] Definir placeholders o estado intermedio si falta expected
 - [ ] Commit sugerido: `feat(engine): enlazar observed totals con expected totals`
 
 ---
@@ -499,14 +499,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Calcular `absolute_diff = observed - expected`
-- [ ] Calcular `relative_diff_pct`
-- [ ] Definir comportamiento con `expected = 0`
-- [ ] Redondear o formatear con criterio consistente
+- [x] Calcular `absolute_diff = observed - expected`
+- [x] Calcular `relative_diff_pct`
+- [x] Definir comportamiento con `expected = 0`
+- [x] Redondear o formatear con criterio consistente
 - [ ] Commit sugerido: `feat(engine): calcular diferencias absolutas y relativas`
 
 ---
