@@ -1,6 +1,7 @@
 from app.services.reconciliation.concepts import normalize_payroll_concepts
 from app.services.reconciliation.normalization import normalize_payroll_base
 from app.services.reconciliation.periods import normalize_payroll_periods
+from app.services.reconciliation.signs import normalize_payroll_signs
 from app.services.reconciliation.validation import (
     RECOMMENDED_PAYROLL_COLUMNS,
     REQUIRED_EXPECTED_TOTALS_COLUMNS,
@@ -17,6 +18,7 @@ __all__ = [
     "normalize_payroll_concepts",
     "normalize_payroll_base",
     "normalize_payroll_periods",
+    "normalize_payroll_signs",
     "validate_expected_totals",
     "validate_payroll_records",
     "validate_payroll_schema",

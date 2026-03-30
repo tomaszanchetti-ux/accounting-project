@@ -192,3 +192,18 @@ Un concepto no mapeado no debe inventarse ni autocorregirse agresivamente.
 
 En el dataset demo, esto protege de forma deliberada el caso narrativo de
 `unmapped concept`.
+
+## 7. Convencion de signos del motor
+
+El motor conserva el importe observado tal como viene en la fuente normalizada.
+
+La estrategia del MVP es:
+
+1. no reescribir automaticamente el signo del monto
+2. usar `concept_master.expected_sign` para crear un flag preliminar de
+   `unexpected sign`
+3. mantener `amount_for_aggregation` igual al monto observado para no distorsionar
+   el calculo
+
+Esto permite detectar inconsistencias de polaridad sin alterar artificialmente
+el total observado.

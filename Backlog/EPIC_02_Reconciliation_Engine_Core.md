@@ -316,14 +316,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Confirmar convención de signo observada del dataset
-- [ ] Alinear importes al contrato interno del motor
-- [ ] Crear flag preliminar de signo inesperado según `concept_master`
-- [ ] Evitar que la detección preliminar distorsione el cálculo observado
+- [x] Confirmar convención de signo observada del dataset
+- [x] Alinear importes al contrato interno del motor
+- [x] Crear flag preliminar de signo inesperado según `concept_master`
+- [x] Evitar que la detección preliminar distorsione el cálculo observado
 - [ ] Commit sugerido: `feat(engine): normalizar signos y montos`
 
 ---

@@ -92,6 +92,12 @@ class ConceptNormalizationResult:
 
 
 @dataclass(slots=True)
+class PayrollSignNormalizationResult:
+    normalized_records: pd.DataFrame
+    unexpected_sign_count: int
+
+
+@dataclass(slots=True)
 class ReconciliationEngineInput:
     payroll: DataFrameLike
     expected_totals: DataFrameLike
