@@ -790,6 +790,116 @@ Eso se completa en:
 - `Card 1.4.3`
 - `Feature 1.6`
 
+## Conceptos estrella del demo
+
+### Objetivo narrativo
+
+Desde `Card 1.4.3` quedan definidos los conceptos que sostendran la narrativa
+principal del MVP.
+
+La idea no es que todos los conceptos compitan por atencion. La demo debe guiar
+al usuario hacia pocos casos memorables y faciles de explicar.
+
+### Caso wow principal
+
+El caso wow principal del demo sera:
+
+- `MEAL_VOUCHER`
+
+Se fija como caso principal porque combina muy bien los atributos que mas valor
+le dan al producto:
+
+- diferencia visible en el resumen
+- explicacion multi-causa plausible
+- posibilidad de bajar a registros concretos
+- narrativa clara para mostrar por que los numeros no cierran
+
+`MEAL_VOUCHER` es el mejor candidato para abrir en vivo durante la demo
+comercial.
+
+### Caso de poblacion faltante
+
+El caso principal de `missing population` sera:
+
+- `CHILDCARE`
+
+Se elige porque:
+
+- necesita cruce con `employee_reference.csv`
+- permite mostrar elegibilidad esperada vs poblacion observada
+- produce una explicacion muy intuitiva para negocio
+
+Su rol en la narrativa es mostrar que el producto no solo compara montos, sino
+que tambien puede explicar brechas de cobertura o poblacion.
+
+### Caso analitico de outlier
+
+El caso analitico principal de outlier sera:
+
+- `OVERTIME`
+
+Se elige porque:
+
+- permite mostrar uno o pocos registros con impacto desproporcionado
+- hace muy natural el drill-down a nivel fila
+- refuerza la idea de analisis puntual y accionable
+
+Su funcion dentro del demo es complementar al wow principal con una historia
+mas analitica y menos poblacional.
+
+### Caso amarillo de diferencia menor
+
+El caso amarillo del demo sera:
+
+- `TRANSPORT`
+
+Su rol no es competir con `MEAL_VOUCHER`, sino aportar realismo.
+
+Se incluye como caso amarillo porque:
+
+- sostiene una diferencia menor creible
+- permite mostrar que no todo desvio es dramatico
+- ayuda a balancear el resumen entre verdes, amarillos y rojos
+
+### Jerarquia narrativa resultante
+
+Con esta definicion, la jerarquia narrativa del MVP queda asi:
+
+- wow principal: `MEAL_VOUCHER`
+- wow secundario de poblacion: `CHILDCARE`
+- wow secundario analitico: `OVERTIME`
+- caso amarillo de soporte: `TRANSPORT`
+
+### Relacion con la demo comercial
+
+Esta seleccion sostiene una demo de 5 a 8 minutos con una progresion clara:
+
+1. mostrar resumen ejecutivo
+2. abrir `MEAL_VOUCHER` como caso principal
+3. reforzar profundidad con `CHILDCARE` o `OVERTIME`
+4. mostrar `TRANSPORT` como ejemplo de diferencia menor y controlada
+
+Asi el producto se percibe:
+
+- explicativo
+- creible
+- accionable
+- no dependiente de un unico truco visual
+
+### Relacion con las siguientes cards
+
+Esta card deja cerrados los conceptos estrella, pero todavia no cierra:
+
+- el periodo principal del demo
+- los casos `out-of-period`
+- la distribucion final de estados por concepto
+- las anomalias concretas a inyectar en cada concepto protagonista
+
+Eso se completa en:
+
+- `Feature 1.5`
+- `Feature 1.6`
+
 Su objetivo en esta etapa es resolver, de manera creible, el caso de
 `missing population` sin inflar el sistema.
 

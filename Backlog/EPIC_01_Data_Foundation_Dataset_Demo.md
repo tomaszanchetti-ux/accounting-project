@@ -366,14 +366,14 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Fijar `MEAL_VOUCHER` como caso wow principal
-- [ ] Fijar `CHILDCARE` como caso de población faltante
-- [ ] Fijar `OVERTIME` como caso analítico/outlier
-- [ ] Documentar rol de `TRANSPORT` como caso amarillo
+- [x] Fijar `MEAL_VOUCHER` como caso wow principal
+- [x] Fijar `CHILDCARE` como caso de población faltante
+- [x] Fijar `OVERTIME` como caso analítico/outlier
+- [x] Documentar rol de `TRANSPORT` como caso amarillo
 - [ ] Commit sugerido: `docs(data): definir conceptos estrella del demo`
 
 ---
