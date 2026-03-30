@@ -124,9 +124,8 @@ Para retomar el proyecto hoy:
 - `EPIC 02` ya esta completada
 - `EPIC 03` ya esta completada
 - `EPIC 04` ya esta completada
-- `EPIC 05` quedo implementada en branch
+- `EPIC 05` ya esta completada y mergeada a `main`
 - revisar `docs/UI_FOUNDATION_SETUP_FLOW.md`
 - revisar `Backlog/EPIC_05_UI_Foundation_Setup_Flow.md`
-- hacer smoke visual/manual del setup flow antes de merge
 - siguiente bloque funcional recomendado: `EPIC 06`
-- branch activa recomendada: `codex/epic-05-ui-foundation`
+- proxima branch recomendada: `codex/epic-06-summary-ui`

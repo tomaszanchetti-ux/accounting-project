@@ -192,7 +192,7 @@ Al cerrar una sesión:
 | EPIC 02 | ✅ | COMPLETADA | 26 / 26 | Motor validado end-to-end con dataset demo; siguiente paso recomendado: `EPIC 03 / Card 3.1.1` |
 | EPIC 03 | ✅ | COMPLETADA | 29 / 29 | Capa explicativa completa con deteccion, impacto, ranking, narrativa y validacion wow cerrada; siguiente paso recomendado: `EPIC 04 / Card 4.1.1` |
 | EPIC 04 | ✅ | COMPLETADA | 34 / 34 | Vertical slice operativo implementado con schema SQL, repositorios, `execute_run`, endpoints principales, upload multipart, payloads UI, timeline minima y tests de trazabilidad; siguiente paso recomendado: preparar `EPIC 05` |
-| EPIC 05 | ✅ | EN PROGRESO | 24 / 24 implementadas en branch | Base visual, setup flow, lifecycle de run, uploads, validación previa y CTA de ejecución implementados en `codex/epic-05-ui-foundation`; pendiente smoke visual/manual final antes de mergear y luego continuar con `EPIC 06` |
+| EPIC 05 | ✅ | COMPLETADA | 24 / 24 | Base visual, setup flow, lifecycle de run, uploads, validación previa, smoke visual/manual y merge a `main` completados; siguiente paso recomendado: `EPIC 06 / Card 6.1.1` |
 
 ### Cómo registrar avance
 
@@ -229,8 +229,8 @@ El proyecto empieza a degradarse si:
 
 Con el estado actual del proyecto, el siguiente paso lógico es:
 
-1. cerrar handoff documental de `EPIC 04`
-2. preparar branch y contexto de `EPIC 05`
-3. arrancar setup flow de UI sobre la capa de runs ya estabilizada
+1. abrir branch y contexto de `EPIC 06`
+2. construir Summary UI sobre la base ya cerrada en `EPIC 05`
+3. avanzar card por card hasta dejar el núcleo visible del demo operativo
 
 Este documento queda como tablero maestro para medir si ese avance está ocurriendo de forma ordenada.

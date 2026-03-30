@@ -232,8 +232,13 @@ La idea es dejar un **handoff útil para el yo futuro o para otro agente**.
 
 ### Implementación
 
-- aún no comenzó la implementación técnica del producto
-- el siguiente paso lógico es empezar con `EPIC 00`
+- `EPIC 00` completada
+- `EPIC 01` completada
+- `EPIC 02` completada
+- `EPIC 03` completada
+- `EPIC 04` completada
+- `EPIC 05` completada, smoke-tested y mergeada a `main`
+- el siguiente paso lógico es continuar con `EPIC 06`
 
 ---
 
@@ -241,7 +246,7 @@ La idea es dejar un **handoff útil para el yo futuro o para otro agente**.
 
 La prioridad actual del proyecto es:
 
-> **pasar de documentación estructurada a implementación real, empezando por `EPIC 00` y siguiendo el workflow de ejecución definido.**
+> **construir `EPIC 06 — Summary, Concept Analysis & Explanation UI` sobre la base operativa y visual ya cerrada en `EPIC 05`, manteniendo validación end-to-end y foco en una demo navegable.**
 
 ---
 

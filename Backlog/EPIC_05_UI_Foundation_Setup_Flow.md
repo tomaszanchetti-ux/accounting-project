@@ -53,7 +53,7 @@ Al terminar esta epic, el producto debe tener:
 - [x] El botón principal `Run Reconciliation` está disponible y conectado al backend
 - [x] La experiencia de setup se siente enterprise, sobria y orientada a negocio
 
-## Estado: EN PROGRESO
+## Estado: COMPLETADA
 
 ## Estado de implementación WS13
 
@@ -76,15 +76,18 @@ Entregables principales:
 - `Run Reconciliation` conectado a `POST /runs/{run_id}/execute`
 - snapshot post-ejecución y ruta `/runs/[runId]`
 
-Validación ejecutada en esta WS:
+Validación ejecutada en WS13 y WS14:
 
 - `cd frontend && npm run lint`
 - `cd frontend && npm run build`
+- smoke visual/manual local del setup flow completo
+- create/upload/execute/summary validados contra backend local
+- snapshot `/runs/[runId]` validado en navegador local
 
 Nota operativa:
 
+- la epic ya fue mergeada a `main`
 - la implementación queda lista para continuar con `EPIC 06`
-- antes de mergear a `main` sigue siendo recomendable un smoke visual/manual en navegador
 
 ---
 
