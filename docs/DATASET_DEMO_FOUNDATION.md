@@ -600,6 +600,93 @@ Eso se completa en:
 - `Feature 1.6`
 - `Feature 1.7`
 
+## Universo de conceptos del MVP
+
+### Criterio de seleccion
+
+Desde `Card 1.4.1` queda definida una lista cerrada de conceptos para el MVP.
+
+La seleccion no busca cubrir toda la complejidad de una nomina real. Busca un
+set que sea:
+
+- entendible en pocos segundos por un usuario de Contabilidad
+- suficientemente realista para una demo vendible
+- util para construir conceptos reconciliados, menores y wow cases
+- manejable para explicacion, UI y tabla de resumen
+
+### Lista objetivo de conceptos
+
+El universo canonico del MVP quedara compuesto por `10 conceptos`:
+
+- `BASE_SALARY`
+- `BONUS`
+- `MEAL_VOUCHER`
+- `CHILDCARE`
+- `TRANSPORT`
+- `HEALTH_INSURANCE`
+- `SOCIAL_SECURITY`
+- `INCOME_TAX`
+- `OVERTIME`
+- `OTHER_ADJUSTMENT`
+
+Esta lista cumple el objetivo definido en la epic de trabajar con un set
+acotado de `8-10 conceptos`, sin perder riqueza narrativa.
+
+### Racional funcional por concepto
+
+- `BASE_SALARY`: ancla principal del payroll y referencia de volumen estable
+- `BONUS`: agrega variabilidad controlada sobre un concepto conocido
+- `MEAL_VOUCHER`: beneficio recurrente ideal para el wow principal del demo
+- `CHILDCARE`: beneficio selectivo ideal para explicar `missing population`
+- `TRANSPORT`: beneficio simple apto para diferencias menores
+- `HEALTH_INSURANCE`: beneficio recurrente y creible para completar cobertura
+- `SOCIAL_SECURITY`: deduccion estructural esperable en cualquier payroll
+- `INCOME_TAX`: deduccion estructural facil de reconocer por negocio
+- `OVERTIME`: concepto variable apto para outliers y analisis puntual
+- `OTHER_ADJUSTMENT`: concepto comodin controlado para ajustes plausibles
+
+### Balance entre conceptos limpios y protagonistas
+
+Para la narrativa del MVP, no todos los conceptos deben comportarse igual.
+
+Se define esta separacion funcional:
+
+- conceptos principalmente limpios o estables:
+  `BASE_SALARY`, `HEALTH_INSURANCE`, `SOCIAL_SECURITY`, `INCOME_TAX`
+- conceptos con variabilidad controlada:
+  `BONUS`, `OTHER_ADJUSTMENT`
+- conceptos protagonistas del demo:
+  `MEAL_VOUCHER`, `CHILDCARE`, `OVERTIME`, `TRANSPORT`
+
+### Por que esta mezcla funciona para el demo
+
+Esta combinacion permite que el resumen final se sienta creible:
+
+- hay conceptos grandes y previsibles que deberian cerrar bien
+- hay conceptos con pequenas variaciones plausibles
+- hay pocos conceptos especialmente utiles para contar la historia del producto
+
+Eso protege el principio clave del MVP:
+
+- la mayoria de los conceptos deben verse sanos
+- algunos deben requerir revision
+- muy pocos deben concentrar el momento wow
+
+### Relacion con las siguientes cards
+
+Esta card deja cerrada la lista canonica de conceptos, pero todavia no cierra:
+
+- la categoria funcional de cada concepto
+- el signo esperado por concepto
+- cuales quedan como wow principal, wow secundario o caso amarillo
+- la distribucion final de estados por concepto
+
+Eso se completa en:
+
+- `Card 1.4.2`
+- `Card 1.4.3`
+- `Feature 1.6`
+
 Su objetivo en esta etapa es resolver, de manera creible, el caso de
 `missing population` sin inflar el sistema.
 

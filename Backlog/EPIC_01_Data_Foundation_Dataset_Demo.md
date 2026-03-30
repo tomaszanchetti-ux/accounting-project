@@ -310,12 +310,12 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir lista objetivo de `8–10 conceptos`
-- [ ] Incluir al menos:
+- [x] Definir lista objetivo de `8–10 conceptos`
+- [x] Incluir al menos:
   - `BASE_SALARY`
   - `BONUS`
   - `MEAL_VOUCHER`
@@ -326,7 +326,7 @@ Al terminar esta epic, el proyecto debe tener:
   - `INCOME_TAX`
   - `OVERTIME`
   - `OTHER_ADJUSTMENT`
-- [ ] Confirmar conceptos limpios vs protagonistas del wow
+- [x] Confirmar conceptos limpios vs protagonistas del wow
 - [ ] Commit sugerido: `docs(data): definir universo de conceptos del MVP`
 
 ---
