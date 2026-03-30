@@ -49,7 +49,7 @@ Al terminar esta epic, el motor debe poder:
 - [ ] El resultado agregado por concepto es reproducible y consistente con la tabla maestra del dataset
 - [ ] El motor expone outputs estructurados reutilizables por API, persistencia y UI
 
-## Estado: PENDIENTE
+## Estado: EN PROGRESO
 
 ---
 
@@ -71,14 +71,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Documentar que la unidad principal es `periodo + concepto`
-- [ ] Documentar que `legal_entity` puede ser dimensión secundaria opcional
-- [ ] Documentar que `employee_id` y `record_id` quedan fuera de la conciliación primaria
-- [ ] Dejar explícito que el empleado vive en la capa analítica/drill-down
+- [x] Documentar que la unidad principal es `periodo + concepto`
+- [x] Documentar que `legal_entity` puede ser dimensión secundaria opcional
+- [x] Documentar que `employee_id` y `record_id` quedan fuera de la conciliación primaria
+- [x] Dejar explícito que el empleado vive en la capa analítica/drill-down
 - [ ] Commit sugerido: `docs(engine): definir unidad de conciliación del MVP`
 
 ---
@@ -95,20 +95,20 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir inputs obligatorios:
+- [x] Definir inputs obligatorios:
   - `payroll dataframe` o archivo fuente
   - `expected totals`
   - `periodo objetivo`
-- [ ] Definir inputs opcionales:
+- [x] Definir inputs opcionales:
   - `concept master`
   - `employee reference`
   - `legal entity filter`
   - `tolerance profile`
-- [ ] Documentar formato esperado de entrada para uso programático
+- [x] Documentar formato esperado de entrada para uso programático
 - [ ] Commit sugerido: `docs(engine): definir contrato de input del motor`
 
 ---
@@ -125,11 +125,11 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir output agregado con campos mínimos:
+- [x] Definir output agregado con campos mínimos:
   - `period`
   - `concept_code_normalized`
   - `concept_name_normalized`
@@ -138,11 +138,11 @@ Al terminar esta epic, el motor debe poder:
   - `absolute_diff`
   - `relative_diff_pct`
   - `status`
-- [ ] Definir métricas auxiliares:
+- [x] Definir métricas auxiliares:
   - `record_count`
   - `employee_count`
   - `invalid_record_count`
-- [ ] Definir output técnico intermedio para debugging
+- [x] Definir output técnico intermedio para debugging
 - [ ] Commit sugerido: `docs(engine): definir contrato de output del motor`
 
 ---
@@ -165,14 +165,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar lista de columnas obligatorias del payroll
-- [ ] Validar presencia de todas las columnas críticas
-- [ ] Devolver estructura de errores/advertencias
-- [ ] Definir respuesta bloqueante si falta una columna esencial
+- [x] Implementar lista de columnas obligatorias del payroll
+- [x] Validar presencia de todas las columnas críticas
+- [x] Devolver estructura de errores/advertencias
+- [x] Definir respuesta bloqueante si falta una columna esencial
 - [ ] Commit sugerido: `feat(engine): validar esquema base del payroll`
 
 ---
@@ -189,15 +189,15 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Validar `amount` interpretable como numérico
-- [ ] Validar `payroll_period` presente o derivable
-- [ ] Validar `concept_code` o `concept_name` presente
-- [ ] Validar `employee_id` presente en registros trazables
-- [ ] Generar flags de invalidez por registro si aplica
+- [x] Validar `amount` interpretable como numérico
+- [x] Validar `payroll_period` presente o derivable
+- [x] Validar `concept_code` o `concept_name` presente
+- [x] Validar `employee_id` presente en registros trazables
+- [x] Generar flags de invalidez por registro si aplica
 - [ ] Commit sugerido: `feat(engine): validar tipos y consistencia mínima del input`
 
 ---
@@ -214,14 +214,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Validar columnas mínimas de `expected_totals`
-- [ ] Validar que el período objetivo exista en expected totals
-- [ ] Detectar conceptos sin expected total correspondiente
-- [ ] Definir cuándo esto invalida la corrida y cuándo invalida solo una unidad conciliable
+- [x] Validar columnas mínimas de `expected_totals`
+- [x] Validar que el período objetivo exista en expected totals
+- [x] Detectar conceptos sin expected total correspondiente
+- [x] Definir cuándo esto invalida la corrida y cuándo invalida solo una unidad conciliable
 - [ ] Commit sugerido: `feat(engine): validar expected totals del MVP`
 
 ---
@@ -244,14 +244,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Estandarizar nombres de columnas a la convención interna
-- [ ] Convertir `amount` a decimal/float controlado
-- [ ] Convertir `posting_date` a fecha interpretable
-- [ ] Normalizar strings relevantes (`trim`, casing, espacios)
+- [x] Estandarizar nombres de columnas a la convención interna
+- [x] Convertir `amount` a decimal/float controlado
+- [x] Convertir `posting_date` a fecha interpretable
+- [x] Normalizar strings relevantes (`trim`, casing, espacios)
 - [ ] Commit sugerido: `feat(engine): normalizar columnas y tipos base`
 
 ---
@@ -268,14 +268,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Normalizar `payroll_period` al formato interno `YYYY-MM`
-- [ ] Derivar o validar período desde `posting_date` si hace falta
-- [ ] Crear flag preliminar de alineación temporal
-- [ ] Separar registros del período objetivo de registros externos
+- [x] Normalizar `payroll_period` al formato interno `YYYY-MM`
+- [x] Derivar o validar período desde `posting_date` si hace falta
+- [x] Crear flag preliminar de alineación temporal
+- [x] Separar registros del período objetivo de registros externos
 - [ ] Commit sugerido: `feat(engine): normalizar periodo y lógica temporal`
 
 ---
@@ -292,14 +292,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar lookup contra `concept_master`
-- [ ] Resolver `concept_code_normalized` y `concept_name_normalized`
-- [ ] Marcar registros no mapeados
-- [ ] Documentar estrategia de fallback si falla el mapping
+- [x] Implementar lookup contra `concept_master`
+- [x] Resolver `concept_code_normalized` y `concept_name_normalized`
+- [x] Marcar registros no mapeados
+- [x] Documentar estrategia de fallback si falla el mapping
 - [ ] Commit sugerido: `feat(engine): normalizar conceptos con concept master`
 
 ---
@@ -316,14 +316,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Confirmar convención de signo observada del dataset
-- [ ] Alinear importes al contrato interno del motor
-- [ ] Crear flag preliminar de signo inesperado según `concept_master`
-- [ ] Evitar que la detección preliminar distorsione el cálculo observado
+- [x] Confirmar convención de signo observada del dataset
+- [x] Alinear importes al contrato interno del motor
+- [x] Crear flag preliminar de signo inesperado según `concept_master`
+- [x] Evitar que la detección preliminar distorsione el cálculo observado
 - [ ] Commit sugerido: `feat(engine): normalizar signos y montos`
 
 ---
@@ -346,14 +346,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Diseñar estructura interna de la base conciliable
-- [ ] Incluir campos normalizados, flags de validez y metadata útil
-- [ ] Separar registros válidos, inválidos y observables con excepciones
-- [ ] Definir si la base contiene todos los registros o solo los elegibles
+- [x] Diseñar estructura interna de la base conciliable
+- [x] Incluir campos normalizados, flags de validez y metadata útil
+- [x] Separar registros válidos, inválidos y observables con excepciones
+- [x] Definir si la base contiene todos los registros o solo los elegibles
 - [ ] Commit sugerido: `feat(engine): construir base conciliable intermedia`
 
 ---
@@ -370,14 +370,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir si registros `out-of-period` quedan fuera del cálculo observado
-- [ ] Definir tratamiento de registros `unmapped`
-- [ ] Definir tratamiento de montos inválidos o conceptos indeterminados
-- [ ] Documentar implicancias de negocio de cada exclusión
+- [x] Definir si registros `out-of-period` quedan fuera del cálculo observado
+- [x] Definir tratamiento de registros `unmapped`
+- [x] Definir tratamiento de montos inválidos o conceptos indeterminados
+- [x] Documentar implicancias de negocio de cada exclusión
 - [ ] Commit sugerido: `docs(engine): definir reglas de inclusion del observed total`
 
 ---
@@ -394,13 +394,13 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Conservar `record_id`, `employee_id` y `employee_name` en la base intermedia
-- [ ] Mantener `legal_entity`, `cost_center` y período por registro
-- [ ] Diseñar claves o joins que faciliten drill-down futuro
+- [x] Conservar `record_id`, `employee_id` y `employee_name` en la base intermedia
+- [x] Mantener `legal_entity`, `cost_center` y período por registro
+- [x] Diseñar claves o joins que faciliten drill-down futuro
 - [ ] Commit sugerido: `chore(engine): preparar base conciliable para drilldown`
 
 ---
@@ -423,14 +423,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Agrupar por `payroll_period + concept_code_normalized`
-- [ ] Sumar `amount` de registros elegibles
-- [ ] Calcular `record_count` por grupo
-- [ ] Calcular `employee_count` por grupo
+- [x] Agrupar por `payroll_period + concept_code_normalized`
+- [x] Sumar `amount` de registros elegibles
+- [x] Calcular `record_count` por grupo
+- [x] Calcular `employee_count` por grupo
 - [ ] Commit sugerido: `feat(engine): implementar observed totals por concepto y periodo`
 
 ---
@@ -447,13 +447,13 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Diseñar agregación extensible con `legal_entity`
-- [ ] Permitir modo simple y modo segmentado
-- [ ] Documentar cuándo usar cada modo
+- [x] Diseñar agregación extensible con `legal_entity`
+- [x] Permitir modo simple y modo segmentado
+- [x] Documentar cuándo usar cada modo
 - [ ] Commit sugerido: `feat(engine): soportar agregacion opcional por legal entity`
 
 ---
@@ -476,13 +476,13 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar join entre observed y expected
-- [ ] Resolver casos faltantes de expected
-- [ ] Definir placeholders o estado intermedio si falta expected
+- [x] Implementar join entre observed y expected
+- [x] Resolver casos faltantes de expected
+- [x] Definir placeholders o estado intermedio si falta expected
 - [ ] Commit sugerido: `feat(engine): enlazar observed totals con expected totals`
 
 ---
@@ -499,14 +499,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Calcular `absolute_diff = observed - expected`
-- [ ] Calcular `relative_diff_pct`
-- [ ] Definir comportamiento con `expected = 0`
-- [ ] Redondear o formatear con criterio consistente
+- [x] Calcular `absolute_diff = observed - expected`
+- [x] Calcular `relative_diff_pct`
+- [x] Definir comportamiento con `expected = 0`
+- [x] Redondear o formatear con criterio consistente
 - [ ] Commit sugerido: `feat(engine): calcular diferencias absolutas y relativas`
 
 ---
@@ -529,16 +529,16 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar banda `Reconciled`
+- [x] Implementar banda `Reconciled`
   - `abs(diff) <= 50` o `abs(diff_pct) <= 0.5%`
-- [ ] Implementar banda `Minor Difference`
+- [x] Implementar banda `Minor Difference`
   - `abs(diff) <= 500` o `abs(diff_pct) <= 2%`
-- [ ] Definir `Unreconciled` por encima de esas bandas
-- [ ] Documentar racional de usar umbral absoluto y relativo
+- [x] Definir `Unreconciled` por encima de esas bandas
+- [x] Documentar racional de usar umbral absoluto y relativo
 - [ ] Commit sugerido: `feat(engine): implementar politica de tolerancia del MVP`
 
 ---
@@ -556,15 +556,15 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar estado `Reconciled`
-- [ ] Implementar estado `Minor Difference`
-- [ ] Implementar estado `Unreconciled`
-- [ ] Implementar estado `Invalid / Incomplete`
-- [ ] Priorizar problemas de calidad por encima de semáforos numéricos cuando aplique
+- [x] Implementar estado `Reconciled`
+- [x] Implementar estado `Minor Difference`
+- [x] Implementar estado `Unreconciled`
+- [x] Implementar estado `Invalid / Incomplete`
+- [x] Priorizar problemas de calidad por encima de semáforos numéricos cuando aplique
 - [ ] Commit sugerido: `feat(engine): asignar estados de conciliacion`
 
 ---
@@ -581,13 +581,13 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Comparar output por concepto con la tabla maestra de EPIC 01
-- [ ] Revisar conceptos verdes, amarillos y rojos
-- [ ] Ajustar reglas si el motor contradice el diseño del demo sin justificación
+- [x] Comparar output por concepto con la tabla maestra de EPIC 01
+- [x] Revisar conceptos verdes, amarillos y rojos
+- [x] Ajustar reglas si el motor contradice el diseño del demo sin justificación
 - [ ] Commit sugerido: `test(engine): validar estados del motor contra tabla maestra`
 
 ---
@@ -610,13 +610,13 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir schema/DTO para resultado por concepto
-- [ ] Incluir campos agregados y métricas de soporte
-- [ ] Incluir placeholders o campos reservados para explicación posterior
+- [x] Definir schema/DTO para resultado por concepto
+- [x] Incluir campos agregados y métricas de soporte
+- [x] Incluir placeholders o campos reservados para explicación posterior
 - [ ] Commit sugerido: `feat(engine): definir contrato de resultado agregado`
 
 ---
@@ -633,17 +633,17 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Calcular:
+- [x] Calcular:
   - conceptos reconciled
   - conceptos minor difference
   - conceptos unreconciled
   - conceptos invalid/incomplete
-- [ ] Calcular montos observados y esperados agregados si aplica
-- [ ] Definir `overall run status` lógico
+- [x] Calcular montos observados y esperados agregados si aplica
+- [x] Definir `overall run status` lógico
 - [ ] Commit sugerido: `feat(engine): definir resumen general de corrida`
 
 ---
@@ -660,11 +660,11 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar secuencia:
+- [x] Implementar secuencia:
   - parse
   - validate
   - normalize
@@ -673,8 +673,8 @@ Al terminar esta epic, el motor debe poder:
   - compare
   - assign status
   - package outputs
-- [ ] Diseñar firma estable para la función principal
-- [ ] Manejar errores de forma estructurada
+- [x] Diseñar firma estable para la función principal
+- [x] Manejar errores de forma estructurada
 - [ ] Commit sugerido: `feat(engine): crear orquestador principal del motor de conciliacion`
 
 ---
@@ -697,14 +697,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Testear columnas faltantes
-- [ ] Testear `amount` inválido
-- [ ] Testear normalización de `payroll_period`
-- [ ] Testear mapping de conceptos con y sin match
+- [x] Testear columnas faltantes
+- [x] Testear `amount` inválido
+- [x] Testear normalización de `payroll_period`
+- [x] Testear mapping de conceptos con y sin match
 - [ ] Commit sugerido: `test(engine): cubrir validacion y normalizacion base`
 
 ---
@@ -721,14 +721,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Testear agregación por concepto/período
-- [ ] Testear `absolute_diff` y `relative_diff_pct`
-- [ ] Testear bandas verde/amarillo/rojo
-- [ ] Testear `Invalid / Incomplete`
+- [x] Testear agregación por concepto/período
+- [x] Testear `absolute_diff` y `relative_diff_pct`
+- [x] Testear bandas verde/amarillo/rojo
+- [x] Testear `Invalid / Incomplete`
 - [ ] Commit sugerido: `test(engine): cubrir agregacion y estados de conciliacion`
 
 ---
@@ -745,14 +745,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Cargar dataset demo o fixture equivalente
-- [ ] Ejecutar motor end-to-end
-- [ ] Validar outputs por concepto clave
-- [ ] Validar resumen general de corrida
+- [x] Cargar dataset demo o fixture equivalente
+- [x] Ejecutar motor end-to-end
+- [x] Validar outputs por concepto clave
+- [x] Validar resumen general de corrida
 - [ ] Commit sugerido: `test(engine): agregar prueba end-to-end del motor`
 
 ---
