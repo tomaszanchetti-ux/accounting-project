@@ -343,13 +343,13 @@ Al terminar esta epic, el proyecto debe tener:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Asignar categoría por concepto
-- [ ] Definir signo esperado por concepto
-- [ ] Documentar qué conceptos son candidatos a `sign error`
+- [x] Asignar categoría por concepto
+- [x] Definir signo esperado por concepto
+- [x] Documentar qué conceptos son candidatos a `sign error`
 - [ ] Commit sugerido: `docs(data): categorizar conceptos y signos esperados`
 
 ---

@@ -687,6 +687,109 @@ Eso se completa en:
 - `Card 1.4.3`
 - `Feature 1.6`
 
+## Categorias y signos esperados por concepto
+
+### Objetivo de esta definicion
+
+Desde `Card 1.4.2` queda documentada la metadata minima necesaria para poder
+volcar el universo de conceptos a `concept_master.csv` sin ambiguedad.
+
+Cada concepto del MVP queda asociado a:
+
+- una categoria funcional
+- un signo esperado
+- su condicion de candidato o no a `sign error`
+
+### Tabla funcional por concepto
+
+| Concepto | Categoria | Signo esperado | Candidato a `sign error` | Racional breve |
+| --- | --- | --- | --- | --- |
+| `BASE_SALARY` | `salary` | `positive` | `no` | componente principal y estable del payroll |
+| `BONUS` | `bonus` | `positive` | `no` | pago variable pero naturalmente positivo |
+| `MEAL_VOUCHER` | `benefit` | `positive` | `si` | beneficio recurrente donde un signo incorrecto seria claramente anomalo |
+| `CHILDCARE` | `benefit` | `positive` | `si` | beneficio selectivo donde una inversion de signo seria facil de detectar |
+| `TRANSPORT` | `benefit` | `positive` | `si` | beneficio simple apto para validar consistencia de polaridad |
+| `HEALTH_INSURANCE` | `benefit` | `positive` | `si` | beneficio esperable cuya inversion seria poco creible y visible |
+| `SOCIAL_SECURITY` | `deduction` | `negative` | `si` | deduccion estructural donde el signo incorrecto rompe la lectura contable |
+| `INCOME_TAX` | `deduction` | `negative` | `si` | deduccion estructural de alta visibilidad para negocio |
+| `OVERTIME` | `variable_compensation` | `positive` | `no` | concepto variable donde el foco analitico principal sera outlier, no polaridad |
+| `OTHER_ADJUSTMENT` | `adjustment` | `positive` | `si` | ajuste controlado donde un signo invertido puede servir como caso opcional |
+
+### Criterio de categorias
+
+Las categorias funcionales elegidas para el MVP son:
+
+- `salary`
+- `bonus`
+- `benefit`
+- `deduction`
+- `variable_compensation`
+- `adjustment`
+
+No hace falta crear una taxonomia mas fina en esta etapa. Estas categorias ya
+son suficientes para:
+
+- ordenar el universo de conceptos
+- enriquecer explicaciones
+- apoyar filtros o agrupaciones futuras
+- mantener `concept_master.csv` simple y legible
+
+### Criterio de signos esperados
+
+Para el MVP se adopta esta convencion:
+
+- conceptos de pago o beneficio hacia el empleado: `positive`
+- conceptos de deduccion o retencion: `negative`
+
+Eso deja una lectura consistente para:
+
+- conciliacion por concepto
+- deteccion opcional de `sign error`
+- explicaciones template-based
+
+### Conceptos candidatos a `sign error`
+
+Los candidatos mas claros a `sign error` en el MVP seran:
+
+- `MEAL_VOUCHER`
+- `CHILDCARE`
+- `TRANSPORT`
+- `HEALTH_INSURANCE`
+- `SOCIAL_SECURITY`
+- `INCOME_TAX`
+- `OTHER_ADJUSTMENT`
+
+La idea no es saturar el dataset con este tipo de anomalia, sino dejar
+predefinidos los conceptos donde la contradiccion de signo seria interpretable
+por el motor y por el usuario.
+
+### Conceptos no priorizados para `sign error`
+
+En esta etapa no se prioriza `sign error` para:
+
+- `BASE_SALARY`
+- `BONUS`
+- `OVERTIME`
+
+Motivo:
+
+- `BASE_SALARY` debe comportarse como ancla sana del demo
+- `BONUS` aporta variabilidad, pero no necesita complejidad extra todavia
+- `OVERTIME` ya tiene un rol narrativo mas fuerte como caso de outlier
+
+### Relacion con las siguientes cards
+
+Esta card deja cerradas categorias y signos esperados, pero todavia no cierra:
+
+- el rol exacto de cada concepto en la narrativa comercial
+- cuales seran wow principal, wow secundario y caso amarillo
+- la distribucion final de estados y anomalias por concepto
+
+Eso se completa en:
+
+- `Card 1.4.3`
+- `Feature 1.6`
+
 Su objetivo en esta etapa es resolver, de manera creible, el caso de
 `missing population` sin inflar el sistema.
 
