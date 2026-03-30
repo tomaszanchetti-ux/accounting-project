@@ -85,6 +85,13 @@ class PayrollPeriodNormalizationResult:
 
 
 @dataclass(slots=True)
+class ConceptNormalizationResult:
+    normalized_records: pd.DataFrame
+    mapped_record_count: int
+    unmapped_record_count: int
+
+
+@dataclass(slots=True)
 class ReconciliationEngineInput:
     payroll: DataFrameLike
     expected_totals: DataFrameLike

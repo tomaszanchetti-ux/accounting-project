@@ -179,3 +179,16 @@ En particular:
 - `expected_totals.csv` ya fue diseñado sobre la llave `period + concept`
 - `payroll.csv` aporta el observado agregable sobre esa misma llave
 - `employee_id` se conserva para drill-down y explicacion, no para conciliar
+
+## 6. Fallback de mapping de conceptos
+
+La estrategia base del MVP para resolver conceptos observados es:
+
+1. intentar match exacto por `concept_code`
+2. usar `concept_name` solo como fallback controlado
+3. si no hay match, marcar el registro como `unmapped`
+
+Un concepto no mapeado no debe inventarse ni autocorregirse agresivamente.
+
+En el dataset demo, esto protege de forma deliberada el caso narrativo de
+`unmapped concept`.

@@ -1,4 +1,5 @@
 from app.schemas.reconciliation import (
+    ConceptNormalizationResult,
     ExpectedTotalsValidationResult,
     PayrollNormalizationResult,
     PayrollPeriodNormalizationResult,
@@ -13,6 +14,7 @@ from app.schemas.reconciliation import (
 )
 
 __all__ = [
+    "ConceptNormalizationResult",
     "ExpectedTotalsValidationResult",
     "PayrollNormalizationResult",
     "PayrollPeriodNormalizationResult",

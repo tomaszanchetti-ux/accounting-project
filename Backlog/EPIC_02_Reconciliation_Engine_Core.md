@@ -292,14 +292,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar lookup contra `concept_master`
-- [ ] Resolver `concept_code_normalized` y `concept_name_normalized`
-- [ ] Marcar registros no mapeados
-- [ ] Documentar estrategia de fallback si falla el mapping
+- [x] Implementar lookup contra `concept_master`
+- [x] Resolver `concept_code_normalized` y `concept_name_normalized`
+- [x] Marcar registros no mapeados
+- [x] Documentar estrategia de fallback si falla el mapping
 - [ ] Commit sugerido: `feat(engine): normalizar conceptos con concept master`
 
 ---
