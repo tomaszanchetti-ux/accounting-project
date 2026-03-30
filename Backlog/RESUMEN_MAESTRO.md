@@ -189,7 +189,7 @@ Al cerrar una sesión:
 | --- | --- | --- | --- | --- |
 | EPIC 00 | ✅ | COMPLETADA | 17 / 17 | Setup tecnico, deploy frontend y estrategia de backend definidos |
 | EPIC 01 | ✅ | COMPLETADA | 21 / 21 | Dataset demo definido y seed inicial materializado en `data/demo_seed/`; siguiente paso recomendado: `EPIC 02 / Card 2.1.1` |
-| EPIC 02 | ✅ | EN PROGRESO | 20 / 26 | Motor validado contra la narrativa del seed demo; siguiente paso recomendado: `Card 2.8.1` |
+| EPIC 02 | ✅ | EN PROGRESO | 23 / 26 | Motor empaquetado con resumen de corrida y orquestador principal; siguiente paso recomendado: `Card 2.9.1` |
 
 ### Cómo registrar avance
 

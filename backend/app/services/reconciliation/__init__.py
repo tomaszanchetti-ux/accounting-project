@@ -8,6 +8,10 @@ from app.services.reconciliation.comparison import (
 )
 from app.services.reconciliation.concepts import normalize_payroll_concepts
 from app.services.reconciliation.drilldown import prepare_reconcilable_base_for_drilldown
+from app.services.reconciliation.engine import (
+    build_run_summary_metrics,
+    run_reconciliation_engine,
+)
 from app.services.reconciliation.normalization import normalize_payroll_base
 from app.services.reconciliation.periods import normalize_payroll_periods
 from app.services.reconciliation.policy import apply_observed_totals_policy
@@ -31,12 +35,14 @@ __all__ = [
     "apply_tolerance_policy",
     "assign_reconciliation_status",
     "build_comparison_base",
+    "build_run_summary_metrics",
     "calculate_differences",
     "normalize_payroll_concepts",
     "prepare_reconcilable_base_for_drilldown",
     "normalize_payroll_base",
     "normalize_payroll_periods",
     "normalize_payroll_signs",
+    "run_reconciliation_engine",
     "validate_expected_totals",
     "validate_payroll_records",
     "validate_payroll_schema",

@@ -610,13 +610,13 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir schema/DTO para resultado por concepto
-- [ ] Incluir campos agregados y métricas de soporte
-- [ ] Incluir placeholders o campos reservados para explicación posterior
+- [x] Definir schema/DTO para resultado por concepto
+- [x] Incluir campos agregados y métricas de soporte
+- [x] Incluir placeholders o campos reservados para explicación posterior
 - [ ] Commit sugerido: `feat(engine): definir contrato de resultado agregado`
 
 ---
@@ -633,17 +633,17 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Calcular:
+- [x] Calcular:
   - conceptos reconciled
   - conceptos minor difference
   - conceptos unreconciled
   - conceptos invalid/incomplete
-- [ ] Calcular montos observados y esperados agregados si aplica
-- [ ] Definir `overall run status` lógico
+- [x] Calcular montos observados y esperados agregados si aplica
+- [x] Definir `overall run status` lógico
 - [ ] Commit sugerido: `feat(engine): definir resumen general de corrida`
 
 ---
@@ -660,11 +660,11 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar secuencia:
+- [x] Implementar secuencia:
   - parse
   - validate
   - normalize
@@ -673,8 +673,8 @@ Al terminar esta epic, el motor debe poder:
   - compare
   - assign status
   - package outputs
-- [ ] Diseñar firma estable para la función principal
-- [ ] Manejar errores de forma estructurada
+- [x] Diseñar firma estable para la función principal
+- [x] Manejar errores de forma estructurada
 - [ ] Commit sugerido: `feat(engine): crear orquestador principal del motor de conciliacion`
 
 ---
