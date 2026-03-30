@@ -19,6 +19,10 @@ MVP de conciliacion entre payroll/RRHH y contabilidad con foco en:
 ## Documentos clave para el motor
 
 - `docs/DATASET_DEMO_FOUNDATION.md`
+- `docs/DEMO_CASE_VALIDATION.md`
+- `docs/DEMO_READINESS_REPORT.md`
+- `docs/DEMO_SEED_STRATEGY.md`
+- `docs/DEMO_WALKTHROUGH.md`
 - `docs/RECONCILIATION_ENGINE_CONTRACT.md`
 - `docs/RUNS_MODEL_MVP.md`
 - `docs/RUNS_PERSISTENCE_MODEL.md`
@@ -126,10 +130,12 @@ Para retomar el proyecto hoy:
 - `EPIC 04` ya esta completada
 - `EPIC 05` ya esta completada y mergeada a `main`
 - `EPIC 06` ya esta completada
-- `EPIC 07` ya esta completada en `codex/epic-07-drilldown-exports`
-- revisar `docs/SUMMARY_CONCEPT_UI_BLUEPRINT.md`
-- revisar `docs/DRILLDOWN_UI_BLUEPRINT.md`
-- revisar `docs/EXPORTS_MVP.md`
-- revisar `Backlog/EPIC_07_Drilldown_Exports_Traceability.md`
-- siguiente bloque funcional recomendado: `EPIC 08`
-- proxima branch recomendada: `codex/epic-08-demo-narrative`
+- `EPIC 07` ya esta completada
+- `EPIC 08` esta completada
+- revisar `docs/DEMO_SEED_STRATEGY.md`
+- revisar `docs/DEMO_CASE_VALIDATION.md`
+- revisar `docs/DEMO_WALKTHROUGH.md`
+- revisar `docs/DEMO_READINESS_REPORT.md`
+- revisar `Backlog/EPIC_09_Hardening_QA_Demo_Ready.md`
+- siguiente card recomendada: `EPIC 09 / Card 9.1.1`
+- branch activa recomendada: `codex/epic-09-hardening-qa`

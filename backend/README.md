@@ -76,3 +76,27 @@ STORAGE_BUCKET_RUN_EXPORTS=accounting-mvp-run-exports
 
 - JSON para registrar referencias de archivo existentes
 - multipart para subir archivo real a Supabase Storage
+
+## Tooling demo
+
+Para crear la run demo canonica usando los archivos locales en
+`data/demo_seed/`:
+
+```bash
+cd backend
+.venv/bin/python scripts/demo_seed.py create --reset-first
+```
+
+Para listar corridas demo existentes:
+
+```bash
+cd backend
+.venv/bin/python scripts/demo_seed.py list
+```
+
+Para limpiar corridas demo canonicas previas:
+
+```bash
+cd backend
+.venv/bin/python scripts/demo_seed.py reset
+```

@@ -20,7 +20,7 @@ export default async function Home() {
               <StatusPill tone={backendHealth.ok ? "ready" : "warning"}>
                 {backendHealth.ok ? "API live" : "API offline"}
               </StatusPill>
-              <span className="font-medium">EPIC 05 active</span>
+              <span className="font-medium">Demo workspace ready</span>
             </div>
             <p className="max-w-xs leading-6">{backendHealth.summary}</p>
             <p className="font-mono text-xs text-text-muted">
@@ -29,9 +29,9 @@ export default async function Home() {
           </div>
         }
         eyebrow="Accounting Reconciliation MVP"
-        kicker="UI Foundation & Setup Flow"
-        subtitle="A single enterprise-style workspace to create a run, attach payroll inputs, validate readiness and launch reconciliation without exposing technical complexity."
-        title="Prepare a new reconciliation run with confidence."
+        kicker="Demo Seed & Run Setup"
+        subtitle="A controlled workspace to recreate the canonical demo run, validate readiness and move from setup into summary without operational noise."
+        title="Prepare the canonical walkthrough in one place."
       />
 
       <SetupWorkspace
