@@ -72,3 +72,29 @@ def calculate_differences(
     comparison["relative_diff_pct"] = comparison["relative_diff_pct"].round(4)
 
     return DifferenceCalculationResult(comparison_with_diffs=comparison)
+
+
+def apply_tolerance_policy(
+    payroll_source: DataFrameLike | pd.DataFrame,
+    expected_totals_source: DataFrameLike,
+    concept_master_source: DataFrameLike,
+    target_period: str,
+) -> DifferenceCalculationResult:
+    comparison = calculate_differences(
+        payroll_source,
+        expected_totals_source,
+        concept_master_source,
+        target_period=target_period,
+    ).comparison_with_diffs.copy()
+
+    absolute_diff_abs = comparison["absolute_diff"].abs()
+    relative_diff_abs = comparison["relative_diff_pct"].abs()
+
+    reconciled_mask = (absolute_diff_abs <= 50) | (relative_diff_abs <= 0.5)
+    minor_mask = (absolute_diff_abs <= 500) | (relative_diff_abs <= 2.0)
+
+    comparison["tolerance_band"] = "unreconciled"
+    comparison.loc[minor_mask, "tolerance_band"] = "minor_difference"
+    comparison.loc[reconciled_mask, "tolerance_band"] = "reconciled"
+
+    return DifferenceCalculationResult(comparison_with_diffs=comparison)

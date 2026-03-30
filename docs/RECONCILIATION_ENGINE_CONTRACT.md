@@ -272,3 +272,16 @@ De forma opcional, el motor puede segmentar observed totals por:
 
 Esta segmentacion no reemplaza el modo simple. Solo agrega un corte adicional
 cuando haga falta para narrativa o analisis.
+
+## 12. Politica de tolerancia del MVP
+
+La politica base del MVP combina umbral absoluto y relativo:
+
+- `Reconciled` si `abs(diff) <= 50` o `abs(diff_pct) <= 0.5`
+- `Minor Difference` si `abs(diff) <= 500` o `abs(diff_pct) <= 2`
+- `Unreconciled` por encima de esas bandas
+
+El uso combinado de ambos criterios evita dos problemas:
+
+- sobrecastigar diferencias pequenas en conceptos muy grandes
+- subestimar diferencias relevantes en conceptos chicos

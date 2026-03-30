@@ -1,6 +1,7 @@
 from app.services.reconciliation.aggregate import build_observed_totals
 from app.services.reconciliation.base import build_reconcilable_payroll_base
 from app.services.reconciliation.comparison import (
+    apply_tolerance_policy,
     build_comparison_base,
     calculate_differences,
 )
@@ -26,6 +27,7 @@ __all__ = [
     "build_observed_totals",
     "apply_observed_totals_policy",
     "build_reconcilable_payroll_base",
+    "apply_tolerance_policy",
     "build_comparison_base",
     "calculate_differences",
     "normalize_payroll_concepts",

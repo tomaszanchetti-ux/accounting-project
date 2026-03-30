@@ -529,16 +529,16 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar banda `Reconciled`
+- [x] Implementar banda `Reconciled`
   - `abs(diff) <= 50` o `abs(diff_pct) <= 0.5%`
-- [ ] Implementar banda `Minor Difference`
+- [x] Implementar banda `Minor Difference`
   - `abs(diff) <= 500` o `abs(diff_pct) <= 2%`
-- [ ] Definir `Unreconciled` por encima de esas bandas
-- [ ] Documentar racional de usar umbral absoluto y relativo
+- [x] Definir `Unreconciled` por encima de esas bandas
+- [x] Documentar racional de usar umbral absoluto y relativo
 - [ ] Commit sugerido: `feat(engine): implementar politica de tolerancia del MVP`
 
 ---
