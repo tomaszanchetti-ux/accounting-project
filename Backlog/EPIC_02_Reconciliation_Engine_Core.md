@@ -214,14 +214,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Validar columnas mínimas de `expected_totals`
-- [ ] Validar que el período objetivo exista en expected totals
-- [ ] Detectar conceptos sin expected total correspondiente
-- [ ] Definir cuándo esto invalida la corrida y cuándo invalida solo una unidad conciliable
+- [x] Validar columnas mínimas de `expected_totals`
+- [x] Validar que el período objetivo exista en expected totals
+- [x] Detectar conceptos sin expected total correspondiente
+- [x] Definir cuándo esto invalida la corrida y cuándo invalida solo una unidad conciliable
 - [ ] Commit sugerido: `feat(engine): validar expected totals del MVP`
 
 ---

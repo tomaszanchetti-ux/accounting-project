@@ -5,6 +5,7 @@ from pathlib import Path
 import pandas as pd
 
 from app.schemas import (
+    ExpectedTotalsValidationResult,
     PayrollRecordValidationResult,
     PayrollSchemaValidationResult,
     ValidationIssue,
@@ -27,6 +28,13 @@ RECOMMENDED_PAYROLL_COLUMNS = [
     "country",
     "cost_center",
     "concept_name",
+]
+
+REQUIRED_EXPECTED_TOTALS_COLUMNS = [
+    "payroll_period",
+    "concept_code",
+    "expected_amount",
+    "currency",
 ]
 
 
@@ -169,5 +177,93 @@ def validate_payroll_records(source: DataFrameLike) -> PayrollRecordValidationRe
                 blocking=False,
             )
         )
+
+    return result
+
+
+def validate_expected_totals(
+    source: DataFrameLike,
+    target_period: str,
+    observed_concepts: list[str] | None = None,
+) -> ExpectedTotalsValidationResult:
+    dataframe = _load_dataframe(source)
+    detected_columns = [str(column).strip() for column in dataframe.columns]
+    detected_set = set(detected_columns)
+
+    missing_required = [
+        column
+        for column in REQUIRED_EXPECTED_TOTALS_COLUMNS
+        if column not in detected_set
+    ]
+
+    filtered_expected_totals = pd.DataFrame()
+    result = ExpectedTotalsValidationResult(
+        filtered_expected_totals=filtered_expected_totals,
+        target_period=target_period,
+        columns_detected=detected_columns,
+        missing_required_columns=missing_required,
+    )
+
+    for column in missing_required:
+        result.validation_errors.append(
+            ValidationIssue(
+                code="missing_required_expected_totals_column",
+                message=f"Missing required expected totals column: {column}",
+                blocking=True,
+                column=column,
+            )
+        )
+
+    if missing_required:
+        return result
+
+    filtered_expected_totals = dataframe.loc[
+        dataframe["payroll_period"].astype("string").str.strip() == target_period
+    ].copy()
+    result.filtered_expected_totals = filtered_expected_totals
+
+    if filtered_expected_totals.empty:
+        result.validation_errors.append(
+            ValidationIssue(
+                code="missing_target_period_in_expected_totals",
+                message=(
+                    "Expected totals does not contain rows for the requested "
+                    f"target period: {target_period}"
+                ),
+                blocking=True,
+                column="payroll_period",
+            )
+        )
+        return result
+
+    expected_concepts = set(
+        filtered_expected_totals["concept_code"].astype("string").str.strip().tolist()
+    )
+
+    if observed_concepts:
+        normalized_observed = sorted(
+            {
+                str(concept).strip()
+                for concept in observed_concepts
+                if str(concept).strip()
+            }
+        )
+        missing_expected_concepts = [
+            concept for concept in normalized_observed if concept not in expected_concepts
+        ]
+        result.missing_expected_concepts = missing_expected_concepts
+
+        for concept in missing_expected_concepts:
+            result.validation_warnings.append(
+                ValidationIssue(
+                    code="missing_expected_total_for_concept",
+                    message=(
+                        "Expected totals is missing a reference row for observed "
+                        f"concept {concept} in period {target_period}"
+                    ),
+                    blocking=False,
+                    column="concept_code",
+                )
+            )
 
     return result

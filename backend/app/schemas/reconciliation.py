@@ -52,6 +52,25 @@ class PayrollRecordValidationResult:
 
 
 @dataclass(slots=True)
+class ExpectedTotalsValidationResult:
+    filtered_expected_totals: pd.DataFrame
+    target_period: str
+    columns_detected: list[str]
+    missing_required_columns: list[str] = field(default_factory=list)
+    missing_expected_concepts: list[str] = field(default_factory=list)
+    validation_errors: list[ValidationIssue] = field(default_factory=list)
+    validation_warnings: list[ValidationIssue] = field(default_factory=list)
+
+    @property
+    def is_blocking(self) -> bool:
+        return any(issue.blocking for issue in self.validation_errors)
+
+    @property
+    def is_valid(self) -> bool:
+        return not self.is_blocking
+
+
+@dataclass(slots=True)
 class ReconciliationEngineInput:
     payroll: DataFrameLike
     expected_totals: DataFrameLike
