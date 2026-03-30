@@ -240,3 +240,22 @@ Por lo tanto, quedan fuera del observed total:
 
 Estos registros no se pierden: permanecen en la base conciliable con sus flags y
 razones de exclusion para auditoria, explicacion y drill-down posterior.
+
+## 10. Preparacion para drill-down
+
+Aunque la conciliacion primaria no ocurre por empleado, la base intermedia debe
+conservar como minimo:
+
+- `record_id`
+- `employee_id`
+- `employee_name`
+- `legal_entity`
+- `cost_center`
+- `payroll_period_normalized`
+- `concept_code_normalized`
+
+Ademas, el motor debe dejar join keys simples para enlazar mas adelante:
+
+- fila agregada -> registros origen
+- registro -> empleado
+- concepto/periodo -> detalle asociado

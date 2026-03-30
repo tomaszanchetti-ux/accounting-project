@@ -119,5 +119,5 @@ Para retomar el proyecto hoy:
 - `EPIC 01` ya esta cerrada
 - `EPIC 02` ya esta en progreso
 - revisar `Backlog/EPIC_02_Reconciliation_Engine_Core.md`
-- continuar desde `Card 2.4.3`
+- continuar desde `Card 2.5.1`
 - branch de trabajo actual: `codex/epic-02-reconciliation-engine`

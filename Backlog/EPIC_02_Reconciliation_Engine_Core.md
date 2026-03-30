@@ -394,13 +394,13 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Conservar `record_id`, `employee_id` y `employee_name` en la base intermedia
-- [ ] Mantener `legal_entity`, `cost_center` y período por registro
-- [ ] Diseñar claves o joins que faciliten drill-down futuro
+- [x] Conservar `record_id`, `employee_id` y `employee_name` en la base intermedia
+- [x] Mantener `legal_entity`, `cost_center` y período por registro
+- [x] Diseñar claves o joins que faciliten drill-down futuro
 - [ ] Commit sugerido: `chore(engine): preparar base conciliable para drilldown`
 
 ---

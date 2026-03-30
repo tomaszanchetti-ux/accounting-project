@@ -115,6 +115,12 @@ class ObservedTotalsInclusionPolicy:
 
 
 @dataclass(slots=True)
+class DrilldownPreparationResult:
+    prepared_base: pd.DataFrame
+    traceable_record_count: int
+
+
+@dataclass(slots=True)
 class ReconciliationEngineInput:
     payroll: DataFrameLike
     expected_totals: DataFrameLike
