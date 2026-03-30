@@ -1,3 +1,4 @@
+from app.services.reconciliation.aggregate import build_observed_totals
 from app.services.reconciliation.base import build_reconcilable_payroll_base
 from app.services.reconciliation.concepts import normalize_payroll_concepts
 from app.services.reconciliation.drilldown import prepare_reconcilable_base_for_drilldown
@@ -18,6 +19,7 @@ __all__ = [
     "REQUIRED_EXPECTED_TOTALS_COLUMNS",
     "RECOMMENDED_PAYROLL_COLUMNS",
     "REQUIRED_PAYROLL_COLUMNS",
+    "build_observed_totals",
     "apply_observed_totals_policy",
     "build_reconcilable_payroll_base",
     "normalize_payroll_concepts",

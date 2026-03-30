@@ -121,6 +121,12 @@ class DrilldownPreparationResult:
 
 
 @dataclass(slots=True)
+class ObservedTotalsResult:
+    observed_totals: pd.DataFrame
+    total_groups: int
+
+
+@dataclass(slots=True)
 class ReconciliationEngineInput:
     payroll: DataFrameLike
     expected_totals: DataFrameLike

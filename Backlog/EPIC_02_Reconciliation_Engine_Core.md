@@ -423,14 +423,14 @@ Al terminar esta epic, el motor debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Agrupar por `payroll_period + concept_code_normalized`
-- [ ] Sumar `amount` de registros elegibles
-- [ ] Calcular `record_count` por grupo
-- [ ] Calcular `employee_count` por grupo
+- [x] Agrupar por `payroll_period + concept_code_normalized`
+- [x] Sumar `amount` de registros elegibles
+- [x] Calcular `record_count` por grupo
+- [x] Calcular `employee_count` por grupo
 - [ ] Commit sugerido: `feat(engine): implementar observed totals por concepto y periodo`
 
 ---
