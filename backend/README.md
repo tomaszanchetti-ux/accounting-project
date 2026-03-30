@@ -7,6 +7,7 @@
 - Uvicorn
 - Pydantic
 - pandas
+- python-multipart
 
 ## Entorno local
 
@@ -56,3 +57,20 @@ STORAGE_BUCKET_RUN_EXPORTS=accounting-mvp-run-exports
 
 - raw inputs: `runs/<run_id>/inputs/<filename>`
 - exports: `runs/<run_id>/exports/<filename>`
+
+## API de runs ya disponible
+
+- `POST /runs`
+- `POST /runs/{run_id}/upload`
+- `POST /runs/{run_id}/execute`
+- `GET /runs/{run_id}/summary`
+- `GET /runs/{run_id}/results`
+- `GET /runs/{run_id}/results/{result_id}`
+- `GET /runs/{run_id}/results/{result_id}/drilldown`
+
+## Nota sobre upload
+
+`POST /runs/{run_id}/upload` acepta:
+
+- JSON para registrar referencias de archivo existentes
+- multipart para subir archivo real a Supabase Storage

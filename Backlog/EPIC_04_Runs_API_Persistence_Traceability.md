@@ -52,16 +52,16 @@ Al terminar esta epic, el sistema debe poder:
 
 ## Criterio de aceptación de la Epic completa
 
-- [ ] Existe una entidad de corrida (`run`) con metadata mínima
-- [ ] El sistema puede registrar un payroll file y expected totals asociados a una run
-- [ ] Existe persistencia de resultados agregados por concepto
-- [ ] Existe persistencia de excepciones detectadas
-- [ ] Existe persistencia o staging del payroll normalizado para drill-down
-- [ ] El backend expone endpoints para crear run, ejecutar run, consultar summary, resultados y drill-down
-- [ ] La corrida deja trazabilidad suficiente para explicar qué se procesó, cuándo y con qué resultado
-- [ ] El payload de API es estable y usable por la UI del MVP
+- [x] Existe una entidad de corrida (`run`) con metadata mínima
+- [x] El sistema puede registrar un payroll file y expected totals asociados a una run
+- [x] Existe persistencia de resultados agregados por concepto
+- [x] Existe persistencia de excepciones detectadas
+- [x] Existe persistencia o staging del payroll normalizado para drill-down
+- [x] El backend expone endpoints para crear run, ejecutar run, consultar summary, resultados y drill-down
+- [x] La corrida deja trazabilidad suficiente para explicar qué se procesó, cuándo y con qué resultado
+- [x] El payload de API es estable y usable por la UI del MVP
 
-## Estado: PENDIENTE
+## Estado: COMPLETADA
 
 ---
 
@@ -83,11 +83,11 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir campos mínimos de `reconciliation_run`:
+- [x] Definir campos mínimos de `reconciliation_run`:
   - `id`
   - `run_label` o `run_name`
   - `period`
@@ -98,9 +98,15 @@ Al terminar esta epic, el sistema debe poder:
   - `concept_count`
   - `created_at`
   - `completed_at`
-- [ ] Definir si la run tendrá `entity_scope` o `legal_entity_scope` opcional
-- [ ] Documentar semántica de la entidad
+- [x] Definir si la run tendrá `entity_scope` o `legal_entity_scope` opcional
+- [x] Documentar semántica de la entidad
 - [ ] Commit sugerido: `docs(runs): definir modelo logico de reconciliation run`
+
+**Resultado de la card:**
+
+- modelo logico documentado en `docs/RUNS_MODEL_MVP.md`
+- campos minimos y semantica de `reconciliation_run` cerrados
+- `legal_entity_scope` adoptado como scope opcional del MVP
 
 ---
 
@@ -116,11 +122,11 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir estados sugeridos:
+- [x] Definir estados sugeridos:
   - `DRAFT`
   - `INPUT_VALIDATED`
   - `PROCESSING`
@@ -128,9 +134,15 @@ Al terminar esta epic, el sistema debe poder:
   - `RECONCILED_WITH_EXCEPTIONS`
   - `FAILED`
   - `INVALID_INPUT`
-- [ ] Definir `overall_status` de negocio separado del estado técnico si aplica
-- [ ] Documentar transiciones válidas entre estados
+- [x] Definir `overall_status` de negocio separado del estado técnico si aplica
+- [x] Documentar transiciones válidas entre estados
 - [ ] Commit sugerido: `docs(runs): definir estados de corrida del MVP`
+
+**Resultado de la card:**
+
+- estados tecnicos del MVP documentados en `docs/RUNS_MODEL_MVP.md`
+- separacion entre `status` tecnico y `overall_status` de negocio definida
+- transiciones validas cerradas para backend y UI
 
 ---
 
@@ -146,11 +158,11 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir metadata mínima:
+- [x] Definir metadata mínima:
   - archivo utilizado
   - timestamp
   - período procesado
@@ -158,8 +170,14 @@ Al terminar esta epic, el sistema debe poder:
   - cantidad de conceptos
   - reglas/tolerancias aplicadas
   - versión del motor o `rules_version`
-- [ ] Documentar qué queda fuera del MVP
+- [x] Documentar qué queda fuera del MVP
 - [ ] Commit sugerido: `docs(runs): definir metadata minima de trazabilidad`
+
+**Resultado de la card:**
+
+- metadata minima de trazabilidad documentada en `docs/RUNS_MODEL_MVP.md`
+- reglas y versionado funcional delimitados para reproducibilidad del demo
+- limites del MVP explicitados para evitar sobrediseño
 
 ---
 
@@ -181,20 +199,26 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir tabla/entidad para expected totals utilizados por run
-- [ ] Incluir campos mínimos:
+- [x] Definir tabla/entidad para expected totals utilizados por run
+- [x] Incluir campos mínimos:
   - `run_id`
   - `period`
   - `concept_code_normalized`
   - `expected_amount`
   - `currency`
   - `legal_entity` opcional
-- [ ] Documentar si se guarda snapshot completo o referencia al archivo
+- [x] Documentar si se guarda snapshot completo o referencia al archivo
 - [ ] Commit sugerido: `docs(db): definir expected totals persistidos por run`
+
+**Resultado de la card:**
+
+- entidad documentada en `docs/RUNS_PERSISTENCE_MODEL.md`
+- snapshot filtrado por periodo definido e implementado
+- relacion directa con `run_id` cerrada para reproducibilidad
 
 ---
 
@@ -210,11 +234,11 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir campos mínimos:
+- [x] Definir campos mínimos:
   - `id`
   - `run_id`
   - `period`
@@ -228,9 +252,15 @@ Al terminar esta epic, el sistema debe poder:
   - `record_count`
   - `employee_count`
   - `summary_explanation`
-- [ ] Definir relación con `legal_entity` opcional
-- [ ] Preparar compatibilidad con future UI
+- [x] Definir relación con `legal_entity` opcional
+- [x] Preparar compatibilidad con future UI
 - [ ] Commit sugerido: `docs(db): definir entidad reconciliation_result`
+
+**Resultado de la card:**
+
+- entidad documentada en `docs/RUNS_PERSISTENCE_MODEL.md`
+- tabla fisica implementada en `backend/app/models/runs_schema.sql`
+- payload persistido alineado con summary, detail y future UI
 
 ---
 
@@ -246,11 +276,11 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir campos mínimos:
+- [x] Definir campos mínimos:
   - `id`
   - `run_id`
   - `result_id`
@@ -261,9 +291,15 @@ Al terminar esta epic, el sistema debe poder:
   - `estimated_impact_amount`
   - `observation`
   - `created_at`
-- [ ] Definir nivel de granularidad por excepción
-- [ ] Documentar uso para UI y export
+- [x] Definir nivel de granularidad por excepción
+- [x] Documentar uso para UI y export
 - [ ] Commit sugerido: `docs(db): definir entidad reconciliation_exception`
+
+**Resultado de la card:**
+
+- entidad documentada en `docs/RUNS_PERSISTENCE_MODEL.md`
+- soporte a excepciones por concepto y por registro implementado
+- relacion opcional con `result_id` cerrada para detail y export
 
 ---
 
@@ -279,11 +315,11 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir campos mínimos:
+- [x] Definir campos mínimos:
   - `id`
   - `run_id`
   - `record_id`
@@ -302,9 +338,15 @@ Al terminar esta epic, el sistema debe poder:
   - `currency`
   - `is_valid`
   - `exception_flags`
-- [ ] Definir estrategia de persistencia de flags
-- [ ] Documentar por qué esta tabla entra al MVP
+- [x] Definir estrategia de persistencia de flags
+- [x] Documentar por qué esta tabla entra al MVP
 - [ ] Commit sugerido: `docs(db): definir staging run_payroll_line`
+
+**Resultado de la card:**
+
+- staging table documentada en `docs/RUNS_PERSISTENCE_MODEL.md`
+- flags e invalid reasons persistidos como listas JSON
+- base lista para drill-down sin recalculo desde CSV bruto
 
 ---
 
@@ -320,19 +362,25 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir campos mínimos:
+- [x] Definir campos mínimos:
   - `id`
   - `run_id`
   - `file_name`
   - `file_type`
   - `storage_path`
   - `uploaded_at`
-- [ ] Definir tipos de archivo válidos del MVP
+- [x] Definir tipos de archivo válidos del MVP
 - [ ] Commit sugerido: `docs(db): definir metadata de archivos cargados`
+
+**Resultado de la card:**
+
+- entidad documentada en `docs/RUNS_PERSISTENCE_MODEL.md`
+- soporte a `local_path` y `supabase_storage` definido en metadata
+- tipos `payroll`, `expected_totals`, `concept_master` y `employee_reference` cerrados
 
 ---
 
@@ -354,18 +402,24 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar `reconciliation_runs`
-- [ ] Implementar `expected_totals_used`
-- [ ] Implementar `reconciliation_results`
-- [ ] Implementar `reconciliation_exceptions`
-- [ ] Implementar `run_payroll_lines`
-- [ ] Implementar `uploaded_files`
-- [ ] Aplicar migraciones o creación de schema
+- [x] Implementar `reconciliation_runs`
+- [x] Implementar `expected_totals_used`
+- [x] Implementar `reconciliation_results`
+- [x] Implementar `reconciliation_exceptions`
+- [x] Implementar `run_payroll_lines`
+- [x] Implementar `uploaded_files`
+- [x] Aplicar migraciones o creación de schema
 - [ ] Commit sugerido: `feat(db): crear tablas de runs y resultados del MVP`
+
+**Resultado de la card:**
+
+- schema SQL creado en `backend/app/models/runs_schema.sql`
+- tablas listas para uso desde repositorio psycopg
+- inicializacion pragmatica del schema integrada al backend MVP
 
 ---
 
@@ -381,14 +435,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Indexar `run_id` en tablas hijas
-- [ ] Indexar `concept_code_normalized` y `status` donde tenga sentido
-- [ ] Agregar constraints básicos de relación e integridad
+- [x] Indexar `run_id` en tablas hijas
+- [x] Indexar `concept_code_normalized` y `status` donde tenga sentido
+- [x] Agregar constraints básicos de relación e integridad
 - [ ] Commit sugerido: `chore(db): agregar indices y constraints minimos`
+
+**Resultado de la card:**
+
+- indices base incluidos en `backend/app/models/runs_schema.sql`
+- constraints de relacion agregados sobre `run_id` y `result_id`
+- integridad minima lista para consultas del MVP
 
 ---
 
@@ -410,15 +470,21 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar crear run
-- [ ] Implementar actualizar estado de run
-- [ ] Implementar obtener run por id
-- [ ] Implementar listar runs básicas si conviene
+- [x] Implementar crear run
+- [x] Implementar actualizar estado de run
+- [x] Implementar obtener run por id
+- [x] Implementar listar runs básicas si conviene
 - [ ] Commit sugerido: `feat(runs): crear repositorio base de runs`
+
+**Resultado de la card:**
+
+- repositorio base implementado en `backend/app/repositories/runs.py`
+- creacion, lookup y cambios de estado centralizados
+- upload y API ya no escriben directo estructuras sueltas
 
 ---
 
@@ -434,15 +500,21 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar persistencia bulk de resultados
-- [ ] Implementar persistencia bulk de excepciones
-- [ ] Implementar lecturas por `run_id`
-- [ ] Implementar lectura por `result_id`
+- [x] Implementar persistencia bulk de resultados
+- [x] Implementar persistencia bulk de excepciones
+- [x] Implementar lecturas por `run_id`
+- [x] Implementar lectura por `result_id`
 - [ ] Commit sugerido: `feat(runs): crear repositorio de resultados y excepciones`
+
+**Resultado de la card:**
+
+- persistencia bulk implementada para resultados y excepciones
+- lecturas por run y por result disponibles para summary y detail
+- orden de salida alineado con severidad operativa del MVP
 
 ---
 
@@ -458,15 +530,21 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar persistencia bulk de staging lines
-- [ ] Implementar query por concepto
-- [ ] Implementar query por empleado
-- [ ] Implementar query por exception flags si aplica
+- [x] Implementar persistencia bulk de staging lines
+- [x] Implementar query por concepto
+- [x] Implementar query por empleado
+- [x] Implementar query por exception flags si aplica
 - [ ] Commit sugerido: `feat(runs): crear repositorio de drilldown y staging`
+
+**Resultado de la card:**
+
+- staging lines persistidas en lote junto con la ejecucion
+- consultas por concepto ya habilitan el drill-down del MVP
+- exception flags quedan disponibles para evolucionar filtros ligeros
 
 ---
 
@@ -488,17 +566,23 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir path base por `run_id`
-- [ ] Definir nombres para:
+- [x] Definir path base por `run_id`
+- [x] Definir nombres para:
   - payroll file
   - expected totals
   - exportables futuros
-- [ ] Documentar convenciones de storage
+- [x] Documentar convenciones de storage
 - [ ] Commit sugerido: `docs(storage): definir convención de archivos por run`
+
+**Resultado de la card:**
+
+- convencion documentada en `docs/RUNS_PERSISTENCE_MODEL.md`
+- path base fijado en `runs/<run_id>/inputs/<filename>`
+- naming compatible con multiples corridas y buckets del MVP
 
 ---
 
@@ -514,15 +598,21 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar servicio de upload a Supabase Storage
-- [ ] Persistir metadata en `uploaded_files`
-- [ ] Asociar archivo con la run
-- [ ] Manejar errores de upload de forma estructurada
+- [x] Implementar servicio de upload a Supabase Storage
+- [x] Persistir metadata en `uploaded_files`
+- [x] Asociar archivo con la run
+- [x] Manejar errores de upload de forma estructurada
 - [ ] Commit sugerido: `feat(storage): implementar upload y registro de archivos por run`
+
+**Resultado de la card:**
+
+- endpoint soporta referencias JSON y multipart upload real
+- archivos se guardan en Supabase Storage bajo `runs/<run_id>/inputs/<filename>`
+- metadata persiste en `uploaded_files` y queda lista para ejecucion posterior
 
 ---
 
@@ -544,20 +634,26 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Diseñar secuencia de ejecución:
+- [x] Diseñar secuencia de ejecución:
   - cargar metadata de run
   - leer archivos
   - ejecutar validación + normalización + motor
   - ejecutar excepciones + explicación
   - persistir resultados
   - actualizar estados
-- [ ] Definir inputs y outputs del orquestador
-- [ ] Documentar estrategia de manejo de errores
+- [x] Definir inputs y outputs del orquestador
+- [x] Documentar estrategia de manejo de errores
 - [ ] Commit sugerido: `docs(runs): diseñar orquestador execute_run`
+
+**Resultado de la card:**
+
+- orquestador implementado en `backend/app/services/runs.py`
+- secuencia de validacion, engine y persistencia quedo unificada
+- estrategia basica de estados y errores ya quedo codificada
 
 ---
 
@@ -573,15 +669,21 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar cambio de estado a `PROCESSING`
-- [ ] Ejecutar pipeline completo desde el orquestador
-- [ ] Persistir resultados, excepciones y staging lines
-- [ ] Actualizar estado final de la run
+- [x] Implementar cambio de estado a `PROCESSING`
+- [x] Ejecutar pipeline completo desde el orquestador
+- [x] Persistir resultados, excepciones y staging lines
+- [x] Actualizar estado final de la run
 - [ ] Commit sugerido: `feat(runs): implementar ejecucion sincronica de runs`
+
+**Resultado de la card:**
+
+- ejecucion sincronica operativa para el MVP
+- outputs persistidos en una sola operacion logica por run
+- estado final derivado del overall status del engine
 
 ---
 
@@ -597,14 +699,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Diferenciar `INVALID_INPUT` de `FAILED`
-- [ ] Persistir mensaje o detalle de error estructurado
-- [ ] Evitar runs huérfanas en `PROCESSING`
+- [x] Diferenciar `INVALID_INPUT` de `FAILED`
+- [x] Persistir mensaje o detalle de error estructurado
+- [x] Evitar runs huérfanas en `PROCESSING`
 - [ ] Commit sugerido: `feat(runs): manejar errores y estados fallidos`
+
+**Resultado de la card:**
+
+- invalid input y fallo tecnico quedan separados en estados distintos
+- error message queda persistido a nivel run
+- la run siempre cierra en estado terminal conocido
 
 ---
 
@@ -626,14 +734,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir request/response schema
-- [ ] Persistir run en estado inicial
-- [ ] Devolver `run_id` y metadata básica
+- [x] Definir request/response schema
+- [x] Persistir run en estado inicial
+- [x] Devolver `run_id` y metadata básica
 - [ ] Commit sugerido: `feat(api): agregar endpoint POST /runs`
+
+**Resultado de la card:**
+
+- endpoint implementado en `backend/app/api/routes/runs.py`
+- respuesta utilizable para frontend desde el primer paso del setup
+- metadata inicial de la run ya queda persistida
 
 ---
 
@@ -649,14 +763,22 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir contrato para upload o referencia de archivos
-- [ ] Integrar servicio de storage
-- [ ] Persistir metadata en DB
+- [x] Definir contrato para upload o referencia de archivos
+- [x] Integrar servicio de storage
+- [x] Persistir metadata en DB
+- [x] Asociar archivo con la run
+- [x] Manejar errores de upload de forma estructurada
 - [ ] Commit sugerido: `feat(api): agregar endpoint de upload por run`
+
+**Resultado de la card:**
+
+- endpoint soporta referencias JSON y multipart upload real
+- archivos se guardan en Supabase Storage bajo `runs/<run_id>/inputs/<filename>`
+- metadata persiste en `uploaded_files` y queda lista para ejecucion posterior
 
 ---
 
@@ -672,14 +794,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Validar precondiciones de la run
-- [ ] Invocar `execute_run`
-- [ ] Devolver payload claro de resultado o error
+- [x] Validar precondiciones de la run
+- [x] Invocar `execute_run`
+- [x] Devolver payload claro de resultado o error
 - [ ] Commit sugerido: `feat(api): agregar endpoint POST /runs/{run_id}/execute`
+
+**Resultado de la card:**
+
+- endpoint operativo sobre el orquestador del dominio
+- devuelve estado final, metadata y mensajes claros
+- soporta invalid input y failure de forma diferenciada
 
 ---
 
@@ -695,14 +823,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Diseñar response schema de summary
-- [ ] Leer resultados persistidos y agregarlos
-- [ ] Incluir `overall_status` y conteos por estado
+- [x] Diseñar response schema de summary
+- [x] Leer resultados persistidos y agregarlos
+- [x] Incluir `overall_status` y conteos por estado
 - [ ] Commit sugerido: `feat(api): agregar endpoint GET /runs/{run_id}/summary`
+
+**Resultado de la card:**
+
+- endpoint operativo con KPIs persistidos y preview de resultados
+- `overall_status` y run metadata quedan disponibles para UI
+- respuesta estable alineada al vertical slice del MVP
 
 ---
 
@@ -718,14 +852,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Implementar listado por `run_id`
-- [ ] Definir orden por severidad/estado
-- [ ] Exponer explicación resumida y métricas relevantes
+- [x] Implementar listado por `run_id`
+- [x] Definir orden por severidad/estado
+- [x] Exponer explicación resumida y métricas relevantes
 - [ ] Commit sugerido: `feat(api): agregar endpoint GET /runs/{run_id}/results`
+
+**Resultado de la card:**
+
+- listado agregado por concepto operativo para tabla principal
+- orden por severidad ya definido en repositorio
+- explicacion resumida y metricas relevantes expuestas
 
 ---
 
@@ -741,14 +881,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Leer `reconciliation_result` por id
-- [ ] Leer excepciones asociadas
-- [ ] Construir payload de detalle del concepto
+- [x] Leer `reconciliation_result` por id
+- [x] Leer excepciones asociadas
+- [x] Construir payload de detalle del concepto
 - [ ] Commit sugerido: `feat(api): agregar endpoint GET detalle de resultado`
+
+**Resultado de la card:**
+
+- detalle por concepto operativo para Concept Analysis UI
+- respuesta incluye resultado persistido y excepciones asociadas
+- base lista para enriquecer payload visual mas adelante
 
 ---
 
@@ -764,14 +910,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Filtrar `run_payroll_lines` por concepto o referencia relevante
-- [ ] Asociar exception flags u observaciones
-- [ ] Diseñar response schema para tabla de detalle
+- [x] Filtrar `run_payroll_lines` por concepto o referencia relevante
+- [x] Asociar exception flags u observaciones
+- [x] Diseñar response schema para tabla de detalle
 - [ ] Commit sugerido: `feat(api): agregar endpoint GET de drilldown por concepto`
+
+**Resultado de la card:**
+
+- drill-down operativo a partir de staging persistido
+- exception flags incluidos por fila
+- payload base ya sirve para tabla de detalle del MVP
 
 ---
 
@@ -787,13 +939,18 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Exponer `GET /health`
-- [ ] Incluir estado básico del servicio
+- [x] Exponer `GET /health`
+- [x] Incluir estado básico del servicio
 - [ ] Commit sugerido: `feat(api): exponer health check estable`
+
+**Resultado de la card:**
+
+- health check ya disponible en FastAPI
+- contrato simple y estable mantenido para deploy y debugging
 
 ---
 
@@ -815,19 +972,25 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir KPIs mínimos:
+- [x] Definir KPIs mínimos:
   - reconciled concepts
   - minor differences
   - unreconciled concepts
   - total amount reconciled
   - amount pending explanation
-- [ ] Incluir `overall_run_status`
-- [ ] Incluir metadata visible de la run
+- [x] Incluir `overall_run_status`
+- [x] Incluir metadata visible de la run
 - [ ] Commit sugerido: `docs(api): diseñar payload de summary UI`
+
+**Resultado de la card:**
+
+- contrato materializado en `backend/app/schemas/runs.py`
+- summary response ya expone KPIs, overall status y preview de resultados
+- payload usable por UI sin reinterpretacion pesada
 
 ---
 
@@ -843,19 +1006,25 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir campos del payload:
+- [x] Definir campos del payload:
   - header del concepto
   - KPIs del concepto
   - statement principal
   - top causes
   - recommended action
   - evidence summary
-- [ ] Garantizar consistencia con capa explicativa
+- [x] Garantizar consistencia con capa explicativa
 - [ ] Commit sugerido: `docs(api): diseñar payload de concept analysis`
+
+**Resultado de la card:**
+
+- contrato documentado en `docs/RUNS_UI_PAYLOADS.md`
+- payload materializado en `backend/app/schemas/runs.py`
+- detalle de resultado ya expone estructura directa para Concept Analysis UI
 
 ---
 
@@ -871,11 +1040,11 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir columnas base del drill-down:
+- [x] Definir columnas base del drill-down:
   - `record_id`
   - `employee_id`
   - `employee_name`
@@ -885,9 +1054,15 @@ Al terminar esta epic, el sistema debe poder:
   - `period`
   - `exception_type`
   - `observation`
-- [ ] Definir summary superior del drill-down
-- [ ] Preparar compatibilidad con filtros ligeros
+- [x] Definir summary superior del drill-down
+- [x] Preparar compatibilidad con filtros ligeros
 - [ ] Commit sugerido: `docs(api): diseñar payload de drilldown UI`
+
+**Resultado de la card:**
+
+- contrato documentado en `docs/RUNS_UI_PAYLOADS.md`
+- drill-down response ya incluye `summary` y `filter_context`
+- payload listo para renderizar tabla y filtros ligeros en UI
 
 ---
 
@@ -909,14 +1084,20 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir campo `rules_version`
-- [ ] Persistir parámetros relevantes del execution context
-- [ ] Exponer metadata en consultas de run si corresponde
+- [x] Definir campo `rules_version`
+- [x] Persistir parámetros relevantes del execution context
+- [x] Exponer metadata en consultas de run si corresponde
 - [ ] Commit sugerido: `feat(traceability): persistir rules version y contexto de ejecucion`
+
+**Resultado de la card:**
+
+- `rules_version` y `tolerance_profile_label` persisten en la run
+- metadata ya viaja en responses de create, execute y summary
+- trazabilidad minima de contexto ya queda cubierta
 
 ---
 
@@ -932,19 +1113,25 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Definir eventos mínimos:
+- [x] Definir eventos mínimos:
   - run created
   - file uploaded
   - validation started
   - processing started
   - results persisted
   - run failed/completed
-- [ ] Definir si la bitácora vive en tabla o en logs estructurados del MVP
+- [x] Definir si la bitácora vive en tabla o en logs estructurados del MVP
 - [ ] Commit sugerido: `docs(traceability): diseñar bitacora minima de corrida`
+
+**Resultado de la card:**
+
+- diseño documentado en `docs/RUN_EVENTS_TRACEABILITY.md`
+- timeline minima materializada como payload derivado de la run
+- summary, detail y drill-down ya exponen `event_log`
 
 ---
 
@@ -966,16 +1153,22 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear run vía API
-- [ ] Asociar archivos
-- [ ] Ejecutar run
-- [ ] Consultar summary
-- [ ] Verificar consistencia de datos persistidos
+- [x] Crear run vía API
+- [x] Asociar archivos
+- [x] Ejecutar run
+- [x] Consultar summary
+- [x] Verificar consistencia de datos persistidos
 - [ ] Commit sugerido: `test(runs): validar flujo completo create-upload-execute-summary`
+
+**Resultado de la card:**
+
+- flujo validado en `backend/tests/test_runs_api_flow.py`
+- create, upload por referencia, execute y summary ya quedan cubiertos
+- consistencia base del vertical slice verificada en tests
 
 ---
 
@@ -991,15 +1184,21 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Probar `GET /runs/{run_id}/results`
-- [ ] Probar `GET /runs/{run_id}/results/{result_id}`
-- [ ] Probar `GET /runs/{run_id}/results/{result_id}/drilldown`
-- [ ] Verificar consistencia entre summary, detail y drill-down
+- [x] Probar `GET /runs/{run_id}/results`
+- [x] Probar `GET /runs/{run_id}/results/{result_id}`
+- [x] Probar `GET /runs/{run_id}/results/{result_id}/drilldown`
+- [x] Verificar consistencia entre summary, detail y drill-down
 - [ ] Commit sugerido: `test(api): validar consultas de resultados y drilldown`
+
+**Resultado de la card:**
+
+- resultados, detail y drill-down ya validados por test automatizado
+- consistencia entre capas de consulta cubierta en el vertical slice
+- base lista para conectar UI sobre endpoints reales
 
 ---
 
@@ -1015,15 +1214,21 @@ Al terminar esta epic, el sistema debe poder:
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Verificar metadata de run
-- [ ] Verificar archivos asociados
-- [ ] Verificar resultados y excepciones persistidos
-- [ ] Verificar staging lines para concepto wow
+- [x] Verificar metadata de run
+- [x] Verificar archivos asociados
+- [x] Verificar resultados y excepciones persistidos
+- [x] Verificar staging lines para concepto wow
 - [ ] Commit sugerido: `test(traceability): validar trazabilidad minima de corrida demo`
+
+**Resultado de la card:**
+
+- trazabilidad demo validada en `backend/tests/test_runs_api_flow.py`
+- metadata, archivos, resultados y excepciones quedan verificables desde API y repositorio
+- no quedan huecos criticos de explicabilidad retrospectiva para el MVP
 
 ---
 

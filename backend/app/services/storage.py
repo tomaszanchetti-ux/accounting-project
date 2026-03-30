@@ -19,12 +19,18 @@ def build_storage_path(run_id: str, filename: str, artifact_type: str = "inputs"
     return f"runs/{run_id}/{artifact_type}/{safe_name}"
 
 
-def upload_file_to_bucket(bucket_name: str, storage_path: str, file_bytes: bytes) -> None:
+def upload_file_to_bucket(
+    bucket_name: str,
+    storage_path: str,
+    file_bytes: bytes,
+    *,
+    content_type: str = "text/plain",
+) -> None:
     client = get_storage_client()
     client.storage.from_(bucket_name).upload(
         path=storage_path,
         file=file_bytes,
-        file_options={"content-type": "text/plain", "upsert": "true"},
+        file_options={"content-type": content_type, "upsert": "true"},
     )
 
 
@@ -36,4 +42,3 @@ def download_file_from_bucket(bucket_name: str, storage_path: str) -> bytes:
 def remove_file_from_bucket(bucket_name: str, storage_path: str) -> None:
     client = get_storage_client()
     client.storage.from_(bucket_name).remove([storage_path])
-

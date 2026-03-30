@@ -20,6 +20,10 @@ MVP de conciliacion entre payroll/RRHH y contabilidad con foco en:
 
 - `docs/DATASET_DEMO_FOUNDATION.md`
 - `docs/RECONCILIATION_ENGINE_CONTRACT.md`
+- `docs/RUNS_MODEL_MVP.md`
+- `docs/RUNS_PERSISTENCE_MODEL.md`
+- `docs/RUNS_UI_PAYLOADS.md`
+- `docs/RUN_EVENTS_TRACEABILITY.md`
 - `Backlog/EPIC_02_Reconciliation_Engine_Core.md`
 
 ## Dependencias externas del setup
@@ -119,6 +123,8 @@ Para retomar el proyecto hoy:
 - `EPIC 01` ya esta cerrada
 - `EPIC 02` ya esta completada
 - `EPIC 03` ya esta completada
-- revisar `Backlog/EPIC_03_Exception_Detection_Explanation.md`
-- continuar desde `EPIC 04`
-- branch de trabajo actual: `codex/epic-03-explanation-layer`
+- `EPIC 04` ya esta completada
+- revisar `Backlog/EPIC_04_Runs_API_Persistence_Traceability.md`
+- revisar `docs/RUNS_PERSISTENCE_MODEL.md`
+- continuar desde `EPIC 05`
+- proxima branch recomendada: `codex/epic-05-ui-foundation`
