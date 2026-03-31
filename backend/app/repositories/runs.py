@@ -92,17 +92,44 @@ class RunsRepositoryProtocol(Protocol):
 
 class PsycopgRunsRepository:
     _schema_initialized = False
+    _required_tables = (
+        "reconciliation_runs",
+        "uploaded_files",
+        "expected_totals_used",
+        "reconciliation_results",
+        "reconciliation_exceptions",
+        "run_payroll_lines",
+    )
+
+    def _required_tables_exist(self, cursor) -> bool:
+        for table_name in self._required_tables:
+            cursor.execute("SELECT to_regclass(%s) AS table_ref", (table_name,))
+            row = cursor.fetchone()
+            if not row or row["table_ref"] is None:
+                return False
+
+        return True
 
     def ensure_schema(self) -> None:
         if PsycopgRunsRepository._schema_initialized:
             return
 
-        schema_path = Path(__file__).resolve().parents[1] / "models" / "runs_schema.sql"
-        sql_script = schema_path.read_text(encoding="utf-8")
-        statements = [statement.strip() for statement in sql_script.split(";") if statement.strip()]
-
         with get_db_connection() as connection:
             with connection.cursor() as cursor:
+                if self._required_tables_exist(cursor):
+                    PsycopgRunsRepository._schema_initialized = True
+                    return
+
+                schema_path = (
+                    Path(__file__).resolve().parents[1] / "models" / "runs_schema.sql"
+                )
+                sql_script = schema_path.read_text(encoding="utf-8")
+                statements = [
+                    statement.strip()
+                    for statement in sql_script.split(";")
+                    if statement.strip()
+                ]
+
                 for statement in statements:
                     cursor.execute(statement)
             connection.commit()
