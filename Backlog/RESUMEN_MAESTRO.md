@@ -196,6 +196,7 @@ Al cerrar una sesión:
 | EPIC 06 | ✅ | COMPLETADA | 31 / 31 | Summary Screen real, Concept Analysis dedicada, loading/error/empty states, CTA a drill-down y blueprint funcional implementados; siguiente paso recomendado: `EPIC 07 / Card 7.1.1` |
 | EPIC 07 | ✅ | COMPLETADA | 29 / 29 | Drill-down real, filtros, exports CSV, metadata de trazabilidad visible y validación end-to-end cerrados; siguiente paso recomendado: `EPIC 08 / Card 8.1.1` |
 | EPIC 08 | ✅ | COMPLETADA | 20 / 20 | Seed híbrida, run demo canónica, scripts de create/reset, validación de casos estrella, walkthrough comercial y ensayo end-to-end documentados; siguiente paso recomendado: `EPIC 09 / Card 9.1.1` |
+| EPIC 09 | ✅ | EN PROGRESO | 2 / 14 | QA funcional integral y validación de consistencia entre motor, persistencia y UI cerradas con evidencia en `docs/EPIC09_FUNCTIONAL_FLOW_QA.md` y `docs/EPIC09_CONSISTENCY_QA.md`; siguiente paso recomendado: `EPIC 09 / Card 9.2.1` |
 
 ### Cómo registrar avance
 
@@ -232,8 +233,8 @@ El proyecto empieza a degradarse si:
 
 Con el estado actual del proyecto, el siguiente paso lógico es:
 
-1. abrir branch y contexto de `EPIC 09`
-2. ejecutar hardening y QA visual/funcional sobre el walkthrough ya validado
-3. cerrar el MVP con criterio final de demo-ready
+1. continuar `EPIC 09` desde `Card 9.2.1`
+2. revisar errores previsibles de carga y ejecución de runs
+3. seguir con empty states, resiliencia de exportables y polish final de demo-ready
 
 Este documento queda como tablero maestro para medir si ese avance está ocurriendo de forma ordenada.
