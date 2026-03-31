@@ -21,6 +21,14 @@ npm run dev
 
 Abrir `http://localhost:3000`.
 
+Si `3000` ya está ocupado por otra app local:
+
+```bash
+npm run dev -- --port 3001
+```
+
+Y abrir `http://localhost:3001`.
+
 ## Notas
 
 - La base URL del backend se resuelve desde `NEXT_PUBLIC_API_BASE_URL`.

@@ -9,6 +9,7 @@ import { ConceptAnalysisScreen } from "@/components/concept/concept-analysis-scr
 import { AppHeader } from "@/components/ui/app-header";
 import { AppShell } from "@/components/ui/app-shell";
 import { NoticeBanner } from "@/components/ui/notice-banner";
+import { StatePanel } from "@/components/ui/state-panel";
 
 type ConceptAnalysisPageProps = {
   params: Promise<{
@@ -70,6 +71,36 @@ export default async function ConceptAnalysisPage({
             conceptState.notFound
               ? "This concept is no longer available for the selected run."
               : "The concept analysis screen failed to load."
+          }
+          tone={conceptState.notFound ? "warning" : "error"}
+        />
+        <StatePanel
+          action={
+            <div className="flex flex-wrap gap-3">
+              <Link
+                className="inline-flex items-center justify-center rounded-full bg-surface-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
+                href={`/runs/${runId}`}
+              >
+                Back to summary
+              </Link>
+              <Link
+                className="inline-flex items-center justify-center rounded-full border border-border-subtle bg-white px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-surface"
+                href="/"
+              >
+                Back to setup
+              </Link>
+            </div>
+          }
+          detail={
+            conceptState.notFound
+              ? "The selected concept result could not be resolved inside this run anymore. The user can step back to summary without losing the broader run context."
+              : "The route is available but the backend did not return a valid concept analysis payload. The recovery path stays visible so the user can continue navigating the demo."
+          }
+          eyebrow={conceptState.notFound ? "Concept Missing" : "Concept Load Error"}
+          title={
+            conceptState.notFound
+              ? "Use the summary to open another concept."
+              : "Return to a stable screen and try again from there."
           }
           tone={conceptState.notFound ? "warning" : "error"}
         />

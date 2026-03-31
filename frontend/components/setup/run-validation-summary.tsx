@@ -26,7 +26,7 @@ export function RunValidationSummary({
       <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div className="space-y-1">
           <h3 className="text-xl font-semibold text-foreground">
-            Validation summary
+            Readiness checks
           </h3>
           <p className="max-w-2xl text-sm leading-6 text-text-secondary">
             Readiness stays visible on screen so the setup never feels like a
@@ -76,7 +76,7 @@ export function RunValidationSummary({
         </article>
         <article className="rounded-[18px] border border-border-subtle bg-surface p-4">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-text-muted">
-            Payroll period seen
+            Detected period
           </p>
           <p className="mt-2 text-2xl font-semibold text-foreground">
             {detectedPeriod ?? "Pending"}

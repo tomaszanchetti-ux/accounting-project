@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useDeferredValue, useState } from "react";
 
 import {
-  API_BASE_URL,
   type RunDrilldownResponse,
   type RunPayrollLineRecord,
 } from "@/lib/api/client";
@@ -17,6 +16,8 @@ import { getResultStatusMeta } from "@/lib/utils/reconciliation";
 
 import { ExceptionDrilldownTable } from "@/components/drilldown/exception-drilldown-table";
 import { AppHeader } from "@/components/ui/app-header";
+import { ExportCsvButton } from "@/components/ui/export-csv-button";
+import { HeaderActionPanel } from "@/components/ui/header-action-panel";
 import { MetricCard } from "@/components/ui/metric-card";
 import { NoticeBanner } from "@/components/ui/notice-banner";
 import { StatusPill } from "@/components/ui/status-pill";
@@ -109,26 +110,43 @@ export function DrilldownScreen({ drilldown }: DrilldownScreenProps) {
     <div className="space-y-6">
       <AppHeader
         actions={
-          <div className="flex flex-wrap gap-3">
-            <a
-              className="inline-flex items-center justify-center rounded-full border border-border-subtle bg-surface px-4 py-2 text-sm font-semibold text-foreground transition hover:border-surface-ink hover:bg-surface-ink hover:text-white"
-              href={`${API_BASE_URL}/runs/${drilldown.run.id}/results/${drilldown.result.id}/exports/detail`}
-            >
-              Export detail CSV
-            </a>
-            <Link
-              className="inline-flex items-center justify-center rounded-full border border-border-subtle bg-white/70 px-4 py-2 text-sm font-semibold text-foreground transition hover:border-surface-ink hover:bg-surface-ink hover:text-white"
-              href={`/runs/${drilldown.run.id}/concepts/${drilldown.result.id}`}
-            >
-              Back to concept
-            </Link>
-            <Link
-              className="inline-flex items-center justify-center rounded-full bg-surface-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
-              href={`/runs/${drilldown.run.id}`}
-            >
-              Back to summary
-            </Link>
-          </div>
+          <HeaderActionPanel
+            actions={
+              <>
+                <ExportCsvButton
+                  fallbackFileName={`exception-detail-${drilldown.result.concept_code_normalized.toLowerCase()}-${drilldown.run.period}.csv`}
+                  href={`/runs/${drilldown.run.id}/results/${drilldown.result.id}/exports/detail`}
+                  idleLabel="Export detail CSV"
+                />
+                <Link
+                  className="inline-flex items-center justify-center rounded-full border border-border-subtle bg-white px-4 py-2 text-sm font-semibold text-foreground transition hover:border-surface-ink hover:bg-surface-ink hover:text-white"
+                  href={`/runs/${drilldown.run.id}/concepts/${drilldown.result.id}`}
+                >
+                  Back to concept
+                </Link>
+                <Link
+                  className="inline-flex items-center justify-center rounded-full bg-surface-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
+                  href={`/runs/${drilldown.run.id}`}
+                >
+                  Back to summary
+                </Link>
+              </>
+            }
+            title="Drill-down Context"
+          >
+            <div className="flex items-center gap-2">
+              <StatusPill tone={statusMeta.tone}>{statusMeta.label}</StatusPill>
+              <span className="font-medium text-foreground">{drilldown.run.period}</span>
+            </div>
+            <p className="max-w-xs leading-6 text-text-secondary">
+              {drilldown.run.run_label}
+            </p>
+            <div className="space-y-1 font-mono text-xs text-text-muted">
+              <p>{drilldown.run.id}</p>
+              <p>{drilldown.run.source_file_name ?? "Source file pending"}</p>
+              <p>{drilldown.run.rules_version ?? "rules unavailable"}</p>
+            </div>
+          </HeaderActionPanel>
         }
         eyebrow="Drill-down"
         kicker={drilldown.result.concept_code_normalized}
@@ -161,7 +179,7 @@ export function DrilldownScreen({ drilldown }: DrilldownScreenProps) {
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                Review Focus
+                Review focus
               </p>
               <p className="mt-2 text-base leading-7 text-slate-100">
                 Prioritize anomalous rows first, then scan clean rows only if
@@ -170,10 +188,10 @@ export function DrilldownScreen({ drilldown }: DrilldownScreenProps) {
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                Recommended Action
+                Recommended next step
               </p>
               <p className="mt-2 text-base leading-7 text-slate-100">
-                {drilldown.result.recommended_action ?? "Review detailed records"}
+                {drilldown.result.recommended_action ?? "Review the detailed records."}
               </p>
             </div>
             <div>
@@ -189,7 +207,7 @@ export function DrilldownScreen({ drilldown }: DrilldownScreenProps) {
 
         <article className="rounded-[24px] border border-border-subtle bg-white/72 p-5 md:p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
-            Drill-down Summary
+            Evidence summary
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-foreground">
             The table below is the auditable evidence layer for this concept.
@@ -385,7 +403,7 @@ export function DrilldownScreen({ drilldown }: DrilldownScreenProps) {
       {!drilldown.total_rows ? (
         <section className="rounded-[24px] border border-border-subtle bg-white/72 p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
-            No Persisted Records
+            No persisted records
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-foreground">
             This concept does not have drill-down rows available yet.
@@ -401,7 +419,7 @@ export function DrilldownScreen({ drilldown }: DrilldownScreenProps) {
       ) : (
         <section className="rounded-[24px] border border-border-subtle bg-white/72 p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
-            No Matching Rows
+            No matching rows
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-foreground">
             The current filters hide every record in this concept.

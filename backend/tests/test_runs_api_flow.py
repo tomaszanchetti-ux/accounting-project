@@ -3,6 +3,7 @@ from csv import DictReader
 from datetime import datetime, timezone
 from io import StringIO
 from pathlib import Path
+from unittest.mock import patch
 from uuid import uuid4
 
 import pandas as pd
@@ -415,6 +416,139 @@ class RunsApiFlowTest(unittest.TestCase):
             "RECONCILED_WITH_EXCEPTIONS",
         )
         self.assertEqual(execute_payload["run"]["overall_status"], "unreconciled")
+
+    def test_execute_run_invalidates_when_required_file_reference_is_missing(self) -> None:
+        create_response = self.client.post(
+            "/runs",
+            json={
+                "run_label": "Missing Files Demo",
+                "period": "2026-03",
+            },
+        )
+        self.assertEqual(create_response.status_code, 201)
+        run_id = create_response.json()["run"]["id"]
+
+        execute_response = self.client.post(f"/runs/{run_id}/execute", json={})
+        self.assertEqual(execute_response.status_code, 200)
+        payload = execute_response.json()
+        self.assertEqual(payload["run"]["status"], "INVALID_INPUT")
+        self.assertIn(
+            "Missing required file references for run execution",
+            payload["run"]["error_message"],
+        )
+        self.assertEqual(
+            payload["message"],
+            "Run could not start because required input references are missing.",
+        )
+
+        summary_response = self.client.get(f"/runs/{run_id}/summary")
+        self.assertEqual(summary_response.status_code, 200)
+        summary_payload = summary_response.json()
+        self.assertEqual(summary_payload["run"]["status"], "INVALID_INPUT")
+        self.assertEqual(summary_payload["preview_results"], [])
+        self.assertTrue(
+            any(
+                event["event_code"] == "run_invalid_input"
+                for event in summary_payload["event_log"]
+            )
+        )
+
+    def test_execute_run_invalidates_when_expected_totals_has_no_target_period(self) -> None:
+        repo_root = Path(__file__).resolve().parents[2]
+        create_response = self.client.post(
+            "/runs",
+            json={
+                "run_label": "Invalid Expected Totals Demo",
+                "period": "2026-03",
+            },
+        )
+        self.assertEqual(create_response.status_code, 201)
+        run_id = create_response.json()["run"]["id"]
+
+        invalid_expected_totals_path = repo_root / "backend/tests/fixtures/expected_totals_2026_02_only.csv"
+
+        file_refs = {
+            "payroll": repo_root / "data/demo_seed/payroll.csv",
+            "expected_totals": invalid_expected_totals_path,
+            "concept_master": repo_root / "data/demo_seed/concept_master.csv",
+        }
+
+        for file_type, path in file_refs.items():
+            response = self.client.post(
+                f"/runs/{run_id}/upload",
+                json={
+                    "file_name": path.name,
+                    "file_type": file_type,
+                    "storage_path": str(path),
+                    "source_kind": "local_path",
+                },
+            )
+            self.assertEqual(response.status_code, 201)
+
+        execute_response = self.client.post(f"/runs/{run_id}/execute", json={})
+        self.assertEqual(execute_response.status_code, 200)
+        payload = execute_response.json()
+        self.assertEqual(payload["run"]["status"], "INVALID_INPUT")
+        self.assertIn(
+            "Expected totals does not contain rows for the requested target period: 2026-03",
+            payload["run"]["error_message"],
+        )
+        self.assertEqual(payload["message"], "Run finished with invalid input.")
+
+    def test_execute_run_returns_500_and_marks_failed_when_engine_crashes(self) -> None:
+        repo_root = Path(__file__).resolve().parents[2]
+        create_response = self.client.post(
+            "/runs",
+            json={
+                "run_label": "Engine Failure Demo",
+                "period": "2026-03",
+            },
+        )
+        self.assertEqual(create_response.status_code, 201)
+        run_id = create_response.json()["run"]["id"]
+
+        for file_type, path in {
+            "payroll": repo_root / "data/demo_seed/payroll.csv",
+            "expected_totals": repo_root / "data/demo_seed/expected_totals.csv",
+            "concept_master": repo_root / "data/demo_seed/concept_master.csv",
+        }.items():
+            response = self.client.post(
+                f"/runs/{run_id}/upload",
+                json={
+                    "file_name": path.name,
+                    "file_type": file_type,
+                    "storage_path": str(path),
+                    "source_kind": "local_path",
+                },
+            )
+            self.assertEqual(response.status_code, 201)
+
+        with patch(
+            "app.services.runs.run_reconciliation_engine",
+            side_effect=RuntimeError("Controlled engine failure for QA"),
+        ):
+            execute_response = self.client.post(f"/runs/{run_id}/execute", json={})
+
+        self.assertEqual(execute_response.status_code, 500)
+        self.assertEqual(
+            execute_response.json()["detail"],
+            "Controlled engine failure for QA",
+        )
+
+        summary_response = self.client.get(f"/runs/{run_id}/summary")
+        self.assertEqual(summary_response.status_code, 200)
+        summary_payload = summary_response.json()
+        self.assertEqual(summary_payload["run"]["status"], "FAILED")
+        self.assertEqual(
+            summary_payload["run"]["error_message"],
+            "Controlled engine failure for QA",
+        )
+        self.assertTrue(
+            any(
+                event["event_code"] == "run_failed"
+                for event in summary_payload["event_log"]
+            )
+        )
 
 
 if __name__ == "__main__":

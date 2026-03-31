@@ -57,6 +57,30 @@ function buildRunLabel(period: string) {
   return `Payroll reconciliation ${period}`;
 }
 
+function buildExecutionFeedback(run: RunRecord): NonNullable<FeedbackState> | null {
+  if (run.status === "INVALID_INPUT") {
+    return {
+      message: "Run requires corrected inputs",
+      detail:
+        run.error_message ??
+        "One or more required files are missing or inconsistent for the selected period.",
+      tone: "error",
+    };
+  }
+
+  if (run.status === "FAILED") {
+    return {
+      message: "Run failed during execution",
+      detail:
+        run.error_message ??
+        "The run stopped because of a technical error. Review the inputs and try again.",
+      tone: "error",
+    };
+  }
+
+  return null;
+}
+
 export function SetupWorkspace({
   backendHealth,
   defaultPeriod,
@@ -389,6 +413,14 @@ export function SetupWorkspace({
     try {
       const execution = await executeRun(run.id);
       setRun(execution.run);
+      const executionFeedback = buildExecutionFeedback(execution.run);
+
+      if (executionFeedback) {
+        setSummary(null);
+        setFeedback(executionFeedback);
+        return;
+      }
+
       const nextSummary = await getRunSummary(run.id);
       setSummary(nextSummary);
       setFeedback({

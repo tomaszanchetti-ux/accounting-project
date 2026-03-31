@@ -42,17 +42,27 @@ export function ExceptionDrilldownTable({
   return (
     <div className="overflow-hidden rounded-[24px] border border-border-subtle bg-white/78">
       <div className="overflow-x-auto">
-        <table className="min-w-full border-collapse">
+        <table className="min-w-[1240px] border-collapse">
+          <colgroup>
+            <col className="w-[11%]" />
+            <col className="w-[16%]" />
+            <col className="w-[12%]" />
+            <col className="w-[15%]" />
+            <col className="w-[9%]" />
+            <col className="w-[8%]" />
+            <col className="w-[13%]" />
+            <col className="w-[16%]" />
+          </colgroup>
           <thead className="bg-surface-strong/70">
             <tr className="text-left text-xs font-semibold uppercase tracking-[0.14em] text-text-muted">
-              <th className="px-4 py-4">Record ID</th>
-              <th className="px-4 py-4">Employee</th>
-              <th className="px-4 py-4">Legal Entity</th>
-              <th className="px-4 py-4">Concept</th>
-              <th className="px-4 py-4 text-right">Amount</th>
-              <th className="px-4 py-4">Period</th>
-              <th className="px-4 py-4">Exception Type</th>
-              <th className="px-4 py-4">Observation</th>
+              <th className="px-4 py-3.5">Record ID</th>
+              <th className="px-4 py-3.5">Employee</th>
+              <th className="px-4 py-3.5">Legal Entity</th>
+              <th className="px-4 py-3.5">Concept</th>
+              <th className="px-4 py-3.5 text-right">Amount</th>
+              <th className="px-4 py-3.5">Period</th>
+              <th className="px-4 py-3.5">Exception Type</th>
+              <th className="px-4 py-3.5">Observation</th>
             </tr>
           </thead>
           <tbody>
@@ -71,12 +81,12 @@ export function ExceptionDrilldownTable({
                   )}
                   key={row.id}
                 >
-                  <td className="px-4 py-4 font-mono text-xs text-foreground">
+                  <td className="px-4 py-4.5 font-mono text-[11px] text-foreground">
                     {row.record_id}
                   </td>
-                  <td className="px-4 py-4">
+                  <td className="px-4 py-4.5">
                     <div className="space-y-1">
-                      <p className="text-sm font-semibold text-foreground">
+                      <p className="text-sm font-semibold leading-6 text-foreground">
                         {row.employee_name ?? "Employee unavailable"}
                       </p>
                       <p className="text-xs text-text-secondary">
@@ -84,12 +94,12 @@ export function ExceptionDrilldownTable({
                       </p>
                     </div>
                   </td>
-                  <td className="px-4 py-4 text-sm text-text-secondary">
+                  <td className="px-4 py-4.5 text-sm leading-6 text-text-secondary">
                     {row.legal_entity ?? "Mixed scope"}
                   </td>
-                  <td className="px-4 py-4">
+                  <td className="px-4 py-4.5">
                     <div className="space-y-1">
-                      <p className="text-sm font-semibold text-foreground">
+                      <p className="text-sm font-semibold leading-6 text-foreground">
                         {row.concept_name_normalized ?? "Unknown concept"}
                       </p>
                       <p className="text-xs text-text-secondary">
@@ -97,14 +107,14 @@ export function ExceptionDrilldownTable({
                       </p>
                     </div>
                   </td>
-                  <td className="px-4 py-4 text-right text-sm font-semibold text-foreground">
+                  <td className="px-4 py-4.5 text-right font-mono text-[13px] font-semibold text-foreground">
                     {formatCurrency(row.amount, row.currency ?? "EUR")}
                   </td>
-                  <td className="px-4 py-4 text-sm text-text-secondary">
+                  <td className="px-4 py-4.5 text-sm leading-6 text-text-secondary">
                     {row.payroll_period ?? "Period unavailable"}
                   </td>
-                  <td className="px-4 py-4">
-                    <div className="flex max-w-xs flex-wrap gap-2">
+                  <td className="px-4 py-4.5">
+                    <div className="flex max-w-sm flex-wrap gap-2">
                       {anomalyLabels.length ? (
                         anomalyLabels.map((anomalyLabel) => (
                           <StatusPill key={`${row.id}-${anomalyLabel}`} tone={tone}>
@@ -116,8 +126,10 @@ export function ExceptionDrilldownTable({
                       )}
                     </div>
                   </td>
-                  <td className="px-4 py-4 text-sm leading-6 text-text-secondary">
-                    {getRowObservation(row)}
+                  <td className="px-4 py-4.5">
+                    <p className="max-w-sm text-sm leading-6 text-text-secondary">
+                      {getRowObservation(row)}
+                    </p>
                   </td>
                 </tr>
               );
