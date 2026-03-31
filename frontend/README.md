@@ -34,3 +34,4 @@ Y abrir `http://localhost:3001`.
 - La base URL del backend se resuelve desde `NEXT_PUBLIC_API_BASE_URL`.
 - Las variables publicas de Supabase se leen desde `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
 - Los helpers de API viven en `frontend/lib/api/`.
+- Los demo seed files ahora se suben al backend como archivos reales al iniciar una run; ya no dependen de `local_path` compartidos entre frontend y backend.

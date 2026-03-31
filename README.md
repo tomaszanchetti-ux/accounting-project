@@ -106,7 +106,8 @@ Comandos individuales:
 
 - frontend publico esperado: `https://accounting-project-blond.vercel.app/`
 - estrategia del backend: `docs/DEPLOY_BACKEND.md`
-- mientras el backend productivo no exista, `NEXT_PUBLIC_API_BASE_URL` puede quedar temporalmente con placeholder
+- el backend ahora queda preparado para Railway desde el root del repo con `Dockerfile` + `railway.toml`
+- para demo publica end-to-end, `NEXT_PUBLIC_API_BASE_URL` debe apuntar a `https://accounting-project-api.up.railway.app`
 
 ## Rutina de arranque de cada WS
 

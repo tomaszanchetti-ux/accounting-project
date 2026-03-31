@@ -39,7 +39,7 @@ export default async function Home() {
         backendHealth={backendHealth}
         defaultPeriod={demoSetupBundle.defaultPeriod}
         demoExpectedTotals={demoSetupBundle.expectedTotals}
-        referenceFiles={demoSetupBundle.referenceFiles}
+        seedFiles={demoSetupBundle.seedFiles}
       />
     </AppShell>
   );

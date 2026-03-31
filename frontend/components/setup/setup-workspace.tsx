@@ -6,7 +6,6 @@ import {
   createRun,
   executeRun,
   getRunSummary,
-  registerRunFileReference,
   uploadRunFile,
   type BackendHealthStatus,
   type RunRecord,
@@ -27,10 +26,19 @@ type SetupWorkspaceProps = {
   backendHealth: BackendHealthStatus;
   defaultPeriod: string;
   demoExpectedTotals: ExpectedTotalsPreviewRow[];
-  referenceFiles: {
-    conceptMasterPath: string;
-    employeeReferencePath: string;
-    expectedTotalsPath: string;
+  seedFiles: {
+    conceptMaster: {
+      content: string;
+      fileName: string;
+    };
+    employeeReference: {
+      content: string;
+      fileName: string;
+    };
+    expectedTotals: {
+      content: string;
+      fileName: string;
+    };
   };
 };
 
@@ -55,6 +63,10 @@ const pendingUploadState: UploadState = {
 
 function buildRunLabel(period: string) {
   return `Payroll reconciliation ${period}`;
+}
+
+function buildSeedFile(fileName: string, content: string) {
+  return new File([content], fileName, { type: "text/csv" });
 }
 
 function buildExecutionFeedback(run: RunRecord): NonNullable<FeedbackState> | null {
@@ -85,7 +97,7 @@ export function SetupWorkspace({
   backendHealth,
   defaultPeriod,
   demoExpectedTotals,
-  referenceFiles,
+  seedFiles,
 }: SetupWorkspaceProps) {
   const [run, setRun] = useState<RunRecord | null>(null);
   const [summary, setSummary] = useState<RunSummaryResponse | null>(null);
@@ -94,13 +106,13 @@ export function SetupWorkspace({
   const [isExecuting, setIsExecuting] = useState(false);
   const [payrollState, setPayrollState] = useState<UploadState>(pendingUploadState);
   const [expectedTotalsState, setExpectedTotalsState] = useState<UploadState>({
-    helperText: "Demo seed totals will be attached when the run starts.",
+    helperText: "Demo seed totals will be uploaded when the run starts.",
     status: "pending",
   });
   const [expectedTotalsRows, setExpectedTotalsRows] =
     useState<ExpectedTotalsPreviewRow[]>(demoExpectedTotals);
   const [expectedTotalsSourceLabel, setExpectedTotalsSourceLabel] = useState(
-    "Demo seed reference",
+    "Demo seed upload",
   );
   const [setupParameters, setSetupParameters] = useState({
     includeExceptionsAnalysis: true,
@@ -190,26 +202,35 @@ export function SetupWorkspace({
 
       const [expectedTotalsUpload, conceptMasterUpload, employeeReferenceUpload] =
         await Promise.all([
-          registerRunFileReference(nextRun.id, {
-            file_name: "expected_totals.csv",
-            file_type: "expected_totals",
-            storage_path: referenceFiles.expectedTotalsPath,
-          }),
-          registerRunFileReference(nextRun.id, {
-            file_name: "concept_master.csv",
-            file_type: "concept_master",
-            storage_path: referenceFiles.conceptMasterPath,
-          }),
-          registerRunFileReference(nextRun.id, {
-            file_name: "employee_reference.csv",
-            file_type: "employee_reference",
-            storage_path: referenceFiles.employeeReferencePath,
-          }),
+          uploadRunFile(
+            nextRun.id,
+            "expected_totals",
+            buildSeedFile(
+              seedFiles.expectedTotals.fileName,
+              seedFiles.expectedTotals.content,
+            ),
+          ),
+          uploadRunFile(
+            nextRun.id,
+            "concept_master",
+            buildSeedFile(
+              seedFiles.conceptMaster.fileName,
+              seedFiles.conceptMaster.content,
+            ),
+          ),
+          uploadRunFile(
+            nextRun.id,
+            "employee_reference",
+            buildSeedFile(
+              seedFiles.employeeReference.fileName,
+              seedFiles.employeeReference.content,
+            ),
+          ),
         ]);
 
       setExpectedTotalsState({
         fileName: expectedTotalsUpload.uploaded_file.file_name,
-        helperText: "Using demo seed expected totals as default reference.",
+        helperText: "Using uploaded demo seed expected totals as default reference.",
         metadata: `Registered ${formatDateTime(
           expectedTotalsUpload.uploaded_file.uploaded_at,
         )}`,
@@ -356,24 +377,24 @@ export function SetupWorkspace({
       return;
     }
 
-    setExpectedTotalsState({
-      fileName: "expected_totals.csv",
-      helperText: "Re-registering demo seed reference...",
-      status: "loading",
-    });
-
-    try {
-      const response = await registerRunFileReference(run.id, {
-        file_name: "expected_totals.csv",
-        file_type: "expected_totals",
-        storage_path: referenceFiles.expectedTotalsPath,
+      setExpectedTotalsState({
+        fileName: seedFiles.expectedTotals.fileName,
+        helperText: "Uploading demo seed expected totals again...",
+        status: "loading",
       });
 
+    try {
+      const response = await uploadRunFile(
+        run.id,
+        "expected_totals",
+        buildSeedFile(seedFiles.expectedTotals.fileName, seedFiles.expectedTotals.content),
+      );
+
       setExpectedTotalsRows(demoExpectedTotals);
-      setExpectedTotalsSourceLabel("Demo seed reference");
+      setExpectedTotalsSourceLabel("Demo seed upload");
       setExpectedTotalsState({
         fileName: response.uploaded_file.file_name,
-        helperText: "Demo seed expected totals restored.",
+        helperText: "Demo seed expected totals restored from upload.",
         metadata: `${demoExpectedTotals.length} concepts ready`,
         status: "uploaded",
       });
@@ -386,7 +407,7 @@ export function SetupWorkspace({
       const message =
         error instanceof Error ? error.message : "Unable to restore demo seed.";
       setExpectedTotalsState({
-        fileName: "expected_totals.csv",
+        fileName: seedFiles.expectedTotals.fileName,
         helperText: message,
         status: "error",
       });

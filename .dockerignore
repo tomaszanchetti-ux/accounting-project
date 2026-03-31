@@ -1,0 +1,9 @@
+.git
+.next
+frontend/node_modules
+frontend/.next
+backend/.venv
+backend/.ruff_cache
+backend/tests
+__pycache__
+.DS_Store

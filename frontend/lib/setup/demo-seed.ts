@@ -9,10 +9,19 @@ import {
 export type DemoSetupBundle = {
   defaultPeriod: string;
   expectedTotals: ExpectedTotalsPreviewRow[];
-  referenceFiles: {
-    conceptMasterPath: string;
-    employeeReferencePath: string;
-    expectedTotalsPath: string;
+  seedFiles: {
+    conceptMaster: {
+      content: string;
+      fileName: string;
+    };
+    employeeReference: {
+      content: string;
+      fileName: string;
+    };
+    expectedTotals: {
+      content: string;
+      fileName: string;
+    };
   };
 };
 
@@ -24,15 +33,29 @@ export async function getDemoSetupBundle(): Promise<DemoSetupBundle> {
   const expectedTotalsPath = getDemoSeedFilePath("expected_totals.csv");
   const conceptMasterPath = getDemoSeedFilePath("concept_master.csv");
   const employeeReferencePath = getDemoSeedFilePath("employee_reference.csv");
-  const expectedTotalsContent = await readFile(expectedTotalsPath, "utf8");
+  const [expectedTotalsContent, conceptMasterContent, employeeReferenceContent] =
+    await Promise.all([
+      readFile(expectedTotalsPath, "utf8"),
+      readFile(conceptMasterPath, "utf8"),
+      readFile(employeeReferencePath, "utf8"),
+    ]);
 
   return {
     defaultPeriod: "2026-03",
     expectedTotals: parseExpectedTotalsPreview(expectedTotalsContent),
-    referenceFiles: {
-      conceptMasterPath,
-      employeeReferencePath,
-      expectedTotalsPath,
+    seedFiles: {
+      conceptMaster: {
+        content: conceptMasterContent,
+        fileName: "concept_master.csv",
+      },
+      employeeReference: {
+        content: employeeReferenceContent,
+        fileName: "employee_reference.csv",
+      },
+      expectedTotals: {
+        content: expectedTotalsContent,
+        fileName: "expected_totals.csv",
+      },
     },
   };
 }

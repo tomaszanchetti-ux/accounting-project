@@ -200,8 +200,8 @@ export function RunSetupForm({
                 Reference files loaded automatically
               </p>
               <p className="text-sm text-text-secondary">
-                `concept_master.csv` and `employee_reference.csv` are registered
-                from the demo seed so setup stays focused.
+                `concept_master.csv` and `employee_reference.csv` are uploaded
+                automatically from the demo seed so setup stays focused.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
