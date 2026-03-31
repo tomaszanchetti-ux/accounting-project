@@ -20,15 +20,15 @@ export function ConceptResultsTable({
       <div className="flex flex-col gap-3 border-b border-border-subtle px-5 py-5 md:flex-row md:items-end md:justify-between">
         <div className="space-y-2">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
-            Concept Review
+            Concepts
           </p>
           <h2 className="text-2xl font-semibold tracking-[-0.03em] text-foreground">
-            Focus the review on the concepts that are still moving the period.
+            Open the concepts that still need review.
           </h2>
         </div>
         <p className="max-w-md text-sm leading-6 text-text-secondary">
           The default order pushes unreconciled and high-materiality concepts to the
-          top so the user can move straight into explanation.
+          top so you can move straight into the details.
         </p>
       </div>
 
@@ -52,8 +52,8 @@ export function ConceptResultsTable({
               <th className="px-4 py-3.5 text-right font-semibold">Diff</th>
               <th className="px-4 py-3.5 text-right font-semibold">Diff %</th>
               <th className="px-4 py-3.5 font-semibold">Status</th>
-              <th className="px-4 py-3.5 font-semibold">Explanation</th>
-              <th className="px-5 py-3.5 text-right font-semibold">Review</th>
+              <th className="px-4 py-3.5 font-semibold">Summary</th>
+              <th className="px-5 py-3.5 text-right font-semibold">Details</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border-subtle">
@@ -102,7 +102,7 @@ export function ConceptResultsTable({
                       className="inline-flex items-center justify-center rounded-full border border-border-subtle bg-surface px-4 py-2 text-sm font-semibold text-foreground transition hover:border-surface-ink hover:bg-surface-ink hover:text-white"
                       href={`/runs/${runId}/concepts/${result.id}`}
                     >
-                      Open concept
+                      View details
                     </Link>
                   </td>
                 </tr>

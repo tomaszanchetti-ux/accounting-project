@@ -2,10 +2,11 @@ import Link from "next/link";
 
 import {
   ApiRequestError,
+  getRunResultDrilldown,
   getRunResultDetail,
 } from "@/lib/api/client";
 
-import { ConceptAnalysisScreen } from "@/components/concept/concept-analysis-screen";
+import { DeepDiveScreen } from "@/components/deep-dive/deep-dive-screen";
 import { AppHeader } from "@/components/ui/app-header";
 import { AppShell } from "@/components/ui/app-shell";
 import { NoticeBanner } from "@/components/ui/notice-banner";
@@ -22,6 +23,7 @@ async function loadConceptAnalysis(runId: string, resultId: string) {
   try {
     return {
       detail: await getRunResultDetail(runId, resultId),
+      drilldown: await getRunResultDrilldown(runId, resultId),
     };
   } catch (error) {
     return {
@@ -52,17 +54,17 @@ export default async function ConceptAnalysisPage({
               Back to summary
             </Link>
           }
-          eyebrow="Concept Analysis"
+          eyebrow="Deep Dive"
           kicker={resultId}
           subtitle={
             conceptState.notFound
               ? "The concept was not found inside this run."
-              : "The concept analysis payload could not be loaded."
+              : "The deep dive payload could not be loaded."
           }
           title={
             conceptState.notFound
               ? "Concept not found"
-              : "Concept analysis unavailable"
+              : "Deep dive unavailable"
           }
         />
         <NoticeBanner
@@ -70,7 +72,7 @@ export default async function ConceptAnalysisPage({
           message={
             conceptState.notFound
               ? "This concept is no longer available for the selected run."
-              : "The concept analysis screen failed to load."
+              : "The deep dive screen failed to load."
           }
           tone={conceptState.notFound ? "warning" : "error"}
         />
@@ -110,7 +112,10 @@ export default async function ConceptAnalysisPage({
 
   return (
     <AppShell>
-      <ConceptAnalysisScreen detail={conceptState.detail} />
+      <DeepDiveScreen
+        detail={conceptState.detail}
+        drilldown={conceptState.drilldown}
+      />
     </AppShell>
   );
 }

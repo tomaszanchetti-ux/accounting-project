@@ -160,10 +160,10 @@ Si no pudo validarse, debe dejarse explícito.
 
 El backlog vigente está compuesto por:
 
-- `10 épicas`
-- `85 features`
-- `245 cards`
-- `1039 tasks operativas`
+- `11 épicas`
+- `91 features`
+- `259 cards`
+- `1102 tasks operativas`
 
 El detalle maestro y orden de ejecución están en:
 
@@ -241,6 +241,8 @@ La idea es dejar un **handoff útil para el yo futuro o para otro agente**.
 - `EPIC 06` completada
 - `EPIC 07` completada
 - `EPIC 08` completada con seed demo, run canonica, walkthrough comercial y ensayo end-to-end documentados
+- `EPIC 09` completada con hardening y cierre demo-ready
+- `EPIC 10` documentada y pendiente de implementación como línea de simplificación del producto
 
 ---
 
@@ -248,7 +250,7 @@ La idea es dejar un **handoff útil para el yo futuro o para otro agente**.
 
 La prioridad actual del proyecto es:
 
-> **ejecutar `EPIC 09 — Hardening, QA & Demo-Ready Closure` para pulir bordes finales, reforzar QA visual y cerrar el MVP con criterio formal de demo-ready.**
+> **ejecutar `EPIC 10 — MVP Simplification & Single-Flow UX` para reducir fricción visible, simplificar setup/navegación y dejar el producto más intuitivo antes de seguir puliendo la presentación final.**
 
 ---
 

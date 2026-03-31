@@ -23,10 +23,10 @@ Los sintetiza para seguimiento.
 
 Estado actual del backlog documentado:
 
-- `10 épicas`
-- `85 features`
-- `245 cards`
-- `1039 tasks operativas`
+- `11 épicas`
+- `91 features`
+- `259 cards`
+- `1102 tasks operativas`
 
 ### Nota sobre el conteo
 
@@ -48,6 +48,7 @@ Las `tasks operativas` contadas acá corresponden a los checklists dentro de cad
 | EPIC 07 | `EPIC_07_Drilldown_Exports_Traceability.md` | 10 | 29 | 112 |
 | EPIC 08 | `EPIC_08_Demo_Seed_Narrative_Commercial_Flow.md` | 8 | 20 | 74 |
 | EPIC 09 | `EPIC_09_Hardening_QA_Demo_Ready.md` | 6 | 14 | 67 |
+| EPIC 10 | `EPIC_10_MVP_Simplification_Flow.md` | 6 | 14 | 63 |
 
 ---
 
@@ -88,6 +89,7 @@ El orden base de implementación sigue el backlog:
 8. `EPIC 07 — Drill-down, Exports & Demo Traceability`
 9. `EPIC 08 — Demo Seed, Narrative & Commercial Flow`
 10. `EPIC 09 — Hardening, QA & Demo-Ready Closure`
+11. `EPIC 10 — MVP Simplification & Single-Flow UX`
 
 ### Regla práctica
 
@@ -156,6 +158,16 @@ Objetivo:
 - dejar demo sembrada y narrativamente fuerte
 - cerrar QA, hardening y demo-ready
 
+### Fase 6 — Simplificación de producto
+
+- `EPIC 10`
+
+Objetivo:
+
+- recortar fricción visible del MVP
+- simplificar setup, navegación y exportables
+- dejar un flujo más intuitivo y más fácil de presentar
+
 ---
 
 ## 7. Cómo usar este documento en cada sesión
@@ -196,7 +208,8 @@ Al cerrar una sesión:
 | EPIC 06 | ✅ | COMPLETADA | 31 / 31 | Summary Screen real, Concept Analysis dedicada, loading/error/empty states, CTA a drill-down y blueprint funcional implementados; siguiente paso recomendado: `EPIC 07 / Card 7.1.1` |
 | EPIC 07 | ✅ | COMPLETADA | 29 / 29 | Drill-down real, filtros, exports CSV, metadata de trazabilidad visible y validación end-to-end cerrados; siguiente paso recomendado: `EPIC 08 / Card 8.1.1` |
 | EPIC 08 | ✅ | COMPLETADA | 20 / 20 | Seed híbrida, run demo canónica, scripts de create/reset, validación de casos estrella, walkthrough comercial y ensayo end-to-end documentados; siguiente paso recomendado: `EPIC 09 / Card 9.1.1` |
-| EPIC 09 | ✅ | COMPLETADA | 14 / 14 | QA funcional integral, consistencia entre capas, hardening de runs, empty states, resiliencia básica de exportables, consistencia visual, copy, legibilidad de tablas, wow moment, casos complementarios, riesgos/límites aceptados, checklist final y evaluación final de demo-ready cerrados. Evidencia en `docs/EPIC09_FUNCTIONAL_FLOW_QA.md`, `docs/EPIC09_CONSISTENCY_QA.md`, `docs/EPIC09_RUN_ERRORS_AND_EXPORTS_QA.md`, `docs/EPIC09_WOW_MOMENT_QA.md`, `docs/EPIC09_SUPPORTING_CASES_QA.md`, `docs/EPIC09_RESIDUAL_RISKS_AND_LIMITS.md`, `docs/EPIC09_DEMO_READY_CHECKLIST.md` y `docs/EPIC09_FINAL_DEMO_READY_EVALUATION.md`; veredicto final: MVP funcionalmente demo-ready, frontend público operativo en Vercel y nota operativa local limitada a evitar conflictos de puerto |
+| EPIC 09 | ✅ | COMPLETADA | 14 / 14 | QA funcional integral, consistencia entre capas, hardening de runs, empty states, resiliencia básica de exportables, consistencia visual, copy, legibilidad de tablas, wow moment, casos complementarios, riesgos/límites aceptados, checklist final y evaluación final de demo-ready cerrados. Evidencia en `docs/EPIC09_FUNCTIONAL_FLOW_QA.md`, `docs/EPIC09_CONSISTENCY_QA.md`, `docs/EPIC09_RUN_ERRORS_AND_EXPORTS_QA.md`, `docs/EPIC09_WOW_MOMENT_QA.md`, `docs/EPIC09_SUPPORTING_CASES_QA.md`, `docs/EPIC09_RESIDUAL_RISKS_AND_LIMITS.md`, `docs/EPIC09_DEMO_READY_CHECKLIST.md` y `docs/EPIC09_FINAL_DEMO_READY_EVALUATION.md`; veredicto final: MVP funcionalmente demo-ready y demo publica end-to-end operativa con frontend en Vercel y backend productivo en Railway |
+| EPIC 10 | ✅ | PENDIENTE | 0 / 14 | Nueva épica abierta para simplificar el producto hacia un flujo más intuitivo: `Upload + Run -> Summary -> Deep Dive + Export`. Alcance inicial: recorte del setup visible, fusión de `Concept Analysis` con `Drill-down`, simplificación de copy/navegación y definición de export PDF; siguiente paso recomendado: `EPIC 10 / Card 10.1.1` |
 
 ### Cómo registrar avance
 
@@ -233,8 +246,8 @@ El proyecto empieza a degradarse si:
 
 Con el estado actual del proyecto, el siguiente paso lógico es:
 
-1. resolver o preparar el acceso de demo al frontend local si la presentación se hará desde ese entorno
-2. luego considerar merge/cierre operativo de `EPIC 09`
-3. usar el checklist final antes de cualquier reunión demo
+1. ejecutar `EPIC 10 / Card 10.1.1` para formalizar el flujo simplificado objetivo
+2. luego ejecutar `EPIC 10 / Card 10.1.2` para recortar capas visibles del MVP
+3. recién después empezar la simplificación técnica del setup y del flujo de resultados
 
 Este documento queda como tablero maestro para medir si ese avance está ocurriendo de forma ordenada.

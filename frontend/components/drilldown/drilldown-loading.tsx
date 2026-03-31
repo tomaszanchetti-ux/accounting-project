@@ -5,9 +5,9 @@ export function DrilldownLoading() {
   return (
     <div className="space-y-6">
       <AppHeader
-        eyebrow="Drill-down"
-        subtitle="Loading record-level evidence, filters and anomaly summary."
-        title="Preparing detailed records."
+        eyebrow="Deep Dive"
+        subtitle="Loading the concept summary, filters and detailed evidence."
+        title="Preparing deep dive."
       />
       <section className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
         <LoadingBlock className="h-52 border border-border-subtle" />

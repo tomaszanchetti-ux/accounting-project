@@ -91,6 +91,22 @@ export function parseExpectedTotalsPreview(
   }));
 }
 
+export function serializeExpectedTotalsPreview(
+  rows: ExpectedTotalsPreviewRow[],
+): string {
+  const header = "payroll_period,concept_code,expected_amount,currency";
+  const dataRows = rows.map((row) =>
+    [
+      row.payrollPeriod,
+      row.conceptCode,
+      Number.isFinite(row.expectedAmount) ? row.expectedAmount.toFixed(2) : "0.00",
+      row.currency || "EUR",
+    ].join(","),
+  );
+
+  return [header, ...dataRows].join("\n");
+}
+
 export function parsePayrollPreview(text: string): PayrollPreview {
   const { rows } = parseSimpleCsv(text);
   const conceptCodes = new Set<string>();
