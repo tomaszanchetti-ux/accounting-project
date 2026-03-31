@@ -101,7 +101,7 @@ export function RunSetupForm({
                 New reconciliation run
               </h2>
               <StatusPill tone={readyToExecute ? "ready" : "warning"}>
-                {readyToExecute ? "Prepared" : "In setup"}
+                {readyToExecute ? "Ready" : "In progress"}
               </StatusPill>
             </div>
             <p className="max-w-2xl text-sm leading-6 text-text-secondary">

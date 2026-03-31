@@ -75,6 +75,7 @@ npm run dev
 Frontend local:
 
 - `http://localhost:3000`
+- si `3000` está ocupado: `cd frontend && npm run dev -- --port 3001`
 
 ### Backend
 
@@ -136,6 +137,8 @@ Para retomar el proyecto hoy:
 - revisar `docs/DEMO_CASE_VALIDATION.md`
 - revisar `docs/DEMO_WALKTHROUGH.md`
 - revisar `docs/DEMO_READINESS_REPORT.md`
-- revisar `Backlog/EPIC_09_Hardening_QA_Demo_Ready.md`
-- siguiente card recomendada: `EPIC 09 / Card 9.1.1`
+- `EPIC 09` ya quedó completada
+- revisar `docs/EPIC09_FINAL_DEMO_READY_EVALUATION.md`
+- revisar `docs/EPIC09_DEMO_READY_CHECKLIST.md`
+- siguiente paso recomendado: resolver/preparar el entorno final de demo y cerrar branch/merge de `EPIC 09`
 - branch activa recomendada: `codex/epic-09-hardening-qa`

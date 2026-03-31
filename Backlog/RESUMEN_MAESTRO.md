@@ -196,6 +196,7 @@ Al cerrar una sesión:
 | EPIC 06 | ✅ | COMPLETADA | 31 / 31 | Summary Screen real, Concept Analysis dedicada, loading/error/empty states, CTA a drill-down y blueprint funcional implementados; siguiente paso recomendado: `EPIC 07 / Card 7.1.1` |
 | EPIC 07 | ✅ | COMPLETADA | 29 / 29 | Drill-down real, filtros, exports CSV, metadata de trazabilidad visible y validación end-to-end cerrados; siguiente paso recomendado: `EPIC 08 / Card 8.1.1` |
 | EPIC 08 | ✅ | COMPLETADA | 20 / 20 | Seed híbrida, run demo canónica, scripts de create/reset, validación de casos estrella, walkthrough comercial y ensayo end-to-end documentados; siguiente paso recomendado: `EPIC 09 / Card 9.1.1` |
+| EPIC 09 | ✅ | COMPLETADA | 14 / 14 | QA funcional integral, consistencia entre capas, hardening de runs, empty states, resiliencia básica de exportables, consistencia visual, copy, legibilidad de tablas, wow moment, casos complementarios, riesgos/límites aceptados, checklist final y evaluación final de demo-ready cerrados. Evidencia en `docs/EPIC09_FUNCTIONAL_FLOW_QA.md`, `docs/EPIC09_CONSISTENCY_QA.md`, `docs/EPIC09_RUN_ERRORS_AND_EXPORTS_QA.md`, `docs/EPIC09_WOW_MOMENT_QA.md`, `docs/EPIC09_SUPPORTING_CASES_QA.md`, `docs/EPIC09_RESIDUAL_RISKS_AND_LIMITS.md`, `docs/EPIC09_DEMO_READY_CHECKLIST.md` y `docs/EPIC09_FINAL_DEMO_READY_EVALUATION.md`; veredicto final: MVP funcionalmente demo-ready, con gap residual de entorno por redirección a login en home local |
 
 ### Cómo registrar avance
 
@@ -232,8 +233,8 @@ El proyecto empieza a degradarse si:
 
 Con el estado actual del proyecto, el siguiente paso lógico es:
 
-1. abrir branch y contexto de `EPIC 09`
-2. ejecutar hardening y QA visual/funcional sobre el walkthrough ya validado
-3. cerrar el MVP con criterio final de demo-ready
+1. resolver o preparar el acceso de demo al frontend local si la presentación se hará desde ese entorno
+2. luego considerar merge/cierre operativo de `EPIC 09`
+3. usar el checklist final antes de cualquier reunión demo
 
 Este documento queda como tablero maestro para medir si ese avance está ocurriendo de forma ordenada.

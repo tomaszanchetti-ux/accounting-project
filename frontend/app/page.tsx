@@ -1,5 +1,6 @@
 import { AppHeader } from "@/components/ui/app-header";
 import { AppShell } from "@/components/ui/app-shell";
+import { HeaderActionPanel } from "@/components/ui/header-action-panel";
 import { SetupWorkspace } from "@/components/setup/setup-workspace";
 import { StatusPill } from "@/components/ui/status-pill";
 import { getBackendHealth } from "@/lib/api/client";
@@ -15,18 +16,18 @@ export default async function Home() {
     <AppShell>
       <AppHeader
         actions={
-          <div className="flex flex-col gap-3 rounded-[20px] border border-border-subtle bg-white/60 p-4 text-sm text-text-secondary">
+          <HeaderActionPanel title="Workspace Status">
             <div className="flex items-center gap-2">
               <StatusPill tone={backendHealth.ok ? "ready" : "warning"}>
                 {backendHealth.ok ? "API live" : "API offline"}
               </StatusPill>
-              <span className="font-medium">Demo workspace ready</span>
+              <span className="font-medium text-foreground">Demo workspace ready</span>
             </div>
             <p className="max-w-xs leading-6">{backendHealth.summary}</p>
             <p className="font-mono text-xs text-text-muted">
               {backendHealth.apiBaseUrl}
             </p>
-          </div>
+          </HeaderActionPanel>
         }
         eyebrow="Accounting Reconciliation MVP"
         kicker="Demo Seed & Run Setup"

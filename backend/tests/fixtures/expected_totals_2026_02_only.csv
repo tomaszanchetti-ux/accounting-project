@@ -1,0 +1,4 @@
+payroll_period,concept_code,expected_amount,currency
+2026-02,BASE_SALARY,100000.00,EUR
+2026-02,MEAL_VOUCHER,12000.00,EUR
+2026-02,CHILDCARE,8000.00,EUR

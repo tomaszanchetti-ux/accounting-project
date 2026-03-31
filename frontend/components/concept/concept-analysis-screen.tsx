@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { API_BASE_URL, type RunResultDetailResponse } from "@/lib/api/client";
+import { type RunResultDetailResponse } from "@/lib/api/client";
 import {
   formatCompactNumber,
   formatCurrency,
@@ -10,6 +10,8 @@ import {
 import { getResultStatusMeta } from "@/lib/utils/reconciliation";
 
 import { AppHeader } from "@/components/ui/app-header";
+import { ExportCsvButton } from "@/components/ui/export-csv-button";
+import { HeaderActionPanel } from "@/components/ui/header-action-panel";
 import { MetricCard } from "@/components/ui/metric-card";
 import { NoticeBanner } from "@/components/ui/notice-banner";
 import { StatusPill } from "@/components/ui/status-pill";
@@ -26,26 +28,43 @@ export function ConceptAnalysisScreen({ detail }: ConceptAnalysisScreenProps) {
     <div className="space-y-6">
       <AppHeader
         actions={
-          <div className="flex flex-wrap items-center gap-3">
-            <a
-              className="inline-flex items-center justify-center rounded-full border border-border-subtle bg-surface px-4 py-2 text-sm font-semibold text-foreground transition hover:border-surface-ink hover:bg-surface-ink hover:text-white"
-              href={`${API_BASE_URL}/runs/${detail.run.id}/results/${detail.result.id}/exports/detail`}
-            >
-              Export detail CSV
-            </a>
-            <Link
-              className="inline-flex items-center justify-center rounded-full border border-border-subtle bg-white/70 px-4 py-2 text-sm font-semibold text-foreground transition hover:border-surface-ink hover:bg-surface-ink hover:text-white"
-              href={`/runs/${detail.run.id}`}
-            >
-              Back to summary
-            </Link>
-            <Link
-              className="inline-flex items-center justify-center rounded-full bg-surface-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
-              href={`/runs/${detail.run.id}/concepts/${detail.result.id}/drilldown`}
-            >
-              View detailed records
-            </Link>
-          </div>
+          <HeaderActionPanel
+            actions={
+              <>
+                <ExportCsvButton
+                  fallbackFileName={`exception-detail-${detail.concept_analysis.header.concept_code_normalized.toLowerCase()}-${detail.run.period}.csv`}
+                  href={`/runs/${detail.run.id}/results/${detail.result.id}/exports/detail`}
+                  idleLabel="Export detail CSV"
+                />
+                <Link
+                  className="inline-flex items-center justify-center rounded-full border border-border-subtle bg-white px-4 py-2 text-sm font-semibold text-foreground transition hover:border-surface-ink hover:bg-surface-ink hover:text-white"
+                  href={`/runs/${detail.run.id}`}
+                >
+                  Back to summary
+                </Link>
+                <Link
+                  className="inline-flex items-center justify-center rounded-full bg-surface-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
+                  href={`/runs/${detail.run.id}/concepts/${detail.result.id}/drilldown`}
+                >
+                  Open detailed records
+                </Link>
+              </>
+            }
+            title="Concept Context"
+          >
+            <div className="flex items-center gap-2">
+              <StatusPill tone={statusMeta.tone}>{statusMeta.label}</StatusPill>
+              <span className="font-medium text-foreground">{detail.run.period}</span>
+            </div>
+            <p className="max-w-xs leading-6 text-text-secondary">
+              {detail.run.run_label}
+            </p>
+            <div className="space-y-1 font-mono text-xs text-text-muted">
+              <p>{detail.run.id}</p>
+              <p>{detail.run.source_file_name ?? "Source file pending"}</p>
+              <p>{detail.run.rules_version ?? "rules unavailable"}</p>
+            </div>
+          </HeaderActionPanel>
         }
         eyebrow="Concept Analysis"
         kicker={detail.concept_analysis.header.concept_code_normalized}
@@ -88,7 +107,7 @@ export function ConceptAnalysisScreen({ detail }: ConceptAnalysisScreenProps) {
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                Review Direction
+                Review focus
               </p>
               <p className="mt-2 text-base leading-7 text-slate-100">
                 Start with the top ranked causes, then continue into the detailed
@@ -179,7 +198,7 @@ export function ConceptAnalysisScreen({ detail }: ConceptAnalysisScreenProps) {
       <section className="grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
         <article className="rounded-[24px] border border-border-subtle bg-white/75 p-5 md:p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
-            Statement Principal
+            Summary statement
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-foreground">
             {detail.concept_analysis.summary_statement ??
@@ -189,7 +208,7 @@ export function ConceptAnalysisScreen({ detail }: ConceptAnalysisScreenProps) {
 
         <article className="rounded-[24px] border border-border-subtle bg-surface-strong/55 p-5 md:p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
-            Recommended Review Action
+            Recommended next step
           </p>
           <p className="mt-3 text-lg leading-8 text-foreground">
             {detail.concept_analysis.recommended_action ??
@@ -232,7 +251,7 @@ export function ConceptAnalysisScreen({ detail }: ConceptAnalysisScreenProps) {
                           {cause.exception_type}
                         </p>
                         <p className="text-sm text-text-secondary">
-                          Severity {cause.severity} · Scope {cause.scope_level}
+                          Severity {cause.severity} | Scope {cause.scope_level}
                         </p>
                       </div>
                     </div>
@@ -252,7 +271,7 @@ export function ConceptAnalysisScreen({ detail }: ConceptAnalysisScreenProps) {
                   </div>
                   <p className="mt-4 text-sm leading-6 text-text-secondary">
                     {cause.observation ??
-                      "No extra observation was persisted for this exception."}
+                      "No additional observation was stored for this exception."}
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2 text-xs text-text-muted">
                     {cause.record_id ? (
@@ -356,7 +375,7 @@ export function ConceptAnalysisScreen({ detail }: ConceptAnalysisScreenProps) {
                 className="mt-4 inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
                 href={`/runs/${detail.run.id}/concepts/${detail.result.id}/drilldown`}
               >
-                View detailed records
+                Open detailed records
               </Link>
             </div>
           </div>

@@ -256,6 +256,27 @@ export class ApiRequestError extends Error {
   }
 }
 
+function getFilenameFromDisposition(
+  contentDisposition: string | null,
+  fallbackFileName: string,
+) {
+  if (!contentDisposition) {
+    return fallbackFileName;
+  }
+
+  const utf8Match = contentDisposition.match(/filename\*=UTF-8''([^;]+)/i);
+  if (utf8Match?.[1]) {
+    return decodeURIComponent(utf8Match[1]);
+  }
+
+  const asciiMatch = contentDisposition.match(/filename="([^"]+)"/i);
+  if (asciiMatch?.[1]) {
+    return asciiMatch[1];
+  }
+
+  return fallbackFileName;
+}
+
 async function extractApiError(response: Response) {
   try {
     const payload = (await response.json()) as ApiErrorPayload;
@@ -279,6 +300,27 @@ export async function fetchApi<T>(
   }
 
   return (await response.json()) as T;
+}
+
+export async function downloadApiFile(
+  path: string,
+  fallbackFileName: string,
+) {
+  const response = await fetch(`${API_BASE_URL}${path}`, {
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new ApiRequestError(await extractApiError(response), response.status);
+  }
+
+  return {
+    blob: await response.blob(),
+    filename: getFilenameFromDisposition(
+      response.headers.get("content-disposition"),
+      fallbackFileName,
+    ),
+  };
 }
 
 export async function getBackendHealth(): Promise<BackendHealthStatus> {

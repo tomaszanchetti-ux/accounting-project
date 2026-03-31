@@ -1,16 +1,14 @@
 import Link from "next/link";
 
-import {
-  API_BASE_URL,
-  type RunResultRecord,
-  type RunSummaryResponse,
-} from "@/lib/api/client";
+import { type RunResultRecord, type RunSummaryResponse } from "@/lib/api/client";
 import { formatCurrency, formatDateTime, formatRunStatus } from "@/lib/utils/format";
 import { getOverallRunStatusMeta } from "@/lib/utils/reconciliation";
 
 import { ConceptResultsTable } from "@/components/summary/concept-results-table";
 import { RunSummaryCards } from "@/components/summary/run-summary-cards";
 import { AppHeader } from "@/components/ui/app-header";
+import { ExportCsvButton } from "@/components/ui/export-csv-button";
+import { HeaderActionPanel } from "@/components/ui/header-action-panel";
 import { NoticeBanner } from "@/components/ui/notice-banner";
 import { StatusPill } from "@/components/ui/status-pill";
 
@@ -29,10 +27,22 @@ export function RunSummaryScreen({
     <div className="space-y-6">
       <AppHeader
         actions={
-          <div className="grid gap-3 rounded-[22px] border border-border-subtle bg-white/70 p-4 text-sm text-text-secondary">
+          <HeaderActionPanel
+            actions={
+              <ExportCsvButton
+                fallbackFileName={`reconciliation-summary-${summary.run.period}.csv`}
+                href={`/runs/${summary.run.id}/exports/summary`}
+                idleLabel="Export summary CSV"
+                variant="primary"
+              />
+            }
+            title="Run Context"
+          >
             <div className="flex items-center gap-2">
               <StatusPill tone={overallStatus.tone}>{overallStatus.label}</StatusPill>
-              <span className="font-medium">{formatRunStatus(summary.run.status)}</span>
+              <span className="font-medium text-foreground">
+                {formatRunStatus(summary.run.status)}
+              </span>
             </div>
             <p className="max-w-xs leading-6">{overallStatus.description}</p>
             <div className="space-y-1 font-mono text-xs text-text-muted">
@@ -40,13 +50,7 @@ export function RunSummaryScreen({
               <p>{summary.run.source_file_name ?? "Source file pending"}</p>
               <p>{summary.run.rules_version ?? "rules unavailable"}</p>
             </div>
-            <a
-              className="inline-flex items-center justify-center rounded-full bg-surface-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
-              href={`${API_BASE_URL}/runs/${summary.run.id}/exports/summary`}
-            >
-              Export summary CSV
-            </a>
-          </div>
+          </HeaderActionPanel>
         }
         eyebrow="Run Summary"
         kicker={summary.run.run_label}

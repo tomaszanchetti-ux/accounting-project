@@ -36,7 +36,7 @@ const labelByStatus = {
   error: "Error",
   loading: "Uploading",
   pending: "Pending",
-  uploaded: "Loaded",
+  uploaded: "Ready",
 } as const;
 
 export function UploadBox({
@@ -77,7 +77,7 @@ export function UploadBox({
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="space-y-1">
               <p className="text-sm font-medium text-foreground">
-                {state.fileName ?? "No file loaded yet"}
+                {state.fileName ?? "No file selected yet"}
               </p>
               <p className="text-sm text-text-secondary">
                 {state.helperText ?? "Upload a CSV file to continue."}

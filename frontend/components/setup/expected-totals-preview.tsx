@@ -17,7 +17,7 @@ export function ExpectedTotalsPreview({
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div className="space-y-1">
           <h3 className="text-xl font-semibold text-foreground">
-            Expected totals preview
+            Reference totals preview
           </h3>
           <p className="text-sm leading-6 text-text-secondary">
             Quick verification of the reference amounts that will be used during
@@ -46,7 +46,7 @@ export function ExpectedTotalsPreview({
             ) : rows.length === 0 ? (
               <tr>
                 <td className="px-4 py-5 text-text-secondary" colSpan={3}>
-                  No expected totals available yet.
+                  No reference totals available yet.
                 </td>
               </tr>
             ) : (

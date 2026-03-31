@@ -78,19 +78,25 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Crear o resetear entorno demo
-- [ ] Ejecutar setup de una run
-- [ ] Correr la conciliación
-- [ ] Revisar summary
-- [ ] Abrir concept analysis
-- [ ] Abrir drill-down
-- [ ] Descargar exportables
-- [ ] Registrar issues detectados
-- [ ] Commit sugerido: `test(qa): validar flujo funcional integral del MVP`
+- [x] Crear o resetear entorno demo
+- [x] Ejecutar setup de una run
+- [x] Correr la conciliación
+- [x] Revisar summary
+- [x] Abrir concept analysis
+- [x] Abrir drill-down
+- [x] Descargar exportables
+- [x] Registrar issues detectados
+- [x] Commit sugerido: `test(qa): validar flujo funcional integral del MVP`
+
+**Resultado de ejecucion:**
+
+- validacion end-to-end documentada en `docs/EPIC09_FUNCTIONAL_FLOW_QA.md`
+- run QA recreada y validada: `ee9e80e7-5fe0-4a3e-a8ef-7f98eb15cf27`
+- sin bloqueos funcionales graves detectados en el flujo principal
 
 ---
 
@@ -106,15 +112,21 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Verificar consistency de summary vs results
-- [ ] Verificar consistency de concept analysis vs exceptions persistidas
-- [ ] Verificar consistency de drill-down vs staging lines
-- [ ] Documentar y corregir desviaciones
+- [x] Verificar consistency de summary vs results
+- [x] Verificar consistency de concept analysis vs exceptions persistidas
+- [x] Verificar consistency de drill-down vs staging lines
+- [x] Documentar y corregir desviaciones
 - [ ] Commit sugerido: `test(qa): validar consistencia entre motor persistencia y UI`
+
+**Resultado de ejecucion:**
+
+- validacion documentada en `docs/EPIC09_CONSISTENCY_QA.md`
+- `21 / 21` checks de consistencia OK sobre la run `ee9e80e7-5fe0-4a3e-a8ef-7f98eb15cf27`
+- sin drift detectado entre motor, persistencia, API y UI
 
 ---
 
@@ -136,15 +148,25 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Probar archivo faltante o incorrecto
-- [ ] Probar expected totals faltante o inconsistente
-- [ ] Probar fallo de ejecución controlado
-- [ ] Revisar mensajes y estados resultantes
+- [x] Probar archivo faltante o incorrecto
+- [x] Probar expected totals faltante o inconsistente
+- [x] Probar fallo de ejecución controlado
+- [x] Revisar mensajes y estados resultantes
 - [ ] Commit sugerido: `test(qa): revisar errores previsibles de runs`
+
+**Resultado de ejecucion:**
+
+- hardening aplicado en setup para no tratar `INVALID_INPUT` ni `FAILED` como éxito
+- feedback visible ahora usa `run.error_message` cuando corresponde
+- tests agregados para:
+  - missing required files
+  - expected totals sin período objetivo
+  - fallo técnico controlado del motor
+- evidencia documentada en `docs/EPIC09_RUN_ERRORS_AND_EXPORTS_QA.md`
 
 ---
 
@@ -160,15 +182,22 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Revisar empty states de summary
-- [ ] Revisar not found de concept analysis
-- [ ] Revisar empty/filter empty de drill-down
-- [ ] Ajustar textos y jerarquía visual si hace falta
+- [x] Revisar empty states de summary
+- [x] Revisar not found de concept analysis
+- [x] Revisar empty/filter empty de drill-down
+- [x] Ajustar textos y jerarquía visual si hace falta
 - [ ] Commit sugerido: `test(qa): revisar empty states y not found states`
+
+**Resultado de ejecucion:**
+
+- summary ahora distingue `run not found` de error general de carga
+- concept analysis y drill-down ganaron recuperación explícita con CTA visibles
+- se creó un patrón visual común de estado para mantener continuidad de navegación
+- evidencia documentada en `docs/EPIC09_RUN_ERRORS_AND_EXPORTS_QA.md`
 
 ---
 
@@ -184,15 +213,22 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Descargar summary export múltiples veces
-- [ ] Descargar detail export desde concepto wow
-- [ ] Revisar naming, contenido y consistencia
-- [ ] Revisar feedback de fallo si se fuerza error
+- [x] Descargar summary export múltiples veces
+- [x] Descargar detail export desde concepto wow
+- [x] Revisar naming, contenido y consistencia
+- [x] Revisar feedback de fallo si se fuerza error
 - [ ] Commit sugerido: `test(qa): revisar resiliencia basica de exportables`
+
+**Resultado de ejecucion:**
+
+- exportables pasaron de links directos a descarga controlada con feedback inline
+- el usuario ahora ve estado de export y error de descarga en el mismo contexto
+- se preserva el filename real informado por `Content-Disposition`
+- evidencia documentada en `docs/EPIC09_RUN_ERRORS_AND_EXPORTS_QA.md`
 
 ---
 
@@ -214,14 +250,21 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Revisar headers, spacing y jerarquías
-- [ ] Revisar uso de badges, cards y tablas
-- [ ] Unificar patrones donde haga falta
+- [x] Revisar headers, spacing y jerarquías
+- [x] Revisar uso de badges, cards y tablas
+- [x] Unificar patrones donde haga falta
 - [ ] Commit sugerido: `chore(ui): pulir consistencia visual entre pantallas clave`
+
+**Resultado de ejecucion:**
+
+- setup, summary, concept analysis y drill-down ahora comparten un panel contextual consistente en el header
+- se unificaron densidad, borde, sombra y disposición de acciones en pantallas clave
+- el bloque de contexto ahora mantiene una gramática visual estable entre estados de navegación principales
+- durante la pasada se normalizaron además algunos microtextos visibles del flujo
 
 ---
 
@@ -237,15 +280,22 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Revisar títulos de pantalla
-- [ ] Revisar labels de botones
-- [ ] Revisar helper texts, empty states y mensajes de error
-- [ ] Ajustar terminología para consistencia
+- [x] Revisar títulos de pantalla
+- [x] Revisar labels de botones
+- [x] Revisar helper texts, empty states y mensajes de error
+- [x] Ajustar terminología para consistencia
 - [ ] Commit sugerido: `chore(ui): pulir copy y microtextos del MVP`
+
+**Resultado de ejecucion:**
+
+- se normalizó la gramática entre `open`, `back`, `ready`, `review` y `next step`
+- setup, summary, concept analysis y drill-down ahora usan labels más consistentes
+- se ajustaron helper texts y fallbacks visibles para evitar mezcla entre `loaded`, `missing`, `pending` y `not available`
+- el tono quedó más uniforme y orientado a revisión operativa, no a UI genérica
 
 ---
 
@@ -261,14 +311,20 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Revisar tabla de conceptos
-- [ ] Revisar tabla de drill-down
-- [ ] Ajustar widths, alignment y truncation si hace falta
+- [x] Revisar tabla de conceptos
+- [x] Revisar tabla de drill-down
+- [x] Ajustar widths, alignment y truncation si hace falta
 - [ ] Commit sugerido: `chore(ui): pulir legibilidad de tablas clave`
+
+**Resultado de ejecucion:**
+
+- la tabla de summary ahora usa una distribución de anchos más estable y jerarquía más clara entre concepto, números, explicación y CTA
+- la tabla de drill-down redistribuyó ancho hacia columnas de mayor carga semántica como concepto y observación
+- se redujo fricción visual con padding, tamaños tipográficos y alineaciones más consistentes para lectura en demo
 
 ---
 
@@ -290,16 +346,24 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Abrir summary con rojo visible
-- [ ] Entrar a `MEAL_VOUCHER`
-- [ ] Mostrar causas probables
-- [ ] Abrir drill-down
-- [ ] Evaluar claridad, timing e impacto
+- [x] Abrir summary con rojo visible
+- [x] Entrar a `MEAL_VOUCHER`
+- [x] Mostrar causas probables
+- [x] Abrir drill-down
+- [x] Evaluar claridad, timing e impacto
 - [ ] Commit sugerido: `test(demo): ensayar wow moment completo de meal voucher`
+
+**Resultado de ejecucion:**
+
+- `MEAL_VOUCHER` sigue apareciendo como caso principal en summary con diff material y status `Unreconciled`
+- concept analysis sigue separando claramente `Unmapped Concept`, `Duplicate Record` y `Out-of-Period Record`
+- drill-down sigue aterrizando la historia en `519` filas con `14` filas marcadas por excepción visible
+- la secuencia mantiene claridad narrativa, timing razonable e impacto comercial
+- evidencia documentada en `docs/EPIC09_WOW_MOMENT_QA.md`
 
 ---
 
@@ -315,15 +379,23 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Validar `CHILDCARE` como caso de población faltante
-- [ ] Validar `OVERTIME` como caso de outlier
-- [ ] Validar `TRANSPORT` como caso amarillo
-- [ ] Ajustar si alguno pierde claridad o protagonismo correcto
+- [x] Validar `CHILDCARE` como caso de población faltante
+- [x] Validar `OVERTIME` como caso de outlier
+- [x] Validar `TRANSPORT` como caso amarillo
+- [x] Ajustar si alguno pierde claridad o protagonismo correcto
 - [ ] Commit sugerido: `test(demo): verificar casos complementarios del walkthrough`
+
+**Resultado de ejecucion:**
+
+- `CHILDCARE` sigue defendiendo la narrativa de población faltante
+- `OVERTIME` sigue funcionando como caso rápido de outlier dominante
+- `TRANSPORT` sigue actuando como caso sobrio de tolerancia sin competir con el wow principal
+- no se detectó que alguno de los tres casos compita o confunda respecto a `MEAL_VOUCHER`
+- evidencia documentada en `docs/EPIC09_SUPPORTING_CASES_QA.md`
 
 ---
 
@@ -345,17 +417,23 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Documentar riesgos como:
+- [x] Documentar riesgos como:
   - explicación limitada a reglas explícitas
   - dataset controlado
   - ejecución sincrónica
   - exportables básicos
-- [ ] Separar claramente límites del MVP de bugs reales
+- [x] Separar claramente límites del MVP de bugs reales
 - [ ] Commit sugerido: `docs(qa): documentar riesgos funcionales residuales`
+
+**Resultado de ejecucion:**
+
+- se documentaron riesgos funcionales residuales con foco en expectativa correcta de demo
+- quedaron separados de bugs reales y de bloqueos críticos
+- evidencia documentada en `docs/EPIC09_RESIDUAL_RISKS_AND_LIMITS.md`
 
 ---
 
@@ -371,17 +449,23 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Documentar límites como:
+- [x] Documentar límites como:
   - desktop-first
   - sin auth enterprise
   - sin historial sofisticado
   - sin configuración avanzada por usuario
-- [ ] Confirmar que los límites no rompen el objetivo demo
+- [x] Confirmar que los límites no rompen el objetivo demo
 - [ ] Commit sugerido: `docs(qa): documentar limites UX y operativos del MVP`
+
+**Resultado de ejecucion:**
+
+- se documentaron límites UX y operativos aceptados para no sobredimensionar el alcance del MVP
+- los límites quedaron defendibles desde una lógica de demo vendible y control narrativo
+- evidencia documentada en `docs/EPIC09_RESIDUAL_RISKS_AND_LIMITS.md`
 
 ---
 
@@ -403,19 +487,26 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Baja
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Incluir checks de:
+- [x] Incluir checks de:
   - flujo principal
   - wow cases
   - exportables
   - entorno demo
   - calidad visual mínima
   - narrativa preparada
-- [ ] Documentar cómo usar el checklist antes de una reunión
+- [x] Documentar cómo usar el checklist antes de una reunión
 - [ ] Commit sugerido: `docs(qa): definir checklist final demo-ready`
+
+**Resultado de ejecucion:**
+
+- se definió un checklist final breve y accionable para decidir si mostrar o no el producto
+- el checklist quedó organizado por entorno, flujo principal, wow cases, exportables, calidad visual y narrativa
+- también quedó documentado cómo usarlo `15-30` minutos antes de una reunión
+- evidencia documentada en `docs/EPIC09_DEMO_READY_CHECKLIST.md`
 
 ---
 
@@ -431,15 +522,23 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Media
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Ejecutar checklist final
-- [ ] Marcar cumplido / no cumplido
-- [ ] Documentar gaps residuales si existen
-- [ ] Emitir veredicto final del estado del MVP
+- [x] Ejecutar checklist final
+- [x] Marcar cumplido / no cumplido
+- [x] Documentar gaps residuales si existen
+- [x] Emitir veredicto final del estado del MVP
 - [ ] Commit sugerido: `docs(qa): evaluar estado final del MVP contra checklist`
+
+**Resultado de ejecucion:**
+
+- se aplicó formalmente el checklist final al estado real del producto
+- el MVP quedó evaluado como funcionalmente demo-ready para el alcance previsto
+- se registró un gap residual de entorno: redirección a `/login` en la home local
+- el entorno local actual quedó clasificado como condicionalmente demo-ready hasta resolver sesión preparada o bypass de auth
+- evidencia documentada en `docs/EPIC09_FINAL_DEMO_READY_EVALUATION.md`
 
 ---
 
