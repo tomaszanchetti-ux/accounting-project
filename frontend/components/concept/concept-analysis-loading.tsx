@@ -5,9 +5,9 @@ export function ConceptAnalysisLoading() {
   return (
     <div className="space-y-6">
       <AppHeader
-        eyebrow="Concept Analysis"
-        subtitle="Loading concept-level KPIs, explanation blocks and evidence summary."
-        title="Preparing concept analysis."
+        eyebrow="Deep Dive"
+        subtitle="Loading concept-level summary blocks and evidence."
+        title="Preparing deep dive."
       />
       <section className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
         <LoadingBlock className="h-64 border border-border-subtle" />

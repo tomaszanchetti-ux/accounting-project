@@ -12,6 +12,11 @@ from typing import Protocol
 from uuid import uuid4
 
 import pandas as pd
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.lib.units import mm
+from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 from app.core.settings import get_settings
 from app.repositories.runs import RunsRepositoryProtocol
@@ -436,10 +441,18 @@ class RunsService:
         if not result:
             raise RunResultNotFoundError(result_id)
 
-        rows = self.repository.list_payroll_lines(
-            run_id,
-            concept_code_normalized=result.concept_code_normalized,
-        )
+        exceptions = self.repository.list_exceptions(run_id, result_id=result_id)
+        exception_record_ids = {
+            exception.record_id for exception in exceptions if exception.record_id
+        }
+        rows = [
+            row
+            for row in self.repository.list_payroll_lines(run_id)
+            if (
+                row.concept_code_normalized == result.concept_code_normalized
+                or row.record_id in exception_record_ids
+            )
+        ]
         uploaded_files = self.repository.list_uploaded_files(run_id)
         return RunDrilldownResponse(
             run=run,
@@ -566,6 +579,205 @@ class RunsService:
             ),
         )
 
+    def export_exception_detail_pdf(
+        self,
+        run_id: str,
+        result_id: str,
+    ) -> RunExportArtifact:
+        run = self.repository.get_run(run_id)
+        if not run:
+            raise RunNotFoundError(run_id)
+
+        result = self.repository.get_result(run_id, result_id)
+        if not result:
+            raise RunResultNotFoundError(result_id)
+
+        exceptions = self.repository.list_exceptions(run_id, result_id=result_id)
+        rows = self.repository.list_payroll_lines(
+            run_id,
+            concept_code_normalized=result.concept_code_normalized,
+        )
+        concept_analysis = _build_concept_analysis_payload(result, exceptions)
+        drilldown_summary = _build_drilldown_summary(result, rows)
+
+        buffer = BytesIO()
+        doc = SimpleDocTemplate(
+            buffer,
+            pagesize=A4,
+            leftMargin=18 * mm,
+            rightMargin=18 * mm,
+            topMargin=16 * mm,
+            bottomMargin=16 * mm,
+        )
+
+        styles = getSampleStyleSheet()
+        title_style = ParagraphStyle(
+            "ReportTitle",
+            parent=styles["Title"],
+            fontName="Helvetica-Bold",
+            fontSize=20,
+            leading=24,
+            textColor=colors.HexColor("#132033"),
+            spaceAfter=8,
+        )
+        section_style = ParagraphStyle(
+            "SectionTitle",
+            parent=styles["Heading2"],
+            fontName="Helvetica-Bold",
+            fontSize=11,
+            leading=14,
+            textColor=colors.HexColor("#132033"),
+            spaceAfter=6,
+            spaceBefore=10,
+        )
+        body_style = ParagraphStyle(
+            "Body",
+            parent=styles["BodyText"],
+            fontName="Helvetica",
+            fontSize=9,
+            leading=13,
+            textColor=colors.HexColor("#334155"),
+        )
+        small_style = ParagraphStyle(
+            "Small",
+            parent=body_style,
+            fontSize=8,
+            leading=11,
+            textColor=colors.HexColor("#64748B"),
+        )
+
+        story = [
+            Paragraph("Accounting Reconciliation Report", title_style),
+            Paragraph(
+                (
+                    f"Run: {run.run_label} | Period: {run.period} | "
+                    f"Concept: {result.concept_code_normalized}"
+                ),
+                small_style,
+            ),
+            Spacer(1, 6),
+            Paragraph("Concept summary", section_style),
+            Paragraph(
+                concept_analysis.summary_statement
+                or "No summary statement is available for this concept.",
+                body_style,
+            ),
+            Spacer(1, 8),
+            Paragraph("Recommended action", section_style),
+            Paragraph(
+                concept_analysis.recommended_action
+                or "Review the concept-level evidence and confirm the supporting records.",
+                body_style,
+            ),
+            Spacer(1, 8),
+            Paragraph("Key metrics", section_style),
+            _build_pdf_table(
+                [
+                    ["Metric", "Value"],
+                    ["Status", result.status],
+                    ["Expected total", _format_currency_like(result.expected_amount)],
+                    ["Observed total", _format_currency_like(result.observed_amount)],
+                    ["Absolute difference", _format_currency_like(result.absolute_diff)],
+                    ["Difference %", _format_percentage_like(result.relative_diff_pct)],
+                    ["Records analyzed", str(result.record_count)],
+                    [
+                        "Employees affected",
+                        str(result.impacted_employees_count or result.employee_count),
+                    ],
+                ],
+                col_widths=[55 * mm, 95 * mm],
+            ),
+            Paragraph("Top causes", section_style),
+        ]
+
+        if concept_analysis.top_causes:
+            top_cause_rows = [["Cause", "Impact", "Confidence"]]
+            for cause in concept_analysis.top_causes[:3]:
+                top_cause_rows.append(
+                    [
+                        cause.exception_type,
+                        _format_currency_like(cause.estimated_impact_amount),
+                        _format_percentage_from_confidence(cause.confidence),
+                    ]
+                )
+            story.append(_build_pdf_table(top_cause_rows, col_widths=[85 * mm, 35 * mm, 30 * mm]))
+        else:
+            story.append(Paragraph("No ranked causes were returned for this concept.", body_style))
+
+        story.extend(
+            [
+                Paragraph("Evidence summary", section_style),
+                _build_pdf_table(
+                    [
+                        ["Measure", "Value"],
+                        [
+                            "Total exceptions",
+                            str(concept_analysis.evidence_summary.total_exceptions),
+                        ],
+                        [
+                            "Rows with evidence",
+                            str(concept_analysis.evidence_summary.records_with_exception),
+                        ],
+                        [
+                            "Employees with exception",
+                            str(concept_analysis.evidence_summary.employees_with_exception),
+                        ],
+                        ["Rows in deep dive", str(len(rows))],
+                        [
+                            "Total amount",
+                            _format_currency_like(drilldown_summary.total_amount),
+                        ],
+                    ],
+                    col_widths=[55 * mm, 95 * mm],
+                ),
+                Paragraph("Sample records", section_style),
+            ]
+        )
+
+        sample_rows = [["Record", "Employee", "Amount", "Exceptions"]]
+        for row in rows[:12]:
+            sample_rows.append(
+                [
+                    row.record_id,
+                    row.employee_name or row.employee_id or "Unknown",
+                    _format_currency_like(row.amount),
+                    _serialize_row_exception_types(row) or "None",
+                ]
+            )
+        story.append(
+            _build_pdf_table(
+                sample_rows,
+                col_widths=[30 * mm, 55 * mm, 28 * mm, 52 * mm],
+                small=True,
+            )
+        )
+
+        story.extend(
+            [
+                Spacer(1, 8),
+                Paragraph(
+                    (
+                        f"Generated from run {run.id} on "
+                        f"{_format_datetime_for_report(run.completed_at)}."
+                    ),
+                    small_style,
+                ),
+            ]
+        )
+
+        doc.build(story)
+
+        return RunExportArtifact(
+            content=buffer.getvalue(),
+            filename=(
+                "reconciliation-report-"
+                f"{_slugify_filename(run.run_label)}-"
+                f"{result.period}-"
+                f"{_slugify_filename(result.concept_code_normalized)}.pdf"
+            ),
+            media_type="application/pdf",
+        )
+
 def _build_expected_totals_used_records(
     *,
     run_id: str,
@@ -656,6 +868,78 @@ def _build_result_records(
         )
 
     return rows
+
+
+def _build_pdf_table(
+    rows: list[list[str]],
+    *,
+    col_widths: list[float],
+    small: bool = False,
+) -> Table:
+    table = Table(rows, colWidths=col_widths, repeatRows=1)
+    font_size = 7 if small else 8
+    table.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#132033")),
+                ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+                ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+                ("FONTSIZE", (0, 0), (-1, -1), font_size),
+                ("LEADING", (0, 0), (-1, -1), 10),
+                ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#F8FAFC")]),
+                ("GRID", (0, 0), (-1, -1), 0.25, colors.HexColor("#CBD5E1")),
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 6),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 6),
+                ("TOPPADDING", (0, 0), (-1, -1), 5),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+            ]
+        )
+    )
+    return table
+
+
+def _format_currency_like(value: Decimal | str | None) -> str:
+    if value in (None, ""):
+        return "N/A"
+
+    try:
+        number = Decimal(str(value))
+    except Exception:
+        return str(value)
+
+    return f"EUR {number:,.2f}"
+
+
+def _format_percentage_like(value: Decimal | str | None) -> str:
+    if value in (None, ""):
+        return "N/A"
+
+    try:
+        number = Decimal(str(value))
+    except Exception:
+        return str(value)
+
+    return f"{number:.2f}%"
+
+
+def _format_percentage_from_confidence(value: str | None) -> str:
+    if not value:
+        return "N/A"
+
+    try:
+        number = Decimal(str(value)) * Decimal("100")
+    except Exception:
+        return value
+
+    return f"{number:.0f}%"
+
+
+def _format_datetime_for_report(value: datetime | None) -> str:
+    if value is None:
+        return "an unknown time"
+
+    return value.strftime("%Y-%m-%d %H:%M UTC")
 
 
 def _build_exception_records(
@@ -759,14 +1043,7 @@ def _build_concept_analysis_payload(
     employees_with_exception = len(
         {item.employee_id for item in exceptions if item.employee_id}
     )
-    top_causes = sorted(
-        exceptions,
-        key=lambda item: (
-            item.estimated_impact_amount or Decimal("0"),
-            item.confidence or Decimal("0"),
-        ),
-        reverse=True,
-    )[:3]
+    top_causes = _build_ranked_top_causes(exceptions)
 
     return ConceptAnalysisPayload(
         header=ConceptAnalysisHeader(
@@ -796,6 +1073,81 @@ def _build_concept_analysis_payload(
             employees_with_exception=employees_with_exception,
         ),
     )
+
+
+def _build_ranked_top_causes(
+    exceptions: list[RunExceptionRecord],
+    limit: int = 3,
+) -> list[RunExceptionRecord]:
+    if not exceptions:
+        return []
+
+    aggregated_by_type: dict[str, dict[str, object]] = {}
+    for exception in exceptions:
+        exception_type = exception.exception_type
+        impact_amount = exception.estimated_impact_amount or Decimal("0")
+        confidence = exception.confidence or Decimal("0")
+        current = aggregated_by_type.get(exception_type)
+        if current is None:
+            aggregated_by_type[exception_type] = {
+                "representative": exception,
+                "estimated_impact_amount": impact_amount,
+                "confidence_total": confidence,
+                "confidence_count": 1 if exception.confidence is not None else 0,
+            }
+            continue
+
+        current["estimated_impact_amount"] = (
+            current["estimated_impact_amount"] + impact_amount
+        )
+        if exception.confidence is not None:
+            current["confidence_total"] = current["confidence_total"] + confidence
+            current["confidence_count"] = current["confidence_count"] + 1
+
+        representative = current["representative"]
+        representative_impact = representative.estimated_impact_amount or Decimal("0")
+        representative_confidence = representative.confidence or Decimal("0")
+        if (
+            impact_amount > representative_impact
+            or (
+                impact_amount == representative_impact
+                and confidence > representative_confidence
+            )
+        ):
+            current["representative"] = exception
+
+    ranked_groups = sorted(
+        aggregated_by_type.values(),
+        key=lambda item: (
+            item["estimated_impact_amount"],
+            (
+                item["confidence_total"] / item["confidence_count"]
+                if item["confidence_count"]
+                else Decimal("0")
+            ),
+        ),
+        reverse=True,
+    )[:limit]
+
+    ranked_top_causes: list[RunExceptionRecord] = []
+    for group in ranked_groups:
+        representative = group["representative"]
+        confidence_count = group["confidence_count"]
+        average_confidence = (
+            group["confidence_total"] / confidence_count
+            if confidence_count
+            else representative.confidence
+        )
+        ranked_top_causes.append(
+            representative.model_copy(
+                update={
+                    "estimated_impact_amount": group["estimated_impact_amount"],
+                    "confidence": average_confidence,
+                }
+            )
+        )
+
+    return ranked_top_causes
 
 
 def _build_drilldown_summary(

@@ -321,6 +321,13 @@ class RunsApiFlowTest(unittest.TestCase):
             detail_payload["concept_analysis"]["evidence_summary"]["total_exceptions"],
             0,
         )
+        top_cause_types = [
+            item["exception_type"] for item in detail_payload["concept_analysis"]["top_causes"]
+        ]
+        self.assertEqual(len(top_cause_types), len(set(top_cause_types)))
+        self.assertIn("Unmapped Concept", top_cause_types)
+        self.assertIn("Duplicate Record", top_cause_types)
+        self.assertIn("Out-of-Period Record", top_cause_types)
         self.assertGreaterEqual(len(detail_payload["event_log"]), 4)
 
         drilldown_response = self.client.get(
@@ -337,9 +344,19 @@ class RunsApiFlowTest(unittest.TestCase):
             len(drilldown_payload["filter_context"]["available_exception_types"]),
             0,
         )
+        self.assertIn(
+            "Unmapped Concept",
+            drilldown_payload["filter_context"]["available_exception_types"],
+        )
         self.assertTrue(
             any(
                 "Out-of-Period Record" in row["exception_flags"]
+                for row in drilldown_payload["rows"]
+            )
+        )
+        self.assertTrue(
+            any(
+                "Unmapped Concept" in row["exception_flags"]
                 for row in drilldown_payload["rows"]
             )
         )
@@ -379,6 +396,17 @@ class RunsApiFlowTest(unittest.TestCase):
                 for row in detail_rows
             )
         )
+
+        report_export_response = self.client.get(
+            f"/runs/{run_id}/results/{meal_voucher['id']}/exports/report"
+        )
+        self.assertEqual(report_export_response.status_code, 200)
+        self.assertEqual(report_export_response.headers["content-type"], "application/pdf")
+        self.assertIn(
+            "attachment; filename=",
+            report_export_response.headers["content-disposition"],
+        )
+        self.assertTrue(report_export_response.content.startswith(b"%PDF"))
 
     def test_multipart_upload_persists_to_storage_and_is_executable(self) -> None:
         repo_root = Path(__file__).resolve().parents[2]
@@ -465,7 +493,9 @@ class RunsApiFlowTest(unittest.TestCase):
         self.assertEqual(create_response.status_code, 201)
         run_id = create_response.json()["run"]["id"]
 
-        invalid_expected_totals_path = repo_root / "backend/tests/fixtures/expected_totals_2026_02_only.csv"
+        invalid_expected_totals_path = (
+            repo_root / "backend/tests/fixtures/expected_totals_2026_02_only.csv"
+        )
 
         file_refs = {
             "payroll": repo_root / "data/demo_seed/payroll.csv",

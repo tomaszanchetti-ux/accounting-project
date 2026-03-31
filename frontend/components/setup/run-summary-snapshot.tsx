@@ -34,7 +34,7 @@ export function RunSummarySnapshot({ summary }: RunSummarySnapshotProps) {
           className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
           href={`/runs/${summary.run.id}`}
         >
-          Open run summary
+          Open results
         </Link>
       </div>
 
@@ -92,7 +92,7 @@ export function RunSummarySnapshot({ summary }: RunSummarySnapshotProps) {
 
         <div className="rounded-[20px] border border-white/10 bg-white/5 p-4">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-            Traceability
+            Recent run events
           </p>
           <div className="mt-4 space-y-4">
             {summary.event_log.map((event) => (

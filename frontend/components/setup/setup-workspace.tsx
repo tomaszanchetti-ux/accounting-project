@@ -1,26 +1,23 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
 import {
   createRun,
   executeRun,
-  getRunSummary,
   uploadRunFile,
   type BackendHealthStatus,
   type RunRecord,
-  type RunSummaryResponse,
 } from "@/lib/api/client";
 import {
-  parseExpectedTotalsPreview,
   parsePayrollPreview,
+  serializeExpectedTotalsPreview,
   type ExpectedTotalsPreviewRow,
 } from "@/lib/utils/csv";
-import { formatDateTime } from "@/lib/utils/format";
 import { EmptyState } from "@/components/ui/empty-state";
 import { NoticeBanner } from "@/components/ui/notice-banner";
 import { RunSetupForm } from "@/components/setup/run-setup-form";
-import { RunSummarySnapshot } from "@/components/setup/run-summary-snapshot";
 
 type SetupWorkspaceProps = {
   backendHealth: BackendHealthStatus;
@@ -69,6 +66,14 @@ function buildSeedFile(fileName: string, content: string) {
   return new File([content], fileName, { type: "text/csv" });
 }
 
+function buildExpectedTotalsFile(rows: ExpectedTotalsPreviewRow[]) {
+  return new File(
+    [serializeExpectedTotalsPreview(rows)],
+    "expected_totals_manual.csv",
+    { type: "text/csv" },
+  );
+}
+
 function buildExecutionFeedback(run: RunRecord): NonNullable<FeedbackState> | null {
   if (run.status === "INVALID_INPUT") {
     return {
@@ -99,21 +104,24 @@ export function SetupWorkspace({
   demoExpectedTotals,
   seedFiles,
 }: SetupWorkspaceProps) {
+  const router = useRouter();
   const [run, setRun] = useState<RunRecord | null>(null);
-  const [summary, setSummary] = useState<RunSummaryResponse | null>(null);
   const [feedback, setFeedback] = useState<FeedbackState>(null);
   const [isPreparingRun, setIsPreparingRun] = useState(false);
   const [isExecuting, setIsExecuting] = useState(false);
   const [payrollState, setPayrollState] = useState<UploadState>(pendingUploadState);
-  const [expectedTotalsState, setExpectedTotalsState] = useState<UploadState>({
-    helperText: "Demo seed totals will be uploaded when the run starts.",
-    status: "pending",
+  const [, setExpectedTotalsState] = useState<UploadState>({
+    fileName: "expected_totals_manual.csv",
+    helperText: "Seed values loaded and ready to edit.",
+    metadata: `${demoExpectedTotals.length} concepts ready`,
+    status: "uploaded",
   });
   const [expectedTotalsRows, setExpectedTotalsRows] =
     useState<ExpectedTotalsPreviewRow[]>(demoExpectedTotals);
   const [expectedTotalsSourceLabel, setExpectedTotalsSourceLabel] = useState(
-    "Demo seed upload",
+    "Manual entry prefilled from seed",
   );
+  const [expectedTotalsDirty, setExpectedTotalsDirty] = useState(true);
   const [setupParameters, setSetupParameters] = useState({
     includeExceptionsAnalysis: true,
     legalEntityScope: "ARD Spain SL",
@@ -142,9 +150,9 @@ export function SetupWorkspace({
         ready: Boolean(run),
       },
       {
-        description: "Demo seed expected totals or an uploaded replacement are registered.",
+        description: "Expected totals are available and will be synced when the run executes.",
         label: "Expected totals ready",
-        ready: expectedTotalsState.status === "uploaded",
+        ready: expectedTotalsRows.length > 0,
       },
       {
         description: "Payroll CSV must be uploaded before execution.",
@@ -166,7 +174,7 @@ export function SetupWorkspace({
       },
     ];
   }, [
-    expectedTotalsState.status,
+    expectedTotalsRows.length,
     payrollDetectedPeriod,
     payrollState.status,
     run,
@@ -183,11 +191,11 @@ export function SetupWorkspace({
     }
 
     setIsPreparingRun(true);
-    setFeedback({
-      message: "Creating run workspace",
-      detail: "Registering demo seed references and preparing the setup shell.",
-      tone: "info",
-    });
+      setFeedback({
+        message: "Creating reconciliation run",
+        detail: "Preparing the run and loading the default reference files.",
+        tone: "info",
+      });
 
     try {
       const created = await createRun({
@@ -200,50 +208,33 @@ export function SetupWorkspace({
       const nextRun = created.run;
       setRun(nextRun);
 
-      const [expectedTotalsUpload, conceptMasterUpload, employeeReferenceUpload] =
-        await Promise.all([
-          uploadRunFile(
-            nextRun.id,
-            "expected_totals",
-            buildSeedFile(
-              seedFiles.expectedTotals.fileName,
-              seedFiles.expectedTotals.content,
-            ),
+      const [conceptMasterUpload, employeeReferenceUpload] = await Promise.all([
+        uploadRunFile(
+          nextRun.id,
+          "concept_master",
+          buildSeedFile(
+            seedFiles.conceptMaster.fileName,
+            seedFiles.conceptMaster.content,
           ),
-          uploadRunFile(
-            nextRun.id,
-            "concept_master",
-            buildSeedFile(
-              seedFiles.conceptMaster.fileName,
-              seedFiles.conceptMaster.content,
-            ),
+        ),
+        uploadRunFile(
+          nextRun.id,
+          "employee_reference",
+          buildSeedFile(
+            seedFiles.employeeReference.fileName,
+            seedFiles.employeeReference.content,
           ),
-          uploadRunFile(
-            nextRun.id,
-            "employee_reference",
-            buildSeedFile(
-              seedFiles.employeeReference.fileName,
-              seedFiles.employeeReference.content,
-            ),
-          ),
-        ]);
+        ),
+      ]);
 
-      setExpectedTotalsState({
-        fileName: expectedTotalsUpload.uploaded_file.file_name,
-        helperText: "Using uploaded demo seed expected totals as default reference.",
-        metadata: `Registered ${formatDateTime(
-          expectedTotalsUpload.uploaded_file.uploaded_at,
-        )}`,
-        status: "uploaded",
-      });
       setSupportFilesReady({
         conceptMaster: Boolean(conceptMasterUpload.uploaded_file.id),
         employeeReference: Boolean(employeeReferenceUpload.uploaded_file.id),
       });
       setFeedback({
-        message: "Run ready for input",
+        message: "Run ready",
         detail:
-          "The setup workspace is active. Upload payroll or replace expected totals if needed.",
+          "Upload the payroll file, confirm the expected totals and run the reconciliation.",
         tone: "success",
       });
     } catch (error) {
@@ -319,104 +310,47 @@ export function SetupWorkspace({
     }
   }
 
-  async function handleExpectedTotalsUpload(file: File) {
-    if (!run) {
-      setFeedback({
-        message: "Create a run first",
-        detail: "The setup needs an active run before files can be attached.",
-        tone: "warning",
-      });
-      return;
-    }
+  function handleExpectedTotalsAmountChange(
+    conceptCode: string,
+    nextAmount: string,
+  ) {
+    const parsedAmount = Number.parseFloat(nextAmount);
 
+    setExpectedTotalsRows((current) =>
+      current.map((row) =>
+        row.conceptCode === conceptCode
+          ? {
+              ...row,
+              expectedAmount: Number.isFinite(parsedAmount) ? parsedAmount : 0,
+            }
+          : row,
+      ),
+    );
+    setExpectedTotalsDirty(true);
+    setExpectedTotalsSourceLabel("Manual entry");
     setExpectedTotalsState({
-      fileName: file.name,
-      helperText: "Uploading expected totals...",
-      sizeBytes: file.size,
-      status: "loading",
+      fileName: "expected_totals_manual.csv",
+      helperText: "Manual values will be synced automatically when you run the reconciliation.",
+      metadata: `${expectedTotalsRows.length} concepts ready`,
+      status: "uploaded",
     });
-
-    try {
-      const fileText = await file.text();
-      const previewRows = parseExpectedTotalsPreview(fileText);
-      const response = await uploadRunFile(run.id, "expected_totals", file);
-
-      setExpectedTotalsRows(previewRows);
-      setExpectedTotalsSourceLabel("Uploaded expected totals");
-      setExpectedTotalsState({
-        fileName: response.uploaded_file.file_name,
-        helperText: "Expected totals uploaded and replacing the demo reference.",
-        metadata: `${previewRows.length} concepts ready`,
-        sizeBytes: file.size,
-        status: "uploaded",
-      });
-      setFeedback({
-        message: "Expected totals updated",
-        detail: "The run will use the uploaded reference file on execution.",
-        tone: "success",
-      });
-    } catch (error) {
-      const message =
-        error instanceof Error ? error.message : "Expected totals upload failed.";
-      setExpectedTotalsState({
-        fileName: file.name,
-        helperText: message,
-        sizeBytes: file.size,
-        status: "error",
-      });
-      setFeedback({
-        message: "Expected totals upload failed",
-        detail: message,
-        tone: "error",
-      });
-    }
   }
 
-  async function resetExpectedTotalsToDemo() {
-    if (!run) {
-      return;
-    }
-
-      setExpectedTotalsState({
-        fileName: seedFiles.expectedTotals.fileName,
-        helperText: "Uploading demo seed expected totals again...",
-        status: "loading",
-      });
-
-    try {
-      const response = await uploadRunFile(
-        run.id,
-        "expected_totals",
-        buildSeedFile(seedFiles.expectedTotals.fileName, seedFiles.expectedTotals.content),
-      );
-
-      setExpectedTotalsRows(demoExpectedTotals);
-      setExpectedTotalsSourceLabel("Demo seed upload");
-      setExpectedTotalsState({
-        fileName: response.uploaded_file.file_name,
-        helperText: "Demo seed expected totals restored from upload.",
-        metadata: `${demoExpectedTotals.length} concepts ready`,
-        status: "uploaded",
-      });
-      setFeedback({
-        message: "Demo expected totals restored",
-        detail: "The default reference file is active again for this run.",
-        tone: "info",
-      });
-    } catch (error) {
-      const message =
-        error instanceof Error ? error.message : "Unable to restore demo seed.";
-      setExpectedTotalsState({
-        fileName: seedFiles.expectedTotals.fileName,
-        helperText: message,
-        status: "error",
-      });
-      setFeedback({
-        message: "Demo reference could not be restored",
-        detail: message,
-        tone: "error",
-      });
-    }
+  function resetExpectedTotalsToDemo() {
+    setExpectedTotalsRows(demoExpectedTotals);
+    setExpectedTotalsDirty(true);
+    setExpectedTotalsSourceLabel("Manual entry prefilled from seed");
+    setExpectedTotalsState({
+      fileName: "expected_totals_manual.csv",
+      helperText: "Seed values restored. They will be synced automatically when you run the reconciliation.",
+      metadata: `${demoExpectedTotals.length} concepts ready`,
+      status: "uploaded",
+    });
+    setFeedback({
+      message: "Expected totals restored",
+      detail: "The manual values were reset to the default seed amounts.",
+      tone: "info",
+    });
   }
 
   async function handleExecuteRun() {
@@ -425,31 +359,54 @@ export function SetupWorkspace({
     }
 
     setIsExecuting(true);
-    setFeedback({
-      message: "Executing reconciliation",
-      detail: "The backend is processing the run and preparing the summary payload.",
-      tone: "info",
-    });
+      setFeedback({
+        message: "Executing reconciliation",
+        detail: "The backend is processing the files and preparing the results.",
+        tone: "info",
+      });
 
     try {
+      if (!expectedTotalsRows.length) {
+        throw new Error("Expected totals are required before running reconciliation.");
+      }
+
+      if (expectedTotalsDirty) {
+        setExpectedTotalsState({
+          fileName: "expected_totals_manual.csv",
+          helperText: "Syncing manual expected totals...",
+          metadata: `${expectedTotalsRows.length} concepts ready`,
+          status: "loading",
+        });
+
+        const response = await uploadRunFile(
+          run.id,
+          "expected_totals",
+          buildExpectedTotalsFile(expectedTotalsRows),
+        );
+
+        setExpectedTotalsState({
+          fileName: response.uploaded_file.file_name,
+          helperText: "Manual expected totals synced to the run.",
+          metadata: `${expectedTotalsRows.length} concepts ready`,
+          status: "uploaded",
+        });
+        setExpectedTotalsDirty(false);
+      }
+
       const execution = await executeRun(run.id);
       setRun(execution.run);
       const executionFeedback = buildExecutionFeedback(execution.run);
 
       if (executionFeedback) {
-        setSummary(null);
         setFeedback(executionFeedback);
         return;
       }
-
-      const nextSummary = await getRunSummary(run.id);
-      setSummary(nextSummary);
       setFeedback({
         message: "Run executed successfully",
-        detail:
-          "Summary payload, preview results and event trace are now available below.",
+        detail: "Opening the results now.",
         tone: "success",
       });
+      router.push(`/runs/${run.id}`);
     } catch (error) {
       const message =
         error instanceof Error ? error.message : "Run execution failed.";
@@ -488,15 +445,13 @@ export function SetupWorkspace({
         />
       ) : (
         <RunSetupForm
-          backendReachable={backendHealth.ok}
           executeDisabled={!readyToExecute || isExecuting}
           executeLabel={isExecuting ? "Running reconciliation..." : "Run Reconciliation"}
           expectedTotalsRows={expectedTotalsRows}
           expectedTotalsSourceLabel={expectedTotalsSourceLabel}
-          expectedTotalsState={expectedTotalsState}
           feedback={feedback ?? undefined}
           onExecute={handleExecuteRun}
-          onExpectedTotalsUpload={handleExpectedTotalsUpload}
+          onExpectedTotalsAmountChange={handleExpectedTotalsAmountChange}
           onPayrollUpload={handlePayrollUpload}
           onResetExpectedTotalsToDemo={resetExpectedTotalsToDemo}
           onUpdateIncludeExceptions={(checked) =>
@@ -529,13 +484,10 @@ export function SetupWorkspace({
           payrollState={payrollState}
           readyChecks={readyChecks}
           readyToExecute={readyToExecute}
-          run={run}
           setupParameters={setupParameters}
           supportFilesReady={supportFilesReady}
         />
       )}
-
-      {summary ? <RunSummarySnapshot summary={summary} /> : null}
     </div>
   );
 }

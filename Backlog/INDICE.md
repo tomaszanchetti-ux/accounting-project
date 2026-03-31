@@ -44,6 +44,7 @@ La arquitectura base del proyecto se considera cerrada salvo que una épica post
 | 7 | [Drill-down, Exports & Demo Traceability](./EPIC_07_Drilldown_Exports_Traceability.md) | D7 | 4, 6 | ⏳ WS4 | PENDIENTE |
 | 8 | [Demo Seed, Narrative & Commercial Flow](./EPIC_08_Demo_Seed_Narrative_Commercial_Flow.md) | — | 1, 2, 3, 6, 7 | ⏳ WS5 | PENDIENTE |
 | 9 | [Hardening, QA & Demo-Ready Closure](./EPIC_09_Hardening_QA_Demo_Ready.md) | Transversal | 8 | ⏳ WS5 | PENDIENTE |
+| 10 | [MVP Simplification & Single-Flow UX](./EPIC_10_MVP_Simplification_Flow.md) | Transversal | 5, 6, 7, 9 | ✅ WS23 | PENDIENTE |
 
 ---
 
@@ -60,6 +61,7 @@ EPIC 0 (Setup Técnico)
                           │           └── EPIC 7 (Drill-down, Exports & Demo Traceability)
                           │                 └── EPIC 8 (Demo Seed, Narrative & Commercial Flow)
                           │                       └── EPIC 9 (Hardening, QA & Demo-Ready Closure)
+                          │                             └── EPIC 10 (MVP Simplification & Single-Flow UX)
                           └── EPIC 8 (Demo Seed, Narrative & Commercial Flow)
 ```
 
@@ -106,6 +108,10 @@ Deja la demo lista para ser mostrada: carga de seed consistente, corridas prearm
 ### EPIC 09 — Hardening, QA & Demo-Ready Closure
 
 Cierra el MVP con validación funcional, chequeos manuales, polish visual, corrección de bordes y checklist de “demo-ready”.
+
+### EPIC 10 — MVP Simplification & Single-Flow UX
+
+Reordena la experiencia del producto para bajar fricción visible: menos decisiones en setup, menos capas entre summary y evidencia, y un flujo más simple basado en `Upload + Run -> Summary -> Deep Dive + Export`.
 
 ---
 
@@ -163,6 +169,7 @@ Para este proyecto conviene documentar en este orden:
 8. `EPIC_07_Drilldown_Exports_Traceability.md`
 9. `EPIC_08_Demo_Seed_Narrative_Commercial_Flow.md`
 10. `EPIC_09_Hardening_QA_Demo_Ready.md`
+11. `EPIC_10_MVP_Simplification_Flow.md`
 
 ---
 

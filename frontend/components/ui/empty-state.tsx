@@ -8,26 +8,26 @@ export function EmptyState({ action }: EmptyStateProps) {
       <div className="space-y-5">
         <div className="space-y-3">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-text-muted">
-            Setup Flow
+            New Reconciliation
           </p>
           <h2 className="text-3xl font-semibold tracking-[-0.03em] text-foreground">
-            Start a reconciliation run with just the essentials.
+            Start with the files and the run.
           </h2>
           <p className="max-w-2xl text-base leading-7 text-text-secondary">
-            The MVP keeps the first interaction intentionally narrow: define the
-            payroll period, attach the payroll file, confirm the expected totals
-            reference and launch the run from one controlled workspace.
+            The simplified MVP starts from one task: prepare the payroll input,
+            confirm the expected totals and launch the run without extra setup
+            noise.
           </p>
         </div>
         <div className="flex flex-wrap gap-3 text-sm text-text-secondary">
           <span className="rounded-full border border-border-subtle bg-surface px-3 py-2">
-            One active run at a time
+            Upload payroll
           </span>
           <span className="rounded-full border border-border-subtle bg-surface px-3 py-2">
-            Demo seed references preloaded
+            Confirm totals
           </span>
           <span className="rounded-full border border-border-subtle bg-surface px-3 py-2">
-            Ready for upload and execution
+            Run reconciliation
           </span>
         </div>
       </div>
@@ -36,9 +36,9 @@ export function EmptyState({ action }: EmptyStateProps) {
           What happens next
         </p>
         <div className="mt-4 space-y-3 text-sm leading-6 text-slate-200">
-          <p>1. Create a run and register the demo reference files.</p>
-          <p>2. Upload `payroll.csv` and optionally replace expected totals.</p>
-          <p>3. Review readiness and execute reconciliation.</p>
+          <p>1. Create the run shell in the background.</p>
+          <p>2. Attach `payroll.csv` and `expected_totals.csv`.</p>
+          <p>3. Run the reconciliation and open the results.</p>
         </div>
         <div className="mt-6">{action}</div>
       </div>

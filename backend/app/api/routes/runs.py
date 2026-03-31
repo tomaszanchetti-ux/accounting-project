@@ -196,3 +196,28 @@ def export_run_result_detail(
             "Content-Disposition": f'attachment; filename="{export.filename}"',
         },
     )
+
+
+@router.get("/{run_id}/results/{result_id}/exports/report")
+def export_run_result_report(
+    run_id: str,
+    result_id: str,
+    service: RunsService = Depends(get_runs_service),
+) -> Response:
+    try:
+        export = service.export_exception_detail_pdf(run_id, result_id)
+    except RunNotFoundError as error:
+        raise HTTPException(status_code=404, detail=f"Run not found: {error}") from error
+    except RunResultNotFoundError as error:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Run result not found: {error}",
+        ) from error
+
+    return Response(
+        content=export.content,
+        media_type=export.media_type,
+        headers={
+            "Content-Disposition": f'attachment; filename="{export.filename}"',
+        },
+    )

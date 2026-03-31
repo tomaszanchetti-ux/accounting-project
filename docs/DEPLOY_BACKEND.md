@@ -37,13 +37,13 @@ Tambien queda alineada con el monorepo actual porque:
 
 ## URL productiva objetivo
 
-La URL base productiva objetivo para el backend se define como:
+La URL base productiva actual del backend se define como:
 
-- `https://accounting-project-api.up.railway.app`
+- `https://accounting-project-production-7829.up.railway.app`
 
 Esta URL debe cargarse en Vercel como:
 
-- `NEXT_PUBLIC_API_BASE_URL=https://accounting-project-api.up.railway.app`
+- `NEXT_PUBLIC_API_BASE_URL=https://accounting-project-production-7829.up.railway.app`
 
 ## Variables requeridas en el backend desplegado
 
@@ -77,8 +77,10 @@ Antes de considerar el backend como desplegado para demo:
 Estos archivos dejan el backend listo para que Railway construya el servicio
 correcto aun cuando el deploy parta desde el root del monorepo.
 
-## Nota operativa
+## Estado verificado
 
-Si el servicio actual de Railway sigue devolviendo `404` en `/health`, el paso
-operativo pendiente no es de código sino de re-deploy o re-vinculación del
-servicio usando esta configuración.
+Validado el `31/03/2026`:
+
+- `GET /health` sobre `https://accounting-project-production-7829.up.railway.app/health` responde `200`
+- el frontend publico en Vercel ya puede alcanzar ese backend
+- `NEXT_PUBLIC_API_BASE_URL` debe mantenerse alineada con esa URL activa

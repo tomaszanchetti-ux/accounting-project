@@ -23,6 +23,7 @@ MVP de conciliacion entre payroll/RRHH y contabilidad con foco en:
 - `docs/DEMO_READINESS_REPORT.md`
 - `docs/DEMO_SEED_STRATEGY.md`
 - `docs/DEMO_WALKTHROUGH.md`
+- `docs/EXECUTIVE_DEMO_SCRIPT_2M30.md`
 - `docs/RECONCILIATION_ENGINE_CONTRACT.md`
 - `docs/RUNS_MODEL_MVP.md`
 - `docs/RUNS_PERSISTENCE_MODEL.md`
@@ -106,8 +107,9 @@ Comandos individuales:
 
 - frontend publico esperado: `https://accounting-project-blond.vercel.app/`
 - estrategia del backend: `docs/DEPLOY_BACKEND.md`
-- el backend ahora queda preparado para Railway desde el root del repo con `Dockerfile` + `railway.toml`
-- para demo publica end-to-end, `NEXT_PUBLIC_API_BASE_URL` debe apuntar a `https://accounting-project-api.up.railway.app`
+- backend productivo operativo en Railway: `https://accounting-project-production-7829.up.railway.app`
+- el backend se despliega desde el root del repo con `Dockerfile` + `railway.toml`
+- para demo publica end-to-end, `NEXT_PUBLIC_API_BASE_URL` debe apuntar a `https://accounting-project-production-7829.up.railway.app`
 
 ## Rutina de arranque de cada WS
 
@@ -141,5 +143,8 @@ Para retomar el proyecto hoy:
 - `EPIC 09` ya quedó completada
 - revisar `docs/EPIC09_FINAL_DEMO_READY_EVALUATION.md`
 - revisar `docs/EPIC09_DEMO_READY_CHECKLIST.md`
-- siguiente paso recomendado: resolver/preparar el entorno final de demo y cerrar branch/merge de `EPIC 09`
-- branch activa recomendada: `codex/epic-09-hardening-qa`
+- `EPIC 10` fue abierta para simplificar la experiencia del MVP
+- revisar `Backlog/EPIC_10_MVP_Simplification_Flow.md`
+- demo publica end-to-end ya operativa con frontend en Vercel + backend en Railway
+- siguiente paso recomendado: ejecutar `EPIC 10 / Card 10.1.1` y `10.1.2` para formalizar el nuevo flujo simplificado antes de tocar UI
+- branch activa recomendada: `codex/epic-10-mvp-simplification`
