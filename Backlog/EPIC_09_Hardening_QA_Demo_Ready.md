@@ -90,7 +90,7 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 - [x] Abrir drill-down
 - [x] Descargar exportables
 - [x] Registrar issues detectados
-- [ ] Commit sugerido: `test(qa): validar flujo funcional integral del MVP`
+- [x] Commit sugerido: `test(qa): validar flujo funcional integral del MVP`
 
 **Resultado de ejecucion:**
 
@@ -112,15 +112,21 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 **Complejidad:** Alta
 
-**Estado:** PENDIENTE
+**Estado:** COMPLETADA
 
 **Tasks:**
 
-- [ ] Verificar consistency de summary vs results
-- [ ] Verificar consistency de concept analysis vs exceptions persistidas
-- [ ] Verificar consistency de drill-down vs staging lines
-- [ ] Documentar y corregir desviaciones
+- [x] Verificar consistency de summary vs results
+- [x] Verificar consistency de concept analysis vs exceptions persistidas
+- [x] Verificar consistency de drill-down vs staging lines
+- [x] Documentar y corregir desviaciones
 - [ ] Commit sugerido: `test(qa): validar consistencia entre motor persistencia y UI`
+
+**Resultado de ejecucion:**
+
+- validacion documentada en `docs/EPIC09_CONSISTENCY_QA.md`
+- `21 / 21` checks de consistencia OK sobre la run `ee9e80e7-5fe0-4a3e-a8ef-7f98eb15cf27`
+- sin drift detectado entre motor, persistencia, API y UI
 
 ---
 
