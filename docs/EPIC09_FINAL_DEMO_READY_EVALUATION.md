@@ -12,7 +12,9 @@ Este documento cierra la `Card 9.6.2 — Evaluar estado final del MVP contra che
 - fecha de evaluacion: `2026-03-31`
 - branch de trabajo: `codex/epic-09-hardening-qa`
 - backend local: `http://localhost:8000`
-- frontend local: `http://localhost:3000`
+- frontend local validado: `http://localhost:3001`
+- frontend publico: `https://accounting-project-blond.vercel.app/`
+- backend productivo objetivo: `https://accounting-project-api.up.railway.app`
 - run QA de referencia: `ee9e80e7-5fe0-4a3e-a8ef-7f98eb15cf27`
 
 ## Ejecucion del checklist
@@ -98,6 +100,12 @@ del proyecto en un puerto libre.
 
 - `GET /` en `http://localhost:3001` -> `200`
 - `GET /runs/{run_id}` en `http://localhost:3001` -> `200`
+- `GET /` en `https://accounting-project-blond.vercel.app/` -> `200`
+
+### Deploy productivo
+
+- frontend Vercel accesible públicamente tras push a `main`
+- backend Railway en URL objetivo todavía no responde `/health` con `200`
 
 ## Gap residual explícito
 
@@ -114,6 +122,21 @@ Clasificación:
 - no invalida el producto ni su estado real de demo-ready
 - se resuelve levantando este frontend en un puerto libre o liberando `3000`
 
+## Gap residual explícito adicional
+
+### Gap 2. Backend productivo aún no operativo en la URL objetivo
+
+Impacto:
+
+- la demo pública end-to-end todavía depende de backend local o de completar el
+  deploy real del servicio backend
+
+Clasificación:
+
+- gap operativo fuera del alcance de hardening UX/UI de `EPIC 09`
+- no invalida el cierre funcional de la épica ni el estado demo-ready local
+- sí limita una demo pública completamente remota desde Vercel contra Railway
+
 ## Veredicto final
 
 ### Veredicto sobre el producto
@@ -122,8 +145,14 @@ El MVP está **funcionalmente demo-ready** para el alcance previsto.
 
 ### Veredicto sobre el entorno actual de presentación
 
-El entorno queda **demo-ready** siempre que el frontend de este repo se ejecute
-en un puerto libre o se libere `3000` antes de presentar.
+El entorno local queda **demo-ready** siempre que el frontend de este repo se
+ejecute en un puerto libre o se libere `3000` antes de presentar.
+
+### Veredicto sobre deploy público
+
+El frontend público está **operativo** en Vercel, pero la versión pública
+end-to-end sigue **incompleta** hasta que el backend productivo responda desde
+la URL objetivo documentada.
 
 ## Recomendación operativa final
 

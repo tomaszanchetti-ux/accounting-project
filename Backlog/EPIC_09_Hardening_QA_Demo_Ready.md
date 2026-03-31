@@ -536,8 +536,8 @@ Epic transversal de cierre. No introduce un dominio funcional nuevo.
 
 - se aplicó formalmente el checklist final al estado real del producto
 - el MVP quedó evaluado como funcionalmente demo-ready para el alcance previsto
-- se registró un gap residual de entorno: redirección a `/login` en la home local
-- el entorno local actual quedó clasificado como condicionalmente demo-ready hasta resolver sesión preparada o bypass de auth
+- se confirmó que la redirección previa a `/login` no pertenecía a este repo sino a otra app local ocupando `3000`
+- el frontend real del proyecto quedó validado correctamente en un puerto libre y el cierre de `demo-ready` se sostuvo
 - evidencia documentada en `docs/EPIC09_FINAL_DEMO_READY_EVALUATION.md`
 
 ---
